@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>認知貨幣 · Cognitive Currency ｜ 胡思樂園</title>
+<meta name="description" content="測測看你的每一天，被工作花掉多少「認知貨幣」，又換回了什麼。" />
+<style>
+/* === 這一項設施「自己的裝潢」：帳本 / 結算風。與全站遊樂園殼刻意不同調 === */
+:root{
+  --bg:#12131a; --ink-pen:#c8ff4d; --spend:#ff6b5e; --residual:#5ad0c0;
+  --gold:#e8b24c; --paper:#e9e5da; --paper-dim:#8f8b81; --line:rgba(233,229,218,.14);
+  --serif:"Noto Serif TC", Georgia, serif;
+  --mono:ui-monospace,"SF Mono",Menlo,monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+  background:var(--bg);color:var(--paper);font-family:var(--serif);
+  min-height:100dvh;line-height:1.7;
+  background-image:linear-gradient(var(--line) 1px,transparent 1px);
+  background-size:100% 34px;background-position:0 -1px;
+}
+.top{
+  max-width:760px;margin:0 auto;padding:22px 24px;
+  display:flex;justify-content:space-between;align-items:center;
+  font-family:var(--mono);font-size:12px;color:var(--paper-dim);
+  border-bottom:1px solid var(--line);letter-spacing:.08em;
+}
+.top a{color:var(--paper-dim);text-decoration:none;transition:color .2s}
+.top a:hover,.top a:focus-visible{color:var(--ink-pen);outline:none}
+.top a:focus-visible{text-decoration:underline}
+.wrap{max-width:760px;margin:0 auto;padding:52px 24px 80px}
+.ledger-tag{
+  font-family:var(--mono);font-size:12px;letter-spacing:.28em;text-transform:uppercase;
+  color:var(--ink-pen);margin-bottom:20px;
+}
+h1{
+  font-size:clamp(34px,7.5vw,58px);line-height:1.12;font-weight:700;
+  margin-bottom:26px;letter-spacing:.01em;
+}
+h1 em{color:var(--ink-pen);font-style:normal}
+.lede{font-size:17px;color:var(--paper);max-width:52ch;margin-bottom:18px}
+.lede.dim{color:var(--paper-dim)}
+.meters{
+  margin:34px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+  padding:20px 0;display:grid;gap:10px;
+}
+.meters .row{display:flex;align-items:baseline;gap:14px;font-size:15px}
+.meters .k{font-family:var(--mono);font-size:11px;color:var(--gold);width:26px;flex:none}
+.meters .v{color:var(--paper-dim)}
+.meters .v b{color:var(--paper);font-weight:700}
+.cta-row{margin-top:38px;display:flex;flex-wrap:wrap;gap:14px;align-items:center}
+.btn{
+  font-family:var(--mono);font-size:14px;letter-spacing:.06em;
+  background:var(--ink-pen);color:#12131a;font-weight:700;
+  padding:15px 28px;border-radius:4px;text-decoration:none;border:none;cursor:pointer;
+  transition:transform .18s, box-shadow .18s;
+  box-shadow:0 0 0 0 rgba(200,255,77,.5);
+}
+.btn:hover,.btn:focus-visible{transform:translateY(-2px);box-shadow:0 8px 24px -8px var(--ink-pen);outline:none}
+.btn:focus-visible{outline:2px solid var(--paper);outline-offset:3px}
+.meta{font-family:var(--mono);font-size:12px;color:var(--paper-dim);letter-spacing:.05em}
+.foot-note{margin-top:44px;font-family:var(--mono);font-size:11px;color:var(--paper-dim);letter-spacing:.05em;line-height:1.9}
+@media(prefers-reduced-motion:reduce){*{transition:none}}
+</style>
+</head>
+<body>
+
+<nav class="top">
+  <a href="../../">← 回胡思樂園</a>
+  <span>認知結算 · v2</span>
+</nav>
+
+<main class="wrap">
+  <div class="ledger-tag">Cognitive Currency · 餘額測定</div>
+  <h1>你的一天，<br>值多少<em>認知貨幣</em>？</h1>
+
+  <p class="lede">薪水看得見，工時算得出。但每份工作還偷偷收一筆帳：它每天要花掉你多少腦力，又換回了什麼。</p>
+  <p class="lede dim">把每天的腦力想成一筆有限的貨幣。有些工作很燒，但換回能力、作品、成長——花得值。有些只是把腦力耗在混亂裡，蒸發得一乾二淨。</p>
+
+  <div class="meters" aria-label="這份測驗量五件事">
+    <div class="row"><span class="k">01</span><span class="v">你的腦力<b>被切得多碎</b></span></div>
+    <div class="row"><span class="k">02</span><span class="v">花在<b>思考還是猜測</b></span></div>
+    <div class="row"><span class="k">03</span><span class="v">推進工作要<b>搬動多少人</b></span></div>
+    <div class="row"><span class="k">04</span><span class="v">消耗能<b>累積還是蒸發</b></span></div>
+    <div class="row"><span class="k">05</span><span class="v"><b>換回什麼、還剩多少自己</b></span></div>
+  </div>
+
+  <div class="cta-row">
+    <a class="btn" href="https://cognitive-currency.vercel.app/">開始結算 →</a>
+    <span class="meta">21 題 · 約 4 分鐘 · 結果不會上傳</span>
+  </div>
+
+  <p class="foot-note">
+    傾向測驗 v2 / 嚴肅底層版<br>
+    這是概念驗證原型，用來測框架準不準，不是心理診斷。
+  </p>
+</main>
+
+</body>
+</html>
