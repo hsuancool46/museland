@@ -1,101 +1,587 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>認知貨幣 · Cognitive Currency ｜ 胡思樂園</title>
-<meta name="description" content="測測看你的每一天，被工作花掉多少「認知貨幣」，又換回了什麼。" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>認知貨幣・傾向測驗</title>
 <style>
-/* === 這一項設施「自己的裝潢」：帳本 / 結算風。與全站遊樂園殼刻意不同調 === */
-:root{
-  --bg:#12131a; --ink-pen:#c8ff4d; --spend:#ff6b5e; --residual:#5ad0c0;
-  --gold:#e8b24c; --paper:#e9e5da; --paper-dim:#8f8b81; --line:rgba(233,229,218,.14);
-  --serif:"Noto Serif TC", Georgia, serif;
-  --mono:ui-monospace,"SF Mono",Menlo,monospace;
-}
-*{box-sizing:border-box;margin:0;padding:0}
-body{
-  background:var(--bg);color:var(--paper);font-family:var(--serif);
-  min-height:100dvh;line-height:1.7;
-  background-image:linear-gradient(var(--line) 1px,transparent 1px);
-  background-size:100% 34px;background-position:0 -1px;
-}
-.top{
-  max-width:760px;margin:0 auto;padding:22px 24px;
-  display:flex;justify-content:space-between;align-items:center;
-  font-family:var(--mono);font-size:12px;color:var(--paper-dim);
-  border-bottom:1px solid var(--line);letter-spacing:.08em;
-}
-.top a{color:var(--paper-dim);text-decoration:none;transition:color .2s}
-.top a:hover,.top a:focus-visible{color:var(--ink-pen);outline:none}
-.top a:focus-visible{text-decoration:underline}
-.wrap{max-width:760px;margin:0 auto;padding:52px 24px 80px}
-.ledger-tag{
-  font-family:var(--mono);font-size:12px;letter-spacing:.28em;text-transform:uppercase;
-  color:var(--ink-pen);margin-bottom:20px;
-}
-h1{
-  font-size:clamp(34px,7.5vw,58px);line-height:1.12;font-weight:700;
-  margin-bottom:26px;letter-spacing:.01em;
-}
-h1 em{color:var(--ink-pen);font-style:normal}
-.lede{font-size:17px;color:var(--paper);max-width:52ch;margin-bottom:18px}
-.lede.dim{color:var(--paper-dim)}
-.meters{
-  margin:34px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);
-  padding:20px 0;display:grid;gap:10px;
-}
-.meters .row{display:flex;align-items:baseline;gap:14px;font-size:15px}
-.meters .k{font-family:var(--mono);font-size:11px;color:var(--gold);width:26px;flex:none}
-.meters .v{color:var(--paper-dim)}
-.meters .v b{color:var(--paper);font-weight:700}
-.cta-row{margin-top:38px;display:flex;flex-wrap:wrap;gap:14px;align-items:center}
-.btn{
-  font-family:var(--mono);font-size:14px;letter-spacing:.06em;
-  background:var(--ink-pen);color:#12131a;font-weight:700;
-  padding:15px 28px;border-radius:4px;text-decoration:none;border:none;cursor:pointer;
-  transition:transform .18s, box-shadow .18s;
-  box-shadow:0 0 0 0 rgba(200,255,77,.5);
-}
-.btn:hover,.btn:focus-visible{transform:translateY(-2px);box-shadow:0 8px 24px -8px var(--ink-pen);outline:none}
-.btn:focus-visible{outline:2px solid var(--paper);outline-offset:3px}
-.meta{font-family:var(--mono);font-size:12px;color:var(--paper-dim);letter-spacing:.05em}
-.foot-note{margin-top:44px;font-family:var(--mono);font-size:11px;color:var(--paper-dim);letter-spacing:.05em;line-height:1.9}
-@media(prefers-reduced-motion:reduce){*{transition:none}}
+  :root{
+    --ink:#12131a;
+    --ink-2:#1b1d27;
+    --panel:#20222e;
+    --line:#31343f;
+    --paper:#e9e5da;
+    --paper-dim:#9a978d;
+    --ledger:#c8ff4d;      /* 螢光記帳筆綠 */
+    --ledger-dim:#7f9c3a;
+    --spend:#ff6b5e;       /* 支出/警訊 */
+    --keep:#5ad0c0;        /* 殘值/好 */
+    --gold:#e8b24c;
+    --mono:'SF Mono',ui-monospace,'Cascadia Mono','Roboto Mono',Menlo,Consolas,monospace;
+    --serif:'Iowan Old Style','Palatino Linotype','Songti TC','Noto Serif TC',Georgia,serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    background:var(--ink);
+    color:var(--paper);
+    font-family:var(--serif);
+    line-height:1.6;
+    padding:0;
+    min-height:100vh;
+    background-image:
+      linear-gradient(rgba(200,255,77,.02) 1px,transparent 1px);
+    background-size:100% 2.2rem;
+  }
+  .wrap{max-width:720px;margin:0 auto;padding:clamp(20px,5vw,56px) clamp(16px,4vw,32px) 96px}
+
+  /* ---- header / ledger masthead ---- */
+  .mast{border-bottom:1px solid var(--line);padding-bottom:18px;margin-bottom:8px}
+  .mast .eyebrow{
+    font-family:var(--mono);font-size:11px;letter-spacing:.32em;
+    color:var(--paper-dim);text-transform:uppercase;display:flex;
+    justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px
+  }
+  .mast .eyebrow .bal{color:var(--ledger)}
+  h1{
+    font-family:var(--serif);font-weight:600;
+    font-size:clamp(30px,7vw,52px);line-height:1.05;
+    letter-spacing:-.01em;margin:14px 0 6px
+  }
+  h1 .coin{color:var(--ledger)}
+  .sub{color:var(--paper-dim);font-size:15px;max-width:52ch}
+
+  /* ---- intro card ---- */
+  .intro{
+    border:1px solid var(--line);background:var(--ink-2);
+    padding:22px 22px 24px;margin-top:26px;border-radius:2px
+  }
+  .intro p{font-size:15px;color:#cfccc2;margin-bottom:12px}
+  .intro p:last-of-type{margin-bottom:0}
+  .intro .lede{font-size:16px;color:var(--paper)}
+  .intro b{color:var(--ledger);font-weight:600}
+
+  .startbtn,.navbtn{
+    font-family:var(--mono);font-size:13px;letter-spacing:.14em;
+    text-transform:uppercase;cursor:pointer;border:1px solid var(--ledger);
+    background:var(--ledger);color:var(--ink);padding:14px 26px;border-radius:2px;
+    transition:transform .12s ease,background .15s ease,color .15s ease;
+    -webkit-tap-highlight-color:transparent
+  }
+  .startbtn:hover,.navbtn:hover{transform:translateY(-1px);background:#d8ff6e}
+  .startbtn:active,.navbtn:active{transform:translateY(0)}
+  .startrow{margin-top:26px;display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+  .startrow .meta{font-family:var(--mono);font-size:12px;color:var(--paper-dim);letter-spacing:.1em}
+
+  /* ---- progress ---- */
+  .prog{
+    position:sticky;top:0;z-index:20;background:rgba(18,19,26,.92);
+    backdrop-filter:blur(8px);border-bottom:1px solid var(--line);
+    padding:12px clamp(16px,4vw,32px);margin:0 calc(-1*clamp(16px,4vw,32px)) 0;
+    display:none
+  }
+  .prog .top{
+    display:flex;justify-content:space-between;align-items:baseline;
+    font-family:var(--mono);font-size:11px;letter-spacing:.14em;
+    color:var(--paper-dim);text-transform:uppercase;margin-bottom:8px
+  }
+  .prog .dim{color:var(--ledger)}
+  .bar{height:3px;background:var(--line);border-radius:2px;overflow:hidden}
+  .bar span{display:block;height:100%;background:var(--ledger);width:0;transition:width .35s cubic-bezier(.2,.8,.2,1)}
+
+  /* ---- questions ---- */
+  .qwrap{display:none}
+  .qcard{
+    border-top:1px solid var(--line);padding:30px 0 6px;
+    animation:rise .4s ease both
+  }
+  @keyframes rise{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+  .qtag{
+    font-family:var(--mono);font-size:11px;letter-spacing:.18em;
+    text-transform:uppercase;color:var(--paper-dim);margin-bottom:4px;
+    display:flex;gap:10px;align-items:center
+  }
+  .qtag .dimname{color:var(--gold)}
+  .qtag .angle{
+    color:var(--paper-dim);border:1px solid var(--line);
+    padding:1px 7px;border-radius:99px;font-size:10px;letter-spacing:.1em
+  }
+  .qnum{font-family:var(--mono);color:var(--ledger)}
+  .qtext{font-size:19px;line-height:1.5;margin:8px 0 20px;color:var(--paper)}
+  .opts{display:flex;flex-direction:column;gap:10px}
+  .opt{
+    display:flex;gap:14px;align-items:flex-start;
+    border:1px solid var(--line);background:var(--ink-2);
+    padding:14px 16px;border-radius:2px;cursor:pointer;
+    transition:border-color .15s ease,background .15s ease,transform .08s ease;
+    -webkit-tap-highlight-color:transparent
+  }
+  .opt:hover{border-color:var(--ledger-dim);background:#242634}
+  .opt:active{transform:scale(.995)}
+  .opt.sel{border-color:var(--ledger);background:#262b1c}
+  .opt .k{
+    font-family:var(--mono);font-size:13px;color:var(--paper-dim);
+    border:1px solid var(--line);width:26px;height:26px;flex:0 0 26px;
+    display:flex;align-items:center;justify-content:center;border-radius:2px;
+    margin-top:1px;transition:all .15s
+  }
+  .opt.sel .k{background:var(--ledger);color:var(--ink);border-color:var(--ledger)}
+  .opt .t{font-size:15px;line-height:1.45;color:#d7d4ca;padding-top:2px}
+  .opt.sel .t{color:var(--paper)}
+
+  .qnav{display:flex;justify-content:space-between;align-items:center;margin-top:26px;gap:14px}
+  .backbtn{
+    font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;
+    background:none;border:none;color:var(--paper-dim);cursor:pointer;padding:8px 4px;
+    transition:color .15s
+  }
+  .backbtn:hover{color:var(--paper)}
+  .backbtn[disabled]{opacity:.3;cursor:not-allowed}
+  .navbtn[disabled]{opacity:.35;cursor:not-allowed;background:var(--line);border-color:var(--line);color:var(--paper-dim)}
+
+  /* ---- results ---- */
+  .res{display:none;animation:rise .5s ease both}
+  .res .eyebrow{
+    font-family:var(--mono);font-size:11px;letter-spacing:.28em;text-transform:uppercase;
+    color:var(--paper-dim);border-bottom:1px solid var(--line);padding-bottom:14px;
+    display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px
+  }
+  .verdict{margin:30px 0 8px}
+  .verdict .label{font-family:var(--mono);font-size:12px;letter-spacing:.2em;color:var(--ledger);text-transform:uppercase}
+  .verdict h2{font-family:var(--serif);font-size:clamp(26px,6vw,40px);font-weight:600;line-height:1.12;margin:10px 0 14px}
+  .verdict p{font-size:16px;color:#cfccc2;max-width:56ch}
+  .verdict b{color:var(--paper);font-weight:600}
+
+  .panelgrid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:34px 0}
+  @media(max-width:560px){.panelgrid{grid-template-columns:1fr}}
+  .panel{border:1px solid var(--line);background:var(--ink-2);padding:20px;border-radius:2px}
+  .panel h3{
+    font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--paper-dim);margin-bottom:16px;display:flex;justify-content:space-between
+  }
+  .radarwrap{display:flex;justify-content:center;align-items:center}
+
+  .bars{display:flex;flex-direction:column;gap:14px}
+  .brow .bhead{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:5px}
+  .brow .bname{font-size:14px;color:#d7d4ca}
+  .brow .bval{font-family:var(--mono);font-size:12px;color:var(--paper-dim)}
+  .btrack{height:6px;background:var(--ink);border:1px solid var(--line);border-radius:2px;overflow:hidden}
+  .btrack span{display:block;height:100%;border-radius:2px;transition:width .9s cubic-bezier(.2,.8,.2,1)}
+
+  .quadrant{border:1px solid var(--line);background:var(--ink-2);padding:22px;border-radius:2px;margin-bottom:16px}
+  .quadrant .qh{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--paper-dim);margin-bottom:14px}
+  .qgrid{position:relative;aspect-ratio:1;max-width:340px;margin:0 auto;border:1px solid var(--line);border-radius:2px;background:
+    linear-gradient(90deg,transparent 49.6%,var(--line) 49.6%,var(--line) 50.4%,transparent 50.4%),
+    linear-gradient(0deg,transparent 49.6%,var(--line) 49.6%,var(--line) 50.4%,transparent 50.4%)}
+  .qlab{position:absolute;font-family:var(--mono);font-size:10px;letter-spacing:.08em;color:var(--paper-dim);padding:6px 8px;max-width:48%;line-height:1.3}
+  .qlab.tl{top:0;left:0}.qlab.tr{top:0;right:0;text-align:right}
+  .qlab.bl{bottom:0;left:0}.qlab.br{bottom:0;right:0;text-align:right}
+  .qaxis{position:absolute;font-family:var(--mono);font-size:9px;letter-spacing:.14em;color:#5a5d68;text-transform:uppercase}
+  .qaxis.x{bottom:-20px;right:0}.qaxis.y{top:-16px;left:-6px}
+  .dot{position:absolute;width:15px;height:15px;border-radius:50%;background:var(--ledger);
+    box-shadow:0 0 0 4px rgba(200,255,77,.18),0 0 18px rgba(200,255,77,.5);
+    transform:translate(-50%,50%);transition:all 1.1s cubic-bezier(.2,.8,.2,1)}
+  .quadrant .qmeaning{font-size:15px;color:#cfccc2;margin-top:20px;max-width:56ch}
+  .quadrant .qmeaning b{color:var(--keep);font-weight:600}
+
+  .tension{border-left:2px solid var(--gold);background:rgba(232,178,76,.06);padding:16px 18px;margin:18px 0;border-radius:0 2px 2px 0}
+  .tension .th{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin-bottom:8px}
+  .tension p{font-size:15px;color:#d7d4ca}
+  .tension b{color:var(--paper)}
+
+  .guide{border:1px solid var(--line);background:var(--ink-2);padding:22px;border-radius:2px;margin:24px 0}
+  .guide h3{font-family:var(--serif);font-size:20px;font-weight:600;margin-bottom:10px}
+  .guide p{font-size:15px;color:#cfccc2;margin-bottom:10px}
+  .guide .q{font-family:var(--mono);font-size:14px;color:var(--ledger);padding:8px 0 8px 16px;border-left:2px solid var(--ledger-dim);margin:10px 0}
+
+  .hook{border:1px dashed var(--ledger-dim);background:rgba(200,255,77,.04);padding:24px;border-radius:2px;margin-top:30px;text-align:center}
+  .hook p{font-size:16px;color:var(--paper);margin-bottom:6px}
+  .hook .small{font-size:13px;color:var(--paper-dim);margin-bottom:18px}
+  .hookbtns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+  .ghostbtn{
+    font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;
+    background:none;border:1px solid var(--line);color:var(--paper-dim);padding:13px 22px;
+    border-radius:2px;cursor:pointer;transition:all .15s
+  }
+  .ghostbtn:hover{border-color:var(--paper-dim);color:var(--paper)}
+
+  .foot{margin-top:40px;padding-top:20px;border-top:1px solid var(--line);
+    font-family:var(--mono);font-size:11px;letter-spacing:.1em;color:#5a5d68;line-height:1.7}
+
+  .reduced *{animation:none !important;transition:none !important}
 </style>
 </head>
 <body>
+<a href="../../" style="position:fixed;top:14px;left:14px;z-index:999;font-family:var(--mono);font-size:12px;letter-spacing:.06em;color:var(--paper-dim);text-decoration:none;background:rgba(18,19,26,.7);backdrop-filter:blur(6px);padding:7px 12px;border:1px solid var(--line);border-radius:99px;transition:color .2s,border-color .2s" onmouseover="this.style.color='var(--ledger)';this.style.borderColor='var(--ledger)'" onmouseout="this.style.color='var(--paper-dim)';this.style.borderColor='var(--line)'">← 回胡思樂園</a>
+<div class="wrap">
 
-<nav class="top">
-  <a href="../../">← 回胡思樂園</a>
-  <span>認知結算 · v2</span>
-</nav>
-
-<main class="wrap">
-  <div class="ledger-tag">Cognitive Currency · 餘額測定</div>
-  <h1>你的一天，<br>值多少<em>認知貨幣</em>？</h1>
-
-  <p class="lede">薪水看得見，工時算得出。但每份工作還偷偷收一筆帳：它每天要花掉你多少腦力，又換回了什麼。</p>
-  <p class="lede dim">把每天的腦力想成一筆有限的貨幣。有些工作很燒，但換回能力、作品、成長——花得值。有些只是把腦力耗在混亂裡，蒸發得一乾二淨。</p>
-
-  <div class="meters" aria-label="這份測驗量五件事">
-    <div class="row"><span class="k">01</span><span class="v">你的腦力<b>被切得多碎</b></span></div>
-    <div class="row"><span class="k">02</span><span class="v">花在<b>思考還是猜測</b></span></div>
-    <div class="row"><span class="k">03</span><span class="v">推進工作要<b>搬動多少人</b></span></div>
-    <div class="row"><span class="k">04</span><span class="v">消耗能<b>累積還是蒸發</b></span></div>
-    <div class="row"><span class="k">05</span><span class="v"><b>換回什麼、還剩多少自己</b></span></div>
+  <!-- progress (sticky, hidden until quiz) -->
+  <div class="prog" id="prog">
+    <div class="top"><span>認知結算・進度</span><span><span class="dim" id="pDim">注意力碎裂</span> · <span id="pNum">01 / 21</span></span></div>
+    <div class="bar"><span id="pFill"></span></div>
   </div>
 
-  <div class="cta-row">
-    <a class="btn" href="https://cognitive-currency.vercel.app/">開始結算 →</a>
-    <span class="meta">21 題 · 約 4 分鐘 · 結果不會上傳</span>
-  </div>
+  <!-- INTRO -->
+  <section id="intro">
+    <div class="mast">
+      <div class="eyebrow"><span>認知貨幣 · COGNITIVE CURRENCY</span><span class="bal">餘額測定 v2</span></div>
+      <h1>你的一天，<br>值多少<span class="coin">認知貨幣</span>？</h1>
+      <p class="sub">薪水看得見，工時算得出。但每份工作還偷偷收一筆帳：它每天要花掉你多少腦力，又換回了什麼。</p>
+    </div>
 
-  <p class="foot-note">
-    傾向測驗 v2 / 嚴肅底層版<br>
-    這是概念驗證原型，用來測框架準不準，不是心理診斷。
-  </p>
-</main>
+    <div class="intro">
+      <p class="lede">把每天的腦力想成一筆有限的貨幣。有些工作很燒，但換回能力、作品、成長——花得值。有些只是把腦力耗在混亂裡，蒸發得一乾二淨。</p>
+      <p>這份測驗量五件事：你的腦力<b>被切得多碎</b>、花在<b>思考還是猜測</b>、推進工作要<b>搬動多少人</b>、消耗能<b>累積還是蒸發</b>，以及最後<b>換回什麼、還剩多少自己</b>。</p>
+      <p>它不客觀——也不需要。它只保證用同一把尺量你，讓你看清自己真正貴在哪。</p>
+    </div>
 
+    <div class="startrow">
+      <button class="startbtn" id="start">開始結算</button>
+      <span class="meta">21 題 · 約 4 分鐘 · 結果不會上傳</span>
+    </div>
+
+    <div class="foot">
+      認知貨幣 · 傾向測驗 v2 &nbsp;/&nbsp; 嚴肅底層版<br>
+      這是概念驗證原型，用來測框架準不準，不是心理診斷。
+    </div>
+  </section>
+
+  <!-- QUIZ -->
+  <section class="qwrap" id="quiz">
+    <div id="qmount"></div>
+    <div class="qnav">
+      <button class="backbtn" id="back" disabled>← 上一題</button>
+      <button class="navbtn" id="next" disabled>下一題 →</button>
+    </div>
+  </section>
+
+  <!-- RESULTS -->
+  <section class="res" id="results"></section>
+
+</div>
+
+<script>
+/* ---------------- DATA ---------------- */
+const DIMS = {
+  focus:   {name:'注意力碎裂', see:'腦力被切得多碎',            color:'#ff6b5e'},
+  judge:   {name:'模糊與判斷', see:'腦力花在思考，還是猜測',      color:'#e8b24c'},
+  people:  {name:'協調與人際', see:'推進工作要搬動多少人',        color:'#c8ff4d'},
+  control: {name:'掌控與重工', see:'消耗能累積，還是蒸發',        color:'#8f7cff'},
+  redeem:  {name:'兌換與殘值', see:'換回什麼，還剩多少自己',      color:'#5ad0c0'}
+};
+
+// score: value each option carries. For redeem Q17-20 the direction is reversed at build time.
+const Q = [
+  {dim:'focus',angle:'當下',text:'專注做事時半小時內被打斷三次，每個都說「先幫我看一下」。你：',
+   opts:[['A','切就切，回頭接得回來',1],['B','有點煩但能處理',2],['C','每次重新進入都很費力，一天下來比做難事還累',3],['D','光是「隨時可能被打斷」就讓我整天無法真正專注',4]]},
+  {dim:'focus',angle:'累積',text:'這份工作的常態，是同時掛著五六條線，永遠沒有一段完整不被碰的時間。長期你：',
+   opts:[['A','習慣就好，我本來就多工',1],['B','偶爾希望清靜，但還行',2],['C','長期沒有完整時段，我會慢慢覺得能力發揮不出來',3],['D','這種狀態持續一陣，我會明顯枯竭',4]]},
+  {dim:'focus',angle:'取捨',text:'兩份工作：一份錢多但整天被切碎，一份錢少一成但能大段專注。你傾向：',
+   opts:[['A','選錢多的，切碎沒差',1],['B','偏錢多，但猶豫',2],['C','偏專注那份，願意少拿一點',3],['D','直接選專注，少一成我也換',4]]},
+  {dim:'focus',angle:'臨界',text:'到什麼程度，「被切碎」會讓你想離開一份其他都不錯的工作？',
+   opts:[['A','幾乎不會',1],['B','要非常嚴重',2],['C','持續很碎會成為我認真考慮走的理由',3],['D','光這項就足以讓我想走',4]]},
+
+  {dim:'judge',angle:'當下',text:'任務落到你手上，沒人說清楚你能決定到哪、界線在哪。你：',
+   opts:[['A','自己抓範圍做下去，享受這個空間',1],['B','確認一下就繼續',2],['C','一直卡在「這樣算不算越權」，綁手綁腳',3],['D','搞不清界線就足以讓我對整件事失去動力',4]]},
+  {dim:'judge',angle:'判斷vs猜測',text:'同樣是「沒有標準答案」，哪種更接近你的狀態？',
+   opts:[['A','我把它當成自己判斷的空間，反而來勁',1],['B','大致還好，偶爾希望有人給個方向',2],['C','要看是「我能決定」還是「我得猜別人要什麼」——後者很耗我',3],['D','只要沒有明確標準，不管哪種我都很累',4]]},
+  {dim:'judge',angle:'取捨',text:'兩份工作：一份指令明確但你能決定的很少，一份很模糊但自由度大。你傾向：',
+   opts:[['A','選自由那份，模糊我不怕，還更喜歡',1],['B','偏自由',2],['C','偏明確，少決定沒關係',3],['D','直接選明確，模糊讓我痛苦',4]]},
+  {dim:'judge',angle:'臨界',text:'「模糊／要靠猜」到什麼程度，你會想離開？',
+   opts:[['A','幾乎不會，我耐得住模糊',1],['B','要很嚴重',2],['C','長期理不清會成為我想走的理由',3],['D','光這項就夠讓我想走',4]]},
+
+  {dim:'people',angle:'當下',text:'你的進度卡在別人身上，不追就不會來，追了又怕顯得煩。你：',
+   opts:[['A','追就追，日常',1],['B','追時有點心累但還好',2],['C','一直追人、等回覆，默默吃掉我大半精力',3],['D','只要得靠追人才會動，我很想放棄這件事',4]]},
+  {dim:'people',angle:'累積',text:'這份工作大量依賴跨部門協作，你的產出長期得靠不斷推動別人才跑得動。長期你：',
+   opts:[['A','沒問題，我推得動',1],['B','偶爾累',2],['C','長期當推進器會讓我持續耗損',3],['D','待久我會枯竭',4]]},
+  {dim:'people',angle:'取捨',text:'兩份工作：一份你能大部分自己完成，一份影響力更大但高度依賴搬動別人配合。你傾向：',
+   opts:[['A','選影響力大那份，搬人沒差',1],['B','偏影響力大',2],['C','偏能自己掌控那份',3],['D','直接選自己能掌控，不想靠追人',4]]},
+  {dim:'people',angle:'臨界',text:'「事情得靠推動別人才會動」到什麼程度，你會想離開？',
+   opts:[['A','幾乎不會',1],['B','要很嚴重',2],['C','長期如此會成為我想走的理由',3],['D','光這項就夠讓我想走',4]]},
+
+  {dim:'control',angle:'當下',text:'同一份東西改了又改，每次都說「差最後一點」，但標準一直動。你：',
+   opts:[['A','改就改，遲早會定',1],['B','有點消耗但可接受',2],['C','反覆改沒有終點，比工作量本身更折磨我',3],['D','只要標準會一直變，我徹底提不起勁',4]]},
+  {dim:'control',angle:'累積',text:'這份工作的常態，是很多事沒有明確完成線，永遠可能被回頭要求再調。長期你：',
+   opts:[['A','還好，我不執著結案',1],['B','偶爾煩',2],['C','長期沒有終點感會讓我持續耗損',3],['D','這種沒完沒了會讓我明顯崩耗',4]]},
+  {dim:'control',angle:'取捨',text:'兩份工作：一份要求高但一次到位就結案，一份要求普通但常常反覆回修、成果留不下來。你傾向：',
+   opts:[['A','無所謂，回修沒差',1],['B','稍微偏一次到位',2],['C','明顯偏一次到位，願意扛更高要求換乾脆',3],['D','寧可要求再高，也要能結案、能累積的那份',4]]},
+  {dim:'control',angle:'臨界',text:'「努力會被反覆推翻、留不下來」到什麼程度，你會想離開？',
+   opts:[['A','幾乎不會',1],['B','要很嚴重',2],['C','長期蒸發會成為我想走的理由',3],['D','光這項就夠讓我想走',4]]},
+
+  // redeem: high raw letter = better redemption. reversed:true means A=4..D=1
+  {dim:'redeem',angle:'換回能力',reversed:true,text:'回想過去一份工作，一天燒完腦力後，你更常有哪種感覺？',
+   opts:[['A','累但值得，我確實變強了／做出東西了',4],['B','一半一半',3],['C','累，而且說不上學到什麼',2],['D','純粹被榨乾，什麼都沒留下',1]]},
+  {dim:'redeem',angle:'換回作品',reversed:true,text:'那份工作結束時，你能不能指著具體的東西說「這是我做的」？',
+   opts:[['A','能，有一串拿得出手的成果',4],['B','有一些，但零散',3],['C','很少，大多是流程跑掉就沒了',2],['D','幾乎沒有，忙完一場什麼都沒沉澱',1]]},
+  {dim:'redeem',angle:'殘值·自我',reversed:true,text:'下班／收工後，你還剩多少「自己」——做自己事、想自己想法的餘力？',
+   opts:[['A','通常還有餘力，工作沒把我整個人吃掉',4],['B','看時期，起伏',3],['C','常常回到家已經空了，什麼都不想做',2],['D','長期被掏空，連自己是誰、想要什麼都模糊了',1]]},
+  {dim:'redeem',angle:'取捨',reversed:true,text:'兩份工作：一份很燒腦但每天都在長本事，一份很輕鬆但三年後你還是原地。你傾向：',
+   opts:[['A','選輕鬆那份，不長進沒關係',1],['B','偏輕鬆',2],['C','偏燒腦成長那份',3],['D','一定選成長，原地踏步對我是最貴的',4]]},
+  {dim:'redeem',angle:'總量校準',reversed:false,text:'整體而言，你更怕哪一種工作？',
+   opts:[['A','太閒、學不到東西',1],['B','偏怕太閒',2],['C','偏怕被耗乾',3],['D','最怕那種「很累、但累得毫無意義」的工作',4]]}
+];
+
+/* ---------------- STATE ---------------- */
+let idx = 0;
+const answers = new Array(Q.length).fill(null);
+const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+if(reduced) document.body.classList.add('reduced');
+
+const $ = s => document.querySelector(s);
+const intro=$('#intro'), quiz=$('#quiz'), results=$('#results'),
+      prog=$('#prog'), mount=$('#qmount'),
+      backBtn=$('#back'), nextBtn=$('#next');
+
+$('#start').addEventListener('click',()=>{
+  intro.style.display='none';
+  quiz.style.display='block';
+  prog.style.display='block';
+  render();
+  window.scrollTo({top:0,behavior:reduced?'auto':'smooth'});
+});
+
+function render(){
+  const q=Q[idx], d=DIMS[q.dim];
+  $('#pDim').textContent=d.name;
+  $('#pNum').textContent=String(idx+1).padStart(2,'0')+' / '+Q.length;
+  $('#pFill').style.width=((idx)/(Q.length))*100+'%';
+
+  mount.innerHTML='';
+  const card=document.createElement('div');
+  card.className='qcard';
+  card.innerHTML=`
+    <div class="qtag">
+      <span class="qnum">Q${String(idx+1).padStart(2,'0')}</span>
+      <span class="dimname">${d.name}</span>
+      <span class="angle">${q.angle}</span>
+    </div>
+    <div class="qtext">${q.text}</div>
+    <div class="opts"></div>`;
+  const opts=card.querySelector('.opts');
+  q.opts.forEach((o,i)=>{
+    const el=document.createElement('div');
+    el.className='opt'+(answers[idx]===i?' sel':'');
+    el.innerHTML=`<span class="k">${o[0]}</span><span class="t">${o[1]}</span>`;
+    el.addEventListener('click',()=>{
+      answers[idx]=i;
+      opts.querySelectorAll('.opt').forEach(x=>x.classList.remove('sel'));
+      el.classList.add('sel');
+      nextBtn.disabled=false;
+      if(!reduced) setTimeout(advance,230);
+    });
+    opts.appendChild(el);
+  });
+  mount.appendChild(card);
+
+  backBtn.disabled = idx===0;
+  nextBtn.disabled = answers[idx]===null;
+  nextBtn.textContent = idx===Q.length-1 ? '看結算 →' : '下一題 →';
+}
+
+function advance(){
+  if(answers[idx]===null) return;
+  if(idx===Q.length-1){ finish(); return; }
+  idx++; render();
+  window.scrollTo({top:0,behavior:reduced?'auto':'smooth'});
+}
+nextBtn.addEventListener('click',advance);
+backBtn.addEventListener('click',()=>{ if(idx>0){idx--;render();window.scrollTo({top:0,behavior:reduced?'auto':'smooth'});} });
+
+/* ---------------- SCORING ---------------- */
+function scoreAll(){
+  const raw={focus:0,judge:0,people:0,control:0,redeem:0};
+  Q.forEach((q,i)=>{ raw[q.dim]+= q.opts[answers[i]][2]; });
+  // normalise to 0..100 per dim (focus/judge/people/control: 4-16; redeem: 5-20)
+  const norm={
+    focus:  (raw.focus-4)/12,
+    judge:  (raw.judge-4)/12,
+    people: (raw.people-4)/12,
+    control:(raw.control-4)/12,
+    redeem: (raw.redeem-5)/15
+  };
+  return {raw,norm};
+}
+
+/* ---------------- RESULTS ---------------- */
+function finish(){
+  const {raw,norm}=scoreAll();
+  quiz.style.display='none';
+  prog.style.display='none';
+  $('#pFill').style.width='100%';
+
+  const spendDims=['focus','judge','people','control'];
+  // total spend = average of 4 spend dims (0..1)
+  const spend = spendDims.reduce((s,k)=>s+norm[k],0)/4;
+  const redeem = norm.redeem; // 0..1, high=good
+
+  // top spend dim(s)
+  const sorted=[...spendDims].sort((a,b)=>norm[b]-norm[a]);
+  const topKey=sorted[0], top2Key=sorted[1];
+  const lowKey=sorted[3];
+
+  // verdict label by top spend dim
+  const LABELS={
+    focus:  ['碎裂敏感型','你扛得住難，但扛不住「被切碎」。完整的一段時間，是你最貴的資源。'],
+    judge:  ['迷霧耗損型','沒有標準答案時你會空轉。你要的不是自由，是一個看得見的方向。'],
+    people: ['推進器耗竭型','你的電，大半花在「讓別人動起來」。事情越靠搬人，你越快沒電。'],
+    control:['無限迴圈敏感型','給你難題你會興奮；給你一個永遠改不完、留不下的迴圈，你會枯竭。']
+  };
+  const [labelName,labelDesc]=LABELS[topKey];
+
+  // quadrant meaning
+  const hiSpend=spend>=0.5, hiRedeem=redeem>=0.5;
+  let quad, quadText;
+  if(hiSpend&&hiRedeem){quad='值得的硬仗';quadText='你花得多，但換得回。你的認知貨幣預算充裕，也願意為值得的事大筆花掉——關鍵是守住「兌換率」，別讓自己滑進純耗損。';}
+  else if(hiSpend&&!hiRedeem){quad='認知破產';quadText='你正把大量腦力倒進換不回東西的地方。這是最該逃的象限——不是因為累，是因為累得沒有沉澱。';}
+  else if(!hiSpend&&hiRedeem){quad='舒適累積';quadText='消耗不高、又能持續換回成長。這是最省的狀態，但留意天花板：別讓「舒適」變成停滯的藉口。';}
+  else{quad='溫水';quadText='不太累，但也長不出什麼。對怕耗乾的人是避風港，對怕停滯的人是慢性流失。要看你更怕哪一種。';}
+
+  // tension detection: redeem sub-split (past redemption vs growth-fear)
+  // Q17-19 index 16,17,18 (past redemption); Q20,21 index 19,20 (growth fear)
+  const pastR = (q=>[16,17,18].reduce((s,i)=>s+Q[i].opts[answers[i]][2],0))(); // 3..12, high=good past
+  const fearStagnate = [19,20].reduce((s,i)=>s+Q[i].opts[answers[i]][2],0);      // 2..8, high=fears waste/stagnation
+  const tension = pastR>=9 && fearStagnate>=6; // good past redemption BUT strong fear of waste
+
+  results.style.display='block';
+  results.innerHTML=`
+    <div class="eyebrow"><span>認知結算完成 · SETTLEMENT</span><span>${labelName}</span></div>
+
+    <div class="verdict">
+      <div class="label">你的認知貨幣畫像</div>
+      <h2>${labelName}</h2>
+      <p>${labelDesc}</p>
+    </div>
+
+    <div class="panelgrid">
+      <div class="panel">
+        <h3><span>五維結算</span><span>支出/殘值</span></h3>
+        <div class="radarwrap">${radarSVG(norm)}</div>
+      </div>
+      <div class="panel">
+        <h3><span>逐項明細</span><span>0—100</span></h3>
+        <div class="bars">${barsHTML(norm)}</div>
+      </div>
+    </div>
+
+    <div class="quadrant">
+      <div class="qh">象限判定 · 總支出 × 兌換率</div>
+      <div class="qgrid">
+        <span class="qlab tl">認知破產<br>高支出·低兌換</span>
+        <span class="qlab tr">值得的硬仗<br>高支出·高兌換</span>
+        <span class="qlab bl">溫水<br>低支出·低兌換</span>
+        <span class="qlab br">舒適累積<br>低支出·高兌換</span>
+        <span class="qaxis y">支出 →</span>
+        <span class="qaxis x">兌換率 →</span>
+        <span class="dot" id="dot" style="left:50%;bottom:50%"></span>
+      </div>
+      <p class="qmeaning">你落在 <b>${quad}</b>。${quadText}</p>
+    </div>
+
+    ${tension?`
+    <div class="tension">
+      <div class="th">帳目裡的張力</div>
+      <p>你過去的兌換率其實<b>不差</b>——你不是被榨乾的人，你的付出有換回能力與作品。但你對「白費」的恐懼特別強。合起來看，你不是一個<b>怕累</b>的人，你是一個<b>怕白費</b>的人：燒腦你不怕，怕的是燒完什麼都沒留下。這也解釋了為什麼「掌控與重工」會是你最貴的一項——那正是你最怕的事的具體形態。</p>
+    </div>`:''}
+
+    <div class="guide">
+      <h3>下次選工作，該死盯什麼</h3>
+      <p>你最貴的是 <b style="color:${DIMS[topKey].color}">${DIMS[topKey].name}</b> 和 <b style="color:${DIMS[top2Key].color}">${DIMS[top2Key].name}</b>；最不在意的是 <b style="color:${DIMS[lowKey].color}">${DIMS[lowKey].name}</b>。所以評估 offer 時，別只問「累不累」，改問：</p>
+      <div class="q">這份工作的消耗，留得下來嗎？還是會反覆蒸發、卡在別人手上？</div>
+      <div class="q">它換回的，是成長，還是空轉？</div>
+      <p>薪水、甚至工時，對你都是次要變數。你的認知貨幣兌換率，幾乎由「留不留得下、由不由你掌控」決定。</p>
+    </div>
+
+    <div class="hook">
+      <p>這是「你這個人」的認知消耗傾向。</p>
+      <p class="small">下一步：拿一個你正在考慮的<b style="color:var(--paper)">真實選擇</b>跑一次，算算它對你的兌換率。</p>
+      <div class="hookbtns">
+        <button class="ghostbtn" id="again">重新測一次</button>
+        <button class="startbtn" id="copy">複製我的結算摘要</button>
+      </div>
+    </div>
+
+    <div class="foot">
+      認知貨幣 · 傾向測驗 v2 · 嚴肅底層版<br>
+      原始分：碎裂 ${raw.focus}/16 · 判斷 ${raw.judge}/16 · 人際 ${raw.people}/16 · 掌控 ${raw.control}/16 · 兌換 ${raw.redeem}/20
+    </div>
+  `;
+
+  // animate quadrant dot
+  requestAnimationFrame(()=>{
+    setTimeout(()=>{
+      const dot=$('#dot');
+      if(dot){ dot.style.left=(redeem*100).toFixed(1)+'%'; dot.style.bottom=(spend*100).toFixed(1)+'%'; }
+    }, reduced?0:120);
+    animateBars();
+  });
+
+  $('#again').addEventListener('click',()=>{
+    idx=0; answers.fill(null);
+    results.style.display='none';
+    intro.style.display='block';
+    window.scrollTo({top:0,behavior:reduced?'auto':'smooth'});
+  });
+  $('#copy').addEventListener('click',(e)=>{
+    const txt=`我的認知貨幣結算：${labelName}｜落在「${quad}」象限。`+
+      `最貴：${DIMS[topKey].name}、${DIMS[top2Key].name}；最不在意：${DIMS[lowKey].name}。`;
+    navigator.clipboard?.writeText(txt).then(()=>{
+      e.target.textContent='已複製 ✓';
+      setTimeout(()=>e.target.textContent='複製我的結算摘要',1800);
+    }).catch(()=>{e.target.textContent='複製失敗，手動選取';});
+  });
+
+  window.scrollTo({top:0,behavior:reduced?'auto':'smooth'});
+}
+
+/* ---------------- RADAR ---------------- */
+function radarSVG(norm){
+  const keys=['focus','judge','people','control','redeem'];
+  const cx=150,cy=140,R=96;
+  const ang=i=>(-90+i*72)*Math.PI/180;
+  const pt=(i,r)=>[cx+Math.cos(ang(i))*R*r, cy+Math.sin(ang(i))*R*r];
+  let rings='';
+  [.25,.5,.75,1].forEach(r=>{
+    let p=keys.map((_,i)=>pt(i,r).join(',')).join(' ');
+    rings+=`<polygon points="${p}" fill="none" stroke="#31343f" stroke-width="1"/>`;
+  });
+  let spokes='';
+  keys.forEach((_,i)=>{const[x,y]=pt(i,1);spokes+=`<line x1="${cx}" y1="${cy}" x2="${x}" y2="${y}" stroke="#31343f" stroke-width="1"/>`;});
+  const poly=keys.map((k,i)=>pt(i,Math.max(.04,norm[k])).join(',')).join(' ');
+  let dots='';
+  keys.forEach((k,i)=>{const[x,y]=pt(i,Math.max(.04,norm[k]));dots+=`<circle cx="${x}" cy="${y}" r="3.5" fill="${DIMS[k].color}"/>`;});
+  let labels='';
+  const short={focus:'碎裂',judge:'判斷',people:'人際',control:'掌控',redeem:'兌換'};
+  keys.forEach((k,i)=>{
+    const[x,y]=pt(i,1.24);
+    const anchor = Math.abs(x-cx)<8?'middle':(x<cx?'end':'start');
+    labels+=`<text x="${x}" y="${y+4}" text-anchor="${anchor}" fill="${DIMS[k].color}" font-family="var(--mono)" font-size="12">${short[k]}</text>`;
+  });
+  return `<svg viewBox="0 0 300 285" width="100%" style="max-width:300px">
+    ${rings}${spokes}
+    <polygon points="${poly}" fill="rgba(200,255,77,.14)" stroke="var(--ledger)" stroke-width="2" style="${reduced?'':'transition:all .9s'}"/>
+    ${dots}${labels}
+  </svg>`;
+}
+
+/* ---------------- BARS ---------------- */
+function barsHTML(norm){
+  const order=['focus','judge','people','control','redeem'];
+  return order.map(k=>{
+    const v=Math.round(norm[k]*100);
+    const isRedeem=k==='redeem';
+    const cap=isRedeem?'殘值':'支出';
+    return `<div class="brow" data-k="${k}">
+      <div class="bhead"><span class="bname">${DIMS[k].name}</span><span class="bval">${cap} ${v}</span></div>
+      <div class="btrack"><span style="width:0;background:${DIMS[k].color}" data-w="${v}"></span></div>
+    </div>`;
+  }).join('');
+}
+function animateBars(){
+  document.querySelectorAll('.btrack span').forEach(s=>{
+    const w=s.getAttribute('data-w');
+    requestAnimationFrame(()=>{setTimeout(()=>{s.style.width=w+'%';},reduced?0:80);});
+  });
+}
+</script>
 </body>
 </html>
