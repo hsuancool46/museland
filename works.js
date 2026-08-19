@@ -18,6 +18,14 @@
 
 const WORKS = [
   {
+  slug: "narrative-simulator",
+  title: "平行未來模擬器",
+  subtitle: "Personalized Narrative Simulator",
+  blurb: "我們不預測你的未來，只把其中一種寫得真實到令你不安。",
+  color: "#ff5d5d",
+  isNew: true,
+},
+  {
     slug: "cognitive-currency",
     title: "認知貨幣",
     subtitle: "Cognitive Currency",
