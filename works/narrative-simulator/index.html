@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Personalized Narrative Simulator — 一份寫得真實到令你不安的未來草稿</title>
+<style>
+  :root{
+    --bg: #0b0b10;
+    --bg-panel: #14141d;
+    --bg-panel-2: #1c1c28;
+    --border: #2a2a3a;
+    --text: #ecebf3;
+    --text-dim: #9c9ab0;
+    --accent: #ff5d5d;
+    --accent-2: #6d8bff;
+    --radius: 14px;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0; min-height:100vh;
+    background: radial-gradient(circle at 20% -10%, #201b2e 0%, var(--bg) 55%);
+    color: var(--text);
+    font-family: -apple-system, "PingFang TC", "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+    display:flex; justify-content:center; padding: 40px 16px 80px;
+  }
+  #app{ width:100%; max-width: 640px; }
+  .brand{ text-align:center; margin-bottom: 28px; }
+  .brand h1{
+    font-size: clamp(20px, 5.5vw, 27px); letter-spacing: 0.3px; margin: 0 0 6px; line-height:1.25;
+    background: linear-gradient(90deg, var(--accent), var(--accent-2));
+    -webkit-background-clip: text; background-clip:text; color: transparent;
+  }
+  .brand p{ color: var(--text-dim); font-size: 13.5px; margin:0; }
+
+  .card{
+    background: var(--bg-panel);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 28px 26px;
+    margin-bottom: 16px;
+  }
+  .progress{ display:flex; gap:5px; margin-bottom: 22px; }
+  .progress i{ flex:1; height:4px; border-radius:2px; background: var(--border); }
+  .progress i.done{ background: linear-gradient(90deg, var(--accent), var(--accent-2)); }
+
+  .step-label{ font-size:12px; color: var(--text-dim); letter-spacing:1px; text-transform:uppercase; margin-bottom:8px;}
+  .step-q{ font-size: 19px; line-height:1.55; margin: 0 0 18px; font-weight:600; }
+  .step-hint{ font-size:12.5px; color:var(--text-dim); margin: -12px 0 16px; }
+
+  input[type=text], textarea, select{
+    width:100%; background: var(--bg-panel-2); border:1px solid var(--border);
+    color: var(--text); border-radius: 10px; padding: 12px 14px; font-size:15px;
+    font-family: inherit; outline:none; transition: border-color .15s;
+  }
+  input[type=text]:focus, textarea:focus, select:focus{ border-color: var(--accent-2); }
+  textarea{ min-height: 92px; resize: vertical; }
+
+  .charcount{ text-align:right; font-size:11px; color:var(--text-dim); margin-top:4px; }
+
+  .options{ display:flex; flex-wrap:wrap; gap:8px; }
+  .chip{
+    padding: 10px 16px; border-radius: 999px; border:1px solid var(--border);
+    background: var(--bg-panel-2); color: var(--text-dim); cursor:pointer; font-size:14px;
+    transition: all .12s; user-select:none;
+  }
+  .chip:hover{ border-color: var(--accent-2); }
+  .chip.selected{ background: linear-gradient(90deg, var(--accent), var(--accent-2)); color:#fff; border-color: transparent; }
+  .chip.disabled{ opacity:.35; cursor:not-allowed; }
+
+  .nav-row{ display:flex; justify-content:space-between; align-items:center; margin-top:22px; }
+  button{
+    font-family: inherit; font-size: 14.5px; border-radius: 10px; padding: 11px 22px;
+    border: none; cursor:pointer; transition: transform .08s, opacity .15s;
+  }
+  button:active{ transform: scale(.97); }
+  .btn-primary{ background: linear-gradient(90deg, var(--accent), var(--accent-2)); color:#fff; font-weight:600; }
+  .btn-primary:disabled{ opacity:.35; cursor:not-allowed; }
+  .btn-ghost{ background: transparent; color: var(--text-dim); border: 1px solid var(--border); }
+  .btn-ghost:hover{ color: var(--text); border-color: var(--text-dim); }
+  .skip-link{ display:inline-block; margin-top:10px; font-size:12.5px; color: var(--text-dim); text-decoration:underline; cursor:pointer; }
+
+  .toggle-row{ display:flex; align-items:center; justify-content:space-between; gap:12px; }
+  .switch{ position:relative; width:46px; height:26px; background: var(--bg-panel-2); border:1px solid var(--border); border-radius:999px; cursor:pointer; flex:none; }
+  .switch.on{ background: linear-gradient(90deg, var(--accent), var(--accent-2)); border-color: transparent; }
+  .switch .knob{ position:absolute; top:2px; left:2px; width:20px; height:20px; border-radius:50%; background:#fff; transition: left .15s; }
+  .switch.on .knob{ left: 22px; }
+
+  .fade-in{ animation: fadeIn .25s ease; }
+  @keyframes fadeIn{ from{opacity:0; transform: translateY(6px);} to{opacity:1; transform:none;} }
+
+  .story{ white-space: pre-wrap; line-height:1.9; font-size:15.5px; }
+  .story-title{ font-size:20px; font-weight:700; margin-bottom:14px; }
+
+  .loading{ text-align:center; padding: 40px 0; color: var(--text-dim); }
+  .spinner{ width:34px; height:34px; margin:0 auto 16px; border-radius:50%;
+    border: 3px solid var(--border); border-top-color: var(--accent); animation: spin .8s linear infinite; }
+  @keyframes spin{ to{ transform: rotate(360deg); } }
+
+  .error-box{ background:#2a1414; border:1px solid #5a2a2a; color:#ffb3b3; padding:12px 14px; border-radius:10px; font-size:13.5px; margin-bottom:14px; }
+
+  .reflect-q{ margin-bottom:14px; }
+  .reflect-q label{ display:block; font-size:14px; margin-bottom:6px; }
+
+  .limit-note{ font-size:12px; color: var(--text-dim); margin-top:8px; }
+
+  footer{ text-align:center; color: var(--text-dim); font-size:11.5px; margin-top:24px; }
+
+  .back-link{
+    position: fixed; top: 16px; left: 16px; z-index: 10;
+    color: var(--text-dim); text-decoration: none; font-size: 13px;
+    padding: 7px 12px; border-radius: 999px; border: 1px solid var(--border);
+    background: rgba(20,20,29,.7); backdrop-filter: blur(6px); transition: color .15s, border-color .15s;
+  }
+  .back-link:hover{ color: var(--text); border-color: var(--text-dim); }
+</style>
+</head>
+<body>
+<a href="../../" class="back-link">← 回胡思樂園</a>
+<div id="app"></div>
+
+<script>
+/* ---------------------------------------------------------
+   PLOT ARMOR — public build, v0.2
+   10-question core intake. Genre is INFERRED server-side from
+   the "what does winning feel like" answers, not asked directly.
+   The "how do you narrate a mishap" question replaces the old
+   tone slider — the model reads its register instead of us
+   hand-rolling a tone heuristic.
+   The frontend never sees the Anthropic API key.
+--------------------------------------------------------- */
+
+const OBSTACLES = [
+  { key:'money', label:'錢或資源' },
+  { key:'system', label:'工作／制度' },
+  { key:'family', label:'家庭或關係' },
+  { key:'ability', label:'能力還不夠' },
+  { key:'self', label:'自己的拖延、害怕或反覆' },
+  { key:'other', label:'其他' },
+];
+
+const WIN_FEELINGS = [
+  { key:'freedom', label:'我很自由' },
+  { key:'rich', label:'我很有錢' },
+  { key:'competence', label:'我的能力被認可' },
+  { key:'needed', label:'別人需要我' },
+  { key:'envied', label:'別人羨慕我' },
+  { key:'provedWrong', label:'我證明了某些人錯了' },
+  { key:'madeThing', label:'我做出了自己的東西' },
+  { key:'strong', label:'我變得非常強' },
+  { key:'ownPlace', label:'我有一個真正屬於我的地方' },
+  { key:'loveTogether', label:'我愛的人跟我一起' },
+  { key:'atPeace', label:'我終於可以安心' },
+  { key:'impact', label:'我的作品影響了很多人' },
+];
+
+const STEPS = [
+  { id:'lifePosition', block:'現實錨點', q:'你現在正處在人生的什麼位置？', type:'text', max:50, placeholder:'工作、學業、待業、轉職、創業、休息中都可以' },
+  { id:'scenes', block:'現實錨點', q:'如果把你現在的一天拍成電影，最常出現的三個場景是什麼？', type:'textarea', max:150, placeholder:'例如：辦公室改文件／下班去拳館／半夜做自己的 App' },
+  { id:'block', block:'衝突與限制', q:'現在最卡住你的一件事是什麼？', type:'text', max:60, placeholder:'不是「我想成功」，是真正阻止你往前的東西' },
+  { id:'obstacleType', block:'衝突與限制', q:'你覺得最大的阻力比較來自哪裡？', type:'chips-other', options:OBSTACLES },
+  { id:'foil', block:'衝突與限制', q:'有沒有一個人、一群人，或一種聲音，曾讓你很想證明「你們錯了」？', type:'text-optional', max:60, placeholder:'真人、以前的自己、社會期待都可以', hint:'不想回答可以跳過' },
+  { id:'climaxScene', block:'慾望與爽點', q:'三年後，如果有一個瞬間會讓你想「幹，我真的走到這裡了」，那個畫面是什麼？', type:'textarea', max:200, hint:'具體場景：你在哪裡？正在做什麼？旁邊有誰？' },
+  { id:'winFeelings', block:'慾望與爽點', q:'下面哪些感覺最能讓你覺得「我贏了」？', type:'chips-multi', options:WIN_FEELINGS, limit:3, hint:'最多選 3 個' },
+  { id:'selfIntro', block:'身份與自我形象', q:'你希望三年後，熟悉你的人會怎麼向別人介紹你？', type:'text', max:80, placeholder:'例如：「他就是做那個 App 的人」' },
+  { id:'notYetDone', block:'身份與自我形象', q:'有什麼事情是現在的你很想做，卻還沒有真的跨出去？', type:'text', max:80, placeholder:'離職、創業、搬去另一個國家、告白、比賽……不用合理，只要是真的' },
+  { id:'voice', block:'語氣與濾鏡', q:'當你遇到很荒謬、很衰或很尷尬的事情時，你通常會怎麼講它？', type:'textarea', max:250, hint:'隨便舉一個例子——這決定整篇故事的語氣' },
+  { id:'fateToggle', block:'Fate Mode', q:'要不要解鎖 Fate Mode？', type:'fate-toggle' },
+];
+
+let state = {
+  stepIndex: 0,
+  answers: { winFeelings:[], obstacleType:'', obstacleOther:'', foil:'', fateEnabled:false, fateIntent:'想被推一把', birth:'' },
+  storyText: '',
+  error: '',
+  screen: 'wizard', // wizard | loading | result | error
+};
+
+function currentSteps(){
+  if(state.answers.fateEnabled){
+    return [...STEPS, { id:'birth', block:'Fate Mode', q:'出生時間與地點', type:'birth' }];
+  }
+  return STEPS;
+}
+
+function el(html){
+  const t = document.createElement('template');
+  t.innerHTML = html.trim();
+  return t.content.firstElementChild;
+}
+
+function render(){
+  const app = document.getElementById('app');
+  app.innerHTML = '';
+  app.appendChild(el(`
+    <div>
+      <div class="brand">
+        <h1>Personalized Narrative Simulator</h1>
+        <p>We don't predict your future. We make one feel disturbingly possible.</p>
+      </div>
+    </div>
+  `));
+
+  if(state.screen === 'wizard') app.appendChild(renderWizard());
+  if(state.screen === 'loading') app.appendChild(renderLoading());
+  if(state.screen === 'result') app.appendChild(renderResult());
+  if(state.screen === 'error') app.appendChild(renderError());
+
+  app.appendChild(el(`<footer>Personalized Narrative Simulator · 由 Anthropic API 生成，這不是預言</footer>`));
+}
+
+function renderWizard(){
+  const steps = currentSteps();
+  const step = steps[state.stepIndex];
+
+  const card = el(`<div class="card fade-in"></div>`);
+  const progress = el(`<div class="progress"></div>`);
+  steps.forEach((s,i)=>{
+    progress.appendChild(el(`<i class="${i <= state.stepIndex ? 'done':''}"></i>`));
+  });
+  card.appendChild(progress);
+  card.appendChild(el(`<div class="step-label">${step.block} · ${state.stepIndex+1} / ${steps.length}</div>`));
+  card.appendChild(el(`<div class="step-q">${step.q}</div>`));
+  if(step.hint) card.appendChild(el(`<div class="step-hint">${step.hint}</div>`));
+
+  card.appendChild(renderStepInput(step));
+
+  const nav = el(`<div class="nav-row"></div>`);
+  const backBtn = el(`<button class="btn-ghost">上一步</button>`);
+  backBtn.style.visibility = state.stepIndex === 0 ? 'hidden' : 'visible';
+  backBtn.onclick = ()=>{ state.stepIndex--; render(); };
+
+  const isLast = state.stepIndex === steps.length - 1;
+  const nextBtn = el(`<button class="btn-primary">${isLast ? '生成我的未來 →' : '下一題'}</button>`);
+  nextBtn.disabled = !isStepValid(step);
+  nextBtn.onclick = ()=>{
+    if(isLast){ generateStory(); }
+    else { state.stepIndex++; render(); }
+  };
+
+  nav.appendChild(backBtn);
+  nav.appendChild(nextBtn);
+  card.appendChild(nav);
+  return card;
+}
+
+function isStepValid(step){
+  const a = state.answers;
+  if(step.type === 'text') return !!(a[step.id] && a[step.id].trim().length > 0);
+  if(step.type === 'text-optional') return true;
+  if(step.type === 'textarea') return !!(a[step.id] && a[step.id].trim().length > 0);
+  if(step.type === 'chips-other'){
+    if(!a.obstacleType) return false;
+    if(a.obstacleType === 'other') return !!(a.obstacleOther && a.obstacleOther.trim().length > 0);
+    return true;
+  }
+  if(step.type === 'chips-multi') return a[step.id] && a[step.id].length > 0;
+  if(step.type === 'fate-toggle') return true;
+  if(step.type === 'birth') return true;
+  return true;
+}
+
+function renderStepInput(step){
+  const a = state.answers;
+
+  if(step.type === 'text' || step.type === 'text-optional'){
+    const wrap = el(`<div></div>`);
+    const input = el(`<input type="text" maxlength="${step.max||100}" placeholder="${step.placeholder||''}" value="${escapeHtml(a[step.id]||'')}">`);
+    input.oninput = ()=>{ a[step.id] = input.value; count.textContent = `${input.value.length} / ${step.max||100}`; syncNav(); };
+    const count = el(`<div class="charcount">${(a[step.id]||'').length} / ${step.max||100}</div>`);
+    wrap.appendChild(input); wrap.appendChild(count);
+    return wrap;
+  }
+
+  if(step.type === 'textarea'){
+    const wrap = el(`<div></div>`);
+    const input = el(`<textarea maxlength="${step.max||300}" placeholder="${step.placeholder||'請盡量具體...'}">${escapeHtml(a[step.id]||'')}</textarea>`);
+    input.oninput = ()=>{ a[step.id] = input.value; count.textContent = `${input.value.length} / ${step.max||300}`; syncNav(); };
+    const count = el(`<div class="charcount">${(a[step.id]||'').length} / ${step.max||300}</div>`);
+    wrap.appendChild(input); wrap.appendChild(count);
+    return wrap;
+  }
+
+  if(step.type === 'chips-other'){
+    const wrap = el(`<div></div>`);
+    const chipsWrap = el(`<div class="options"></div>`);
+    step.options.forEach(opt=>{
+      const chip = el(`<div class="chip ${a.obstacleType===opt.key?'selected':''}">${opt.label}</div>`);
+      chip.onclick = ()=>{ a.obstacleType = opt.key; render(); };
+      chipsWrap.appendChild(chip);
+    });
+    wrap.appendChild(chipsWrap);
+    if(a.obstacleType === 'other'){
+      const otherInput = el(`<input type="text" style="margin-top:12px;" maxlength="40" placeholder="說說是什麼" value="${escapeHtml(a.obstacleOther||'')}">`);
+      otherInput.oninput = ()=>{ a.obstacleOther = otherInput.value; syncNav(); };
+      wrap.appendChild(otherInput);
+    }
+    return wrap;
+  }
+
+  if(step.type === 'chips-multi'){
+    const wrap = el(`<div></div>`);
+    const chipsWrap = el(`<div class="options"></div>`);
+    const selected = a[step.id] || (a[step.id] = []);
+    step.options.forEach(opt=>{
+      const isSel = selected.includes(opt.key);
+      const disabled = !isSel && selected.length >= step.limit;
+      const chip = el(`<div class="chip ${isSel?'selected':''} ${disabled?'disabled':''}">${opt.label}</div>`);
+      chip.onclick = ()=>{
+        if(isSel){ a[step.id] = selected.filter(k=>k!==opt.key); }
+        else if(selected.length < step.limit){ a[step.id] = [...selected, opt.key]; }
+        render();
+      };
+      chipsWrap.appendChild(chip);
+    });
+    wrap.appendChild(chipsWrap);
+    wrap.appendChild(el(`<div class="limit-note">已選 ${selected.length} / ${step.limit}</div>`));
+    return wrap;
+  }
+
+  if(step.type === 'fate-toggle'){
+    const wrap = el(`<div></div>`);
+    const row = el(`<div class="toggle-row">
+        <div>
+          <div style="font-weight:600; margin-bottom:4px;">加入出生資訊，測試命定感是否增加代入感</div>
+          <div class="step-hint" style="margin:0;">這不是必要的，純粹是變因</div>
+        </div>
+      </div>`);
+    const sw = el(`<div class="switch ${a.fateEnabled?'on':''}"><div class="knob"></div></div>`);
+    sw.onclick = ()=>{ a.fateEnabled = !a.fateEnabled; render(); };
+    row.appendChild(sw);
+    wrap.appendChild(row);
+    return wrap;
+  }
+
+  if(step.type === 'birth'){
+    const input = el(`<input type="text" placeholder="例如：1993年5月 台北出生（越模糊也可以）" value="${escapeHtml(a.birth||'')}">`);
+    input.oninput = ()=>{ a.birth = input.value; };
+    const chipsWrap = el(`<div class="options" style="margin-bottom:16px;"></div>`);
+    ['想被安慰','想被推一把'].forEach(opt=>{
+      const chip = el(`<div class="chip ${a.fateIntent===opt?'selected':''}">${opt}</div>`);
+      chip.onclick = ()=>{ a.fateIntent = opt; render(); };
+      chipsWrap.appendChild(chip);
+    });
+    const final = el(`<div></div>`);
+    final.appendChild(el(`<div class="step-label" style="margin-bottom:8px;">你想被安慰，還是想被推一把？</div>`));
+    final.appendChild(chipsWrap);
+    final.appendChild(el(`<div class="step-label" style="margin-top:14px;">出生時間與地點（可留空）</div>`));
+    final.appendChild(input);
+    return final;
+  }
+
+  return el(`<div></div>`);
+}
+
+function syncNav(){
+  const nextBtn = document.querySelector('.nav-row .btn-primary');
+  if(!nextBtn) return;
+  const steps = currentSteps();
+  nextBtn.disabled = !isStepValid(steps[state.stepIndex]);
+}
+
+function renderLoading(){
+  return el(`
+    <div class="card fade-in loading">
+      <div class="spinner"></div>
+      <div>正在生成一份「不合理地像你」的未來草稿...</div>
+    </div>
+  `);
+}
+
+function renderResult(){
+  const card = el(`<div class="card fade-in"></div>`);
+  card.appendChild(el(`<div class="story-title">你的未來草稿</div>`));
+  card.appendChild(el(`<div class="story">${escapeHtml(state.storyText)}</div>`));
+
+  const reflectDiv = el(`<div style="margin-top:26px; padding-top:20px; border-top:1px solid var(--border);"></div>`);
+  reflectDiv.appendChild(el(`<div class="step-label" style="margin-bottom:14px;">讀完之後，問問自己</div>`));
+  const reflectQs = [
+    '哪一段最讓你起雞皮疙瘩？',
+    '你覺得它是在描述你，還是在誘惑你？',
+    '看完後，你更想採取行動了嗎？',
+    '哪一版讓你覺得「不合理地像自己」？'
+  ];
+  reflectQs.forEach(q=>{
+    reflectDiv.appendChild(el(`<div class="reflect-q"><label>${q}</label></div>`));
+  });
+  card.appendChild(reflectDiv);
+
+  const nav = el(`<div class="nav-row"></div>`);
+  const editBtn = el(`<button class="btn-ghost">回去改答案</button>`);
+  editBtn.onclick = ()=>{ state.screen = 'wizard'; render(); };
+  const regenBtn = el(`<button class="btn-primary">用同樣答案重新生成</button>`);
+  regenBtn.onclick = generateStory;
+  nav.appendChild(editBtn);
+  nav.appendChild(regenBtn);
+  card.appendChild(nav);
+
+  return card;
+}
+
+function renderError(){
+  const card = el(`<div class="card fade-in"></div>`);
+  card.appendChild(el(`<div class="error-box">${escapeHtml(state.error)}</div>`));
+  const nav = el(`<div class="nav-row"></div>`);
+  const editBtn = el(`<button class="btn-ghost">回去改答案</button>`);
+  editBtn.onclick = ()=>{ state.screen = 'wizard'; render(); };
+  const retryBtn = el(`<button class="btn-primary">再試一次</button>`);
+  retryBtn.onclick = generateStory;
+  nav.appendChild(editBtn);
+  nav.appendChild(retryBtn);
+  card.appendChild(nav);
+  return card;
+}
+
+function escapeHtml(s){
+  return (s||'').replace(/[&<>"']/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
+
+async function generateStory(){
+  state.error = '';
+  state.screen = 'loading';
+  render();
+
+  try{
+    const res = await fetch('/api/generate', {
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      body: JSON.stringify(state.answers),
+    });
+
+    const data = await res.json().catch(()=>({}));
+
+    if(!res.ok){
+      throw new Error(data.error || `伺服器錯誤 (${res.status})`);
+    }
+
+    state.storyText = data.story || '(沒有收到內容，請再試一次)';
+    state.screen = 'result';
+  }catch(err){
+    state.error = err.message || String(err);
+    state.screen = 'error';
+  }
+  render();
+}
+
+render();
+</script>
+</body>
+</html>
