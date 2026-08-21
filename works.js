@@ -19,9 +19,9 @@
 const WORKS = [
   {
   slug: "narrative-simulator",
-  title: "平行未來模擬器",
-  subtitle: "Personalized Narrative Simulator",
-  blurb: "我們不預測你的未來，只把其中一種寫得真實到令你不安。",
+  title: "感情模擬器",
+  subtitle: "Ordinary Life",
+  blurb: "不算你的結果，只讓你先看一個三年後的日常。",
   color: "#ff5d5d",
   isNew: true,
 },
