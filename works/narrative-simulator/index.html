@@ -3,116 +3,105 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Personalized Narrative Simulator — 一份寫得真實到令你不安的未來草稿</title>
+<title>感情模擬器 — Personalized Narrative Simulator</title>
 <style>
   :root{
-    --bg: #0b0b10;
-    --bg-panel: #14141d;
-    --bg-panel-2: #1c1c28;
-    --border: #2a2a3a;
-    --text: #ecebf3;
-    --text-dim: #9c9ab0;
-    --accent: #ff5d5d;
-    --accent-2: #6d8bff;
-    --radius: 14px;
+    --bg:#0b0b10; --bg-panel:#14141d; --bg-panel-2:#1c1c28; --border:#2a2a3a;
+    --text:#ecebf3; --text-dim:#9c9ab0; --accent:#ff5d5d; --accent-2:#6d8bff;
+    --radius:14px;
   }
   *{box-sizing:border-box;}
   body{
     margin:0; min-height:100vh;
     background: radial-gradient(circle at 20% -10%, #201b2e 0%, var(--bg) 55%);
-    color: var(--text);
-    font-family: -apple-system, "PingFang TC", "Noto Sans TC", "Microsoft JhengHei", sans-serif;
-    display:flex; justify-content:center; padding: 40px 16px 80px;
+    color:var(--text);
+    font-family:-apple-system,"PingFang TC","Noto Sans TC","Microsoft JhengHei",sans-serif;
+    display:flex; justify-content:center; padding:40px 16px 90px;
   }
-  #app{ width:100%; max-width: 640px; }
-  .brand{ text-align:center; margin-bottom: 28px; }
+  #app{ width:100%; max-width:660px; }
+  .brand{ text-align:center; margin-bottom:26px; }
+  .brand .kicker{ font-size:12px; letter-spacing:2px; color:var(--text-dim); text-transform:uppercase; }
   .brand h1{
-    font-size: clamp(20px, 5.5vw, 27px); letter-spacing: 0.3px; margin: 0 0 6px; line-height:1.25;
-    background: linear-gradient(90deg, var(--accent), var(--accent-2));
-    -webkit-background-clip: text; background-clip:text; color: transparent;
+    font-size:clamp(22px,6vw,30px); letter-spacing:.5px; margin:6px 0 6px; line-height:1.2;
+    background:linear-gradient(90deg,var(--accent),var(--accent-2));
+    -webkit-background-clip:text; background-clip:text; color:transparent;
   }
-  .brand p{ color: var(--text-dim); font-size: 13.5px; margin:0; }
+  .brand p{ color:var(--text-dim); font-size:13px; margin:0; }
 
-  .card{
-    background: var(--bg-panel);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    padding: 28px 26px;
-    margin-bottom: 16px;
+  .card{ background:var(--bg-panel); border:1px solid var(--border); border-radius:var(--radius); padding:26px 24px; margin-bottom:16px; }
+  .fade-in{ animation:fadeIn .25s ease; }
+  @keyframes fadeIn{ from{opacity:0; transform:translateY(6px);} to{opacity:1; transform:none;} }
+
+  .step-label{ font-size:12px; color:var(--text-dim); letter-spacing:1px; text-transform:uppercase; margin-bottom:10px; }
+  .lead{ font-size:19px; font-weight:600; line-height:1.5; margin:0 0 18px; }
+  .hint{ font-size:12.5px; color:var(--text-dim); margin:-10px 0 16px; }
+
+  .qlist{ display:flex; flex-direction:column; gap:10px; }
+  .qitem{
+    text-align:left; width:100%; background:var(--bg-panel-2); border:1px solid var(--border);
+    color:var(--text); border-radius:12px; padding:15px 16px; font-size:15.5px; cursor:pointer;
+    font-family:inherit; transition:border-color .12s, transform .06s; line-height:1.4;
   }
-  .progress{ display:flex; gap:5px; margin-bottom: 22px; }
-  .progress i{ flex:1; height:4px; border-radius:2px; background: var(--border); }
-  .progress i.done{ background: linear-gradient(90deg, var(--accent), var(--accent-2)); }
+  .qitem:hover{ border-color:var(--accent-2); }
+  .qitem:active{ transform:scale(.99); }
+  .qitem .arrow{ float:right; color:var(--text-dim); }
 
-  .step-label{ font-size:12px; color: var(--text-dim); letter-spacing:1px; text-transform:uppercase; margin-bottom:8px;}
-  .step-q{ font-size: 19px; line-height:1.55; margin: 0 0 18px; font-weight:600; }
-  .step-hint{ font-size:12.5px; color:var(--text-dim); margin: -12px 0 16px; }
-
-  input[type=text], textarea, select{
-    width:100%; background: var(--bg-panel-2); border:1px solid var(--border);
-    color: var(--text); border-radius: 10px; padding: 12px 14px; font-size:15px;
-    font-family: inherit; outline:none; transition: border-color .15s;
+  label.field{ display:block; font-size:14.5px; font-weight:600; margin:18px 0 4px; }
+  label.field .opt{ font-weight:400; color:var(--text-dim); font-size:12.5px; }
+  .field-hint{ font-size:12px; color:var(--text-dim); margin:0 0 8px; }
+  input[type=text], textarea{
+    width:100%; background:var(--bg-panel-2); border:1px solid var(--border); color:var(--text);
+    border-radius:10px; padding:12px 14px; font-size:15px; font-family:inherit; outline:none; transition:border-color .15s;
   }
-  input[type=text]:focus, textarea:focus, select:focus{ border-color: var(--accent-2); }
-  textarea{ min-height: 92px; resize: vertical; }
-
+  input[type=text]:focus, textarea:focus{ border-color:var(--accent-2); }
+  textarea{ min-height:80px; resize:vertical; }
   .charcount{ text-align:right; font-size:11px; color:var(--text-dim); margin-top:4px; }
 
   .options{ display:flex; flex-wrap:wrap; gap:8px; }
-  .chip{
-    padding: 10px 16px; border-radius: 999px; border:1px solid var(--border);
-    background: var(--bg-panel-2); color: var(--text-dim); cursor:pointer; font-size:14px;
-    transition: all .12s; user-select:none;
-  }
-  .chip:hover{ border-color: var(--accent-2); }
-  .chip.selected{ background: linear-gradient(90deg, var(--accent), var(--accent-2)); color:#fff; border-color: transparent; }
-  .chip.disabled{ opacity:.35; cursor:not-allowed; }
+  .chip{ padding:9px 15px; border-radius:999px; border:1px solid var(--border); background:var(--bg-panel-2);
+    color:var(--text-dim); cursor:pointer; font-size:14px; transition:all .12s; user-select:none; }
+  .chip:hover{ border-color:var(--accent-2); }
+  .chip.selected{ background:linear-gradient(90deg,var(--accent),var(--accent-2)); color:#fff; border-color:transparent; }
 
-  .nav-row{ display:flex; justify-content:space-between; align-items:center; margin-top:22px; }
-  button{
-    font-family: inherit; font-size: 14.5px; border-radius: 10px; padding: 11px 22px;
-    border: none; cursor:pointer; transition: transform .08s, opacity .15s;
-  }
-  button:active{ transform: scale(.97); }
-  .btn-primary{ background: linear-gradient(90deg, var(--accent), var(--accent-2)); color:#fff; font-weight:600; }
+  .nav-row{ display:flex; justify-content:space-between; align-items:center; margin-top:24px; gap:12px; }
+  button{ font-family:inherit; font-size:14.5px; border-radius:10px; padding:11px 22px; border:none; cursor:pointer; transition:transform .08s, opacity .15s; }
+  button:active{ transform:scale(.97); }
+  .btn-primary{ background:linear-gradient(90deg,var(--accent),var(--accent-2)); color:#fff; font-weight:600; }
   .btn-primary:disabled{ opacity:.35; cursor:not-allowed; }
-  .btn-ghost{ background: transparent; color: var(--text-dim); border: 1px solid var(--border); }
-  .btn-ghost:hover{ color: var(--text); border-color: var(--text-dim); }
-  .skip-link{ display:inline-block; margin-top:10px; font-size:12.5px; color: var(--text-dim); text-decoration:underline; cursor:pointer; }
+  .btn-ghost{ background:transparent; color:var(--text-dim); border:1px solid var(--border); }
+  .btn-ghost:hover{ color:var(--text); border-color:var(--text-dim); }
 
-  .toggle-row{ display:flex; align-items:center; justify-content:space-between; gap:12px; }
-  .switch{ position:relative; width:46px; height:26px; background: var(--bg-panel-2); border:1px solid var(--border); border-radius:999px; cursor:pointer; flex:none; }
-  .switch.on{ background: linear-gradient(90deg, var(--accent), var(--accent-2)); border-color: transparent; }
-  .switch .knob{ position:absolute; top:2px; left:2px; width:20px; height:20px; border-radius:50%; background:#fff; transition: left .15s; }
-  .switch.on .knob{ left: 22px; }
+  .scene{ white-space:pre-wrap; line-height:1.95; font-size:15.5px; }
+  .scene-q{ font-size:13px; color:var(--text-dim); border-left:2px solid var(--accent); padding-left:10px; margin-bottom:18px; }
 
-  .fade-in{ animation: fadeIn .25s ease; }
-  @keyframes fadeIn{ from{opacity:0; transform: translateY(6px);} to{opacity:1; transform:none;} }
+  .react-title{ font-size:14px; font-weight:600; margin:24px 0 12px; }
+  .react-grid{ display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+  @media(max-width:460px){ .react-grid{ grid-template-columns:1fr; } }
+  .react-btn{ background:var(--bg-panel-2); border:1px solid var(--border); color:var(--text); border-radius:11px; padding:13px 14px; font-size:14.5px; cursor:pointer; text-align:left; transition:border-color .12s; }
+  .react-btn:hover{ border-color:var(--accent-2); }
+  .react-btn.picked{ border-color:var(--accent); background:rgba(255,93,93,.08); }
 
-  .story{ white-space: pre-wrap; line-height:1.9; font-size:15.5px; }
-  .story-title{ font-size:20px; font-weight:700; margin-bottom:14px; }
+  .reflect{ margin-top:16px; padding:14px 16px; border-radius:11px; background:var(--bg-panel-2); border:1px solid var(--border); font-size:14px; line-height:1.7; color:var(--text); }
+  .reflect .tag{ display:block; font-size:11.5px; letter-spacing:1px; text-transform:uppercase; color:var(--text-dim); margin-bottom:6px; }
 
-  .loading{ text-align:center; padding: 40px 0; color: var(--text-dim); }
-  .spinner{ width:34px; height:34px; margin:0 auto 16px; border-radius:50%;
-    border: 3px solid var(--border); border-top-color: var(--accent); animation: spin .8s linear infinite; }
-  @keyframes spin{ to{ transform: rotate(360deg); } }
+  .deepen-block{ margin-top:16px; padding-top:16px; border-top:1px dashed var(--border); }
+  .deepen-block .scene{ font-size:15px; }
+
+  .loading{ text-align:center; padding:44px 0; color:var(--text-dim); }
+  .spinner{ width:34px; height:34px; margin:0 auto 16px; border-radius:50%; border:3px solid var(--border); border-top-color:var(--accent); animation:spin .8s linear infinite; }
+  @keyframes spin{ to{ transform:rotate(360deg); } }
 
   .error-box{ background:#2a1414; border:1px solid #5a2a2a; color:#ffb3b3; padding:12px 14px; border-radius:10px; font-size:13.5px; margin-bottom:14px; }
 
-  .reflect-q{ margin-bottom:14px; }
-  .reflect-q label{ display:block; font-size:14px; margin-bottom:6px; }
-
-  .limit-note{ font-size:12px; color: var(--text-dim); margin-top:8px; }
-
-  footer{ text-align:center; color: var(--text-dim); font-size:11.5px; margin-top:24px; }
+  footer{ text-align:center; color:var(--text-dim); font-size:11.5px; margin-top:24px; line-height:1.7; }
 
   .back-link{
-    position: fixed; top: 16px; left: 16px; z-index: 10;
-    color: var(--text-dim); text-decoration: none; font-size: 13px;
-    padding: 7px 12px; border-radius: 999px; border: 1px solid var(--border);
-    background: rgba(20,20,29,.7); backdrop-filter: blur(6px); transition: color .15s, border-color .15s;
+    position:fixed; top:16px; left:16px; z-index:10;
+    color:var(--text-dim); text-decoration:none; font-size:13px;
+    padding:7px 12px; border-radius:999px; border:1px solid var(--border);
+    background:rgba(20,20,29,.7); backdrop-filter:blur(6px); transition:color .15s, border-color .15s;
   }
-  .back-link:hover{ color: var(--text); border-color: var(--text-dim); }
+  .back-link:hover{ color:var(--text); border-color:var(--text-dim); }
 </style>
 </head>
 <body>
@@ -120,328 +109,268 @@
 <div id="app"></div>
 
 <script>
-/* ---------------------------------------------------------
-   PLOT ARMOR — public build, v0.2
-   10-question core intake. Genre is INFERRED server-side from
-   the "what does winning feel like" answers, not asked directly.
-   The "how do you narrate a mishap" question replaces the old
-   tone slider — the model reads its register instead of us
-   hand-rolling a tone heuristic.
-   The frontend never sees the Anthropic API key.
---------------------------------------------------------- */
+/* Personalized Narrative Simulator V2 — MVP cell
+   感情 Love × Ordinary Life × Life Scene × 4 reaction buttons
+   Frontend never sees the API key; it POSTs to /api/generate. */
 
-const OBSTACLES = [
-  { key:'money', label:'錢或資源' },
-  { key:'system', label:'工作／制度' },
-  { key:'family', label:'家庭或關係' },
-  { key:'ability', label:'能力還不夠' },
-  { key:'self', label:'自己的拖延、害怕或反覆' },
-  { key:'other', label:'其他' },
+const LOVE_QUESTIONS = [
+  { key:'continue3y',     label:'如果跟現在這個人繼續三年？' },
+  { key:'moveIn',         label:'如果我們同居／結婚？' },
+  { key:'moreAttractive', label:'如果我遇到更有吸引力的人？' },
+  { key:'moreIndependent',label:'如果對方開始更獨立？' },
+  { key:'fearLosing',     label:'我真正害怕失去的是什麼？' },
+  { key:'whoSuits',       label:'我適合什麼樣的人？' },
 ];
 
-const WIN_FEELINGS = [
-  { key:'freedom', label:'我很自由' },
-  { key:'rich', label:'我很有錢' },
-  { key:'competence', label:'我的能力被認可' },
-  { key:'needed', label:'別人需要我' },
-  { key:'envied', label:'別人羨慕我' },
-  { key:'provedWrong', label:'我證明了某些人錯了' },
-  { key:'madeThing', label:'我做出了自己的東西' },
-  { key:'strong', label:'我變得非常強' },
-  { key:'ownPlace', label:'我有一個真正屬於我的地方' },
-  { key:'loveTogether', label:'我愛的人跟我一起' },
-  { key:'atPeace', label:'我終於可以安心' },
-  { key:'impact', label:'我的作品影響了很多人' },
+const STATUS = [
+  { key:'stable', label:'穩定交往中' },
+  { key:'new', label:'剛在一起不久' },
+  { key:'ambiguous', label:'曖昧或還沒確定' },
+  { key:'singleThinking', label:'單身，但心裡有個人' },
+  { key:'justEnded', label:'剛結束一段' },
 ];
 
-const STEPS = [
-  { id:'lifePosition', block:'現實錨點', q:'你現在正處在人生的什麼位置？', type:'text', max:50, placeholder:'工作、學業、待業、轉職、創業、休息中都可以' },
-  { id:'scenes', block:'現實錨點', q:'如果把你現在的一天拍成電影，最常出現的三個場景是什麼？', type:'textarea', max:150, placeholder:'例如：辦公室改文件／下班去拳館／半夜做自己的 App' },
-  { id:'block', block:'衝突與限制', q:'現在最卡住你的一件事是什麼？', type:'text', max:60, placeholder:'不是「我想成功」，是真正阻止你往前的東西' },
-  { id:'obstacleType', block:'衝突與限制', q:'你覺得最大的阻力比較來自哪裡？', type:'chips-other', options:OBSTACLES },
-  { id:'foil', block:'衝突與限制', q:'有沒有一個人、一群人，或一種聲音，曾讓你很想證明「你們錯了」？', type:'text-optional', max:60, placeholder:'真人、以前的自己、社會期待都可以', hint:'不想回答可以跳過' },
-  { id:'climaxScene', block:'慾望與爽點', q:'三年後，如果有一個瞬間會讓你想「幹，我真的走到這裡了」，那個畫面是什麼？', type:'textarea', max:200, hint:'具體場景：你在哪裡？正在做什麼？旁邊有誰？' },
-  { id:'winFeelings', block:'慾望與爽點', q:'下面哪些感覺最能讓你覺得「我贏了」？', type:'chips-multi', options:WIN_FEELINGS, limit:3, hint:'最多選 3 個' },
-  { id:'selfIntro', block:'身份與自我形象', q:'你希望三年後，熟悉你的人會怎麼向別人介紹你？', type:'text', max:80, placeholder:'例如：「他就是做那個 App 的人」' },
-  { id:'notYetDone', block:'身份與自我形象', q:'有什麼事情是現在的你很想做，卻還沒有真的跨出去？', type:'text', max:80, placeholder:'離職、創業、搬去另一個國家、告白、比賽……不用合理，只要是真的' },
-  { id:'voice', block:'語氣與濾鏡', q:'當你遇到很荒謬、很衰或很尷尬的事情時，你通常會怎麼講它？', type:'textarea', max:250, hint:'隨便舉一個例子——這決定整篇故事的語氣' },
-  { id:'fateToggle', block:'Fate Mode', q:'要不要解鎖 Fate Mode？', type:'fate-toggle' },
+const REACTIONS = [
+  { key:'likeMe',   label:'這很像我',
+    tag:'像我',
+    reflect:'如果它很像你，那它裡面可能有一個你已經隱約知道、只是還沒對自己說出口的東西。它是哪一段？' },
+  { key:'resist',   label:'我很抗拒這個版本',
+    tag:'抗拒',
+    reflect:'抗拒往往比認同更誠實。你抗拒的不一定是「它會發生」，而是它碰到了一個你不太想承認的可能。' },
+  { key:'surprise', label:'我沒想到這件事',
+    tag:'沒想到',
+    reflect:'「沒想到」是這裡最有價值的訊號——它代表這一段繞過了你平常對自己講的那套說法，讓你看到一個原本不在畫面裡的東西。' },
+  { key:'deeper',   label:'我想深入這條線',
+    tag:'深入',
+    reflect:null }, // triggers a deepen generation
 ];
 
 let state = {
-  stepIndex: 0,
-  answers: { winFeelings:[], obstacleType:'', obstacleOther:'', foil:'', fateEnabled:false, fateIntent:'想被推一把', birth:'' },
-  storyText: '',
-  error: '',
-  screen: 'wizard', // wizard | loading | result | error
+  screen:'question',   // question | context | loading | result | error
+  question:null,
+  answers:{ status:'', dailyScene:'', quietThing:'', selfInRelationship:'', fear:'' },
+  sceneText:'',
+  reactions:{},        // key -> true
+  deepenText:'',
+  loadingDeepen:false,
+  error:'',
 };
 
-function currentSteps(){
-  if(state.answers.fateEnabled){
-    return [...STEPS, { id:'birth', block:'Fate Mode', q:'出生時間與地點', type:'birth' }];
-  }
-  return STEPS;
-}
-
-function el(html){
-  const t = document.createElement('template');
-  t.innerHTML = html.trim();
-  return t.content.firstElementChild;
-}
+function el(html){ const t=document.createElement('template'); t.innerHTML=html.trim(); return t.content.firstElementChild; }
+function esc(s){ return (s||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
 
 function render(){
-  const app = document.getElementById('app');
-  app.innerHTML = '';
+  const app=document.getElementById('app'); app.innerHTML='';
   app.appendChild(el(`
-    <div>
-      <div class="brand">
-        <h1>Personalized Narrative Simulator</h1>
-        <p>We don't predict your future. We make one feel disturbingly possible.</p>
-      </div>
-    </div>
-  `));
-
-  if(state.screen === 'wizard') app.appendChild(renderWizard());
-  if(state.screen === 'loading') app.appendChild(renderLoading());
-  if(state.screen === 'result') app.appendChild(renderResult());
-  if(state.screen === 'error') app.appendChild(renderError());
-
-  app.appendChild(el(`<footer>Personalized Narrative Simulator · 由 Anthropic API 生成，這不是預言</footer>`));
+    <div class="brand">
+      <div class="kicker">Personalized Narrative Simulator</div>
+      <h1>感情模擬器</h1>
+      <p>不是替你算結果，而是讓你先看一個可能的日常。</p>
+    </div>`));
+  if(state.screen==='question') app.appendChild(renderQuestion());
+  if(state.screen==='context')  app.appendChild(renderContext());
+  if(state.screen==='loading')  app.appendChild(renderLoading());
+  if(state.screen==='result')   app.appendChild(renderResult());
+  if(state.screen==='error')    app.appendChild(renderError());
+  app.appendChild(el(`<footer>這不是預言，只是其中一種看法。<br>Not a prediction. A perspective.</footer>`));
 }
 
-function renderWizard(){
-  const steps = currentSteps();
-  const step = steps[state.stepIndex];
-
-  const card = el(`<div class="card fade-in"></div>`);
-  const progress = el(`<div class="progress"></div>`);
-  steps.forEach((s,i)=>{
-    progress.appendChild(el(`<i class="${i <= state.stepIndex ? 'done':''}"></i>`));
+function renderQuestion(){
+  const card=el(`<div class="card fade-in"></div>`);
+  card.appendChild(el(`<div class="step-label">感情 · Choose a question</div>`));
+  card.appendChild(el(`<div class="lead">你想看哪一件事？</div>`));
+  card.appendChild(el(`<div class="hint">選一個你其實有點在意的問題。之後才會問你幾件事，好讓場景真的像你的。</div>`));
+  const list=el(`<div class="qlist"></div>`);
+  LOVE_QUESTIONS.forEach(q=>{
+    const item=el(`<button class="qitem">${q.label}<span class="arrow">→</span></button>`);
+    item.onclick=()=>{ state.question=q.key; state.screen='context'; render(); };
+    list.appendChild(item);
   });
-  card.appendChild(progress);
-  card.appendChild(el(`<div class="step-label">${step.block} · ${state.stepIndex+1} / ${steps.length}</div>`));
-  card.appendChild(el(`<div class="step-q">${step.q}</div>`));
-  if(step.hint) card.appendChild(el(`<div class="step-hint">${step.hint}</div>`));
+  card.appendChild(list);
+  return card;
+}
 
-  card.appendChild(renderStepInput(step));
+function renderContext(){
+  const a=state.answers;
+  const qlabel=(LOVE_QUESTIONS.find(q=>q.key===state.question)||{}).label||'';
+  const card=el(`<div class="card fade-in"></div>`);
+  card.appendChild(el(`<div class="step-label">Tell us enough to make it yours</div>`));
+  card.appendChild(el(`<div class="lead">${esc(qlabel)}</div>`));
+  card.appendChild(el(`<div class="hint">講得越具體，場景越可能「不合理地像你」。不用寫得漂亮，寫真的。</div>`));
 
-  const nav = el(`<div class="nav-row"></div>`);
-  const backBtn = el(`<button class="btn-ghost">上一步</button>`);
-  backBtn.style.visibility = state.stepIndex === 0 ? 'hidden' : 'visible';
-  backBtn.onclick = ()=>{ state.stepIndex--; render(); };
+  // status chips
+  card.appendChild(el(`<label class="field">你現在的感情狀態？</label>`));
+  const chips=el(`<div class="options"></div>`);
+  STATUS.forEach(s=>{
+    const c=el(`<div class="chip ${a.status===s.key?'selected':''}">${s.label}</div>`);
+    c.onclick=()=>{ a.status=s.key; render(); };
+    chips.appendChild(c);
+  });
+  card.appendChild(chips);
 
-  const isLast = state.stepIndex === steps.length - 1;
-  const nextBtn = el(`<button class="btn-primary">${isLast ? '生成我的未來 →' : '下一題'}</button>`);
-  nextBtn.disabled = !isStepValid(step);
-  nextBtn.onclick = ()=>{
-    if(isLast){ generateStory(); }
-    else { state.stepIndex++; render(); }
-  };
+  // dailyScene
+  card.appendChild(el(`<label class="field">你和這個人（或想像中的對象）相處的日常，會出現什麼畫面？</label>`));
+  card.appendChild(el(`<div class="field-hint">例如：週末各自滑手機、一起追某部劇、他總是比你晚睡、你們最近常為了小事拌嘴。</div>`));
+  card.appendChild(mkTextarea('dailyScene',300));
 
-  nav.appendChild(backBtn);
-  nav.appendChild(nextBtn);
+  // quietThing (optional)
+  card.appendChild(el(`<label class="field">你們之間，有沒有一種你隱約感覺到、但還沒真的攤開講的東西？<span class="opt">（可跳過）</span></label>`));
+  card.appendChild(mkTextarea('quietThing',300));
+
+  // selfInRelationship
+  card.appendChild(el(`<label class="field">在關係裡，你自己通常是什麼樣子？</label>`));
+  card.appendChild(el(`<div class="field-hint">例如：容易先退一步／需要很多獨處空間／討厭衝突／嘴上說不在意其實會在意。</div>`));
+  card.appendChild(mkText('selfInRelationship',200));
+
+  // fear (optional)
+  card.appendChild(el(`<label class="field">你私下最怕這段關係，三年後變成什麼樣子？<span class="opt">（可跳過）</span></label>`));
+  card.appendChild(mkText('fear',200));
+
+  const nav=el(`<div class="nav-row"></div>`);
+  const back=el(`<button class="btn-ghost">換個問題</button>`);
+  back.onclick=()=>{ state.screen='question'; render(); };
+  const go=el(`<button class="btn-primary">生成一個可能的日常 →</button>`);
+  go.disabled=!contextValid();
+  go.onclick=generateScene;
+  nav.appendChild(back); nav.appendChild(go);
   card.appendChild(nav);
   return card;
 }
 
-function isStepValid(step){
-  const a = state.answers;
-  if(step.type === 'text') return !!(a[step.id] && a[step.id].trim().length > 0);
-  if(step.type === 'text-optional') return true;
-  if(step.type === 'textarea') return !!(a[step.id] && a[step.id].trim().length > 0);
-  if(step.type === 'chips-other'){
-    if(!a.obstacleType) return false;
-    if(a.obstacleType === 'other') return !!(a.obstacleOther && a.obstacleOther.trim().length > 0);
-    return true;
-  }
-  if(step.type === 'chips-multi') return a[step.id] && a[step.id].length > 0;
-  if(step.type === 'fate-toggle') return true;
-  if(step.type === 'birth') return true;
-  return true;
+function mkText(id,max){
+  const a=state.answers;
+  const wrap=el(`<div></div>`);
+  const input=el(`<input type="text" maxlength="${max}" value="${esc(a[id]||'')}">`);
+  input.oninput=()=>{ a[id]=input.value; count.textContent=`${input.value.length} / ${max}`; syncNav(); };
+  const count=el(`<div class="charcount">${(a[id]||'').length} / ${max}</div>`);
+  wrap.appendChild(input); wrap.appendChild(count); return wrap;
 }
-
-function renderStepInput(step){
-  const a = state.answers;
-
-  if(step.type === 'text' || step.type === 'text-optional'){
-    const wrap = el(`<div></div>`);
-    const input = el(`<input type="text" maxlength="${step.max||100}" placeholder="${step.placeholder||''}" value="${escapeHtml(a[step.id]||'')}">`);
-    input.oninput = ()=>{ a[step.id] = input.value; count.textContent = `${input.value.length} / ${step.max||100}`; syncNav(); };
-    const count = el(`<div class="charcount">${(a[step.id]||'').length} / ${step.max||100}</div>`);
-    wrap.appendChild(input); wrap.appendChild(count);
-    return wrap;
-  }
-
-  if(step.type === 'textarea'){
-    const wrap = el(`<div></div>`);
-    const input = el(`<textarea maxlength="${step.max||300}" placeholder="${step.placeholder||'請盡量具體...'}">${escapeHtml(a[step.id]||'')}</textarea>`);
-    input.oninput = ()=>{ a[step.id] = input.value; count.textContent = `${input.value.length} / ${step.max||300}`; syncNav(); };
-    const count = el(`<div class="charcount">${(a[step.id]||'').length} / ${step.max||300}</div>`);
-    wrap.appendChild(input); wrap.appendChild(count);
-    return wrap;
-  }
-
-  if(step.type === 'chips-other'){
-    const wrap = el(`<div></div>`);
-    const chipsWrap = el(`<div class="options"></div>`);
-    step.options.forEach(opt=>{
-      const chip = el(`<div class="chip ${a.obstacleType===opt.key?'selected':''}">${opt.label}</div>`);
-      chip.onclick = ()=>{ a.obstacleType = opt.key; render(); };
-      chipsWrap.appendChild(chip);
-    });
-    wrap.appendChild(chipsWrap);
-    if(a.obstacleType === 'other'){
-      const otherInput = el(`<input type="text" style="margin-top:12px;" maxlength="40" placeholder="說說是什麼" value="${escapeHtml(a.obstacleOther||'')}">`);
-      otherInput.oninput = ()=>{ a.obstacleOther = otherInput.value; syncNav(); };
-      wrap.appendChild(otherInput);
-    }
-    return wrap;
-  }
-
-  if(step.type === 'chips-multi'){
-    const wrap = el(`<div></div>`);
-    const chipsWrap = el(`<div class="options"></div>`);
-    const selected = a[step.id] || (a[step.id] = []);
-    step.options.forEach(opt=>{
-      const isSel = selected.includes(opt.key);
-      const disabled = !isSel && selected.length >= step.limit;
-      const chip = el(`<div class="chip ${isSel?'selected':''} ${disabled?'disabled':''}">${opt.label}</div>`);
-      chip.onclick = ()=>{
-        if(isSel){ a[step.id] = selected.filter(k=>k!==opt.key); }
-        else if(selected.length < step.limit){ a[step.id] = [...selected, opt.key]; }
-        render();
-      };
-      chipsWrap.appendChild(chip);
-    });
-    wrap.appendChild(chipsWrap);
-    wrap.appendChild(el(`<div class="limit-note">已選 ${selected.length} / ${step.limit}</div>`));
-    return wrap;
-  }
-
-  if(step.type === 'fate-toggle'){
-    const wrap = el(`<div></div>`);
-    const row = el(`<div class="toggle-row">
-        <div>
-          <div style="font-weight:600; margin-bottom:4px;">加入出生資訊，測試命定感是否增加代入感</div>
-          <div class="step-hint" style="margin:0;">這不是必要的，純粹是變因</div>
-        </div>
-      </div>`);
-    const sw = el(`<div class="switch ${a.fateEnabled?'on':''}"><div class="knob"></div></div>`);
-    sw.onclick = ()=>{ a.fateEnabled = !a.fateEnabled; render(); };
-    row.appendChild(sw);
-    wrap.appendChild(row);
-    return wrap;
-  }
-
-  if(step.type === 'birth'){
-    const input = el(`<input type="text" placeholder="例如：1993年5月 台北出生（越模糊也可以）" value="${escapeHtml(a.birth||'')}">`);
-    input.oninput = ()=>{ a.birth = input.value; };
-    const chipsWrap = el(`<div class="options" style="margin-bottom:16px;"></div>`);
-    ['想被安慰','想被推一把'].forEach(opt=>{
-      const chip = el(`<div class="chip ${a.fateIntent===opt?'selected':''}">${opt}</div>`);
-      chip.onclick = ()=>{ a.fateIntent = opt; render(); };
-      chipsWrap.appendChild(chip);
-    });
-    const final = el(`<div></div>`);
-    final.appendChild(el(`<div class="step-label" style="margin-bottom:8px;">你想被安慰，還是想被推一把？</div>`));
-    final.appendChild(chipsWrap);
-    final.appendChild(el(`<div class="step-label" style="margin-top:14px;">出生時間與地點（可留空）</div>`));
-    final.appendChild(input);
-    return final;
-  }
-
-  return el(`<div></div>`);
+function mkTextarea(id,max){
+  const a=state.answers;
+  const wrap=el(`<div></div>`);
+  const input=el(`<textarea maxlength="${max}">${esc(a[id]||'')}</textarea>`);
+  input.oninput=()=>{ a[id]=input.value; count.textContent=`${input.value.length} / ${max}`; syncNav(); };
+  const count=el(`<div class="charcount">${(a[id]||'').length} / ${max}</div>`);
+  wrap.appendChild(input); wrap.appendChild(count); return wrap;
 }
-
+function contextValid(){
+  const a=state.answers;
+  return !!(a.status && a.dailyScene.trim() && a.selfInRelationship.trim());
+}
 function syncNav(){
-  const nextBtn = document.querySelector('.nav-row .btn-primary');
-  if(!nextBtn) return;
-  const steps = currentSteps();
-  nextBtn.disabled = !isStepValid(steps[state.stepIndex]);
+  const go=document.querySelector('.nav-row .btn-primary');
+  if(go) go.disabled=!contextValid();
 }
 
 function renderLoading(){
-  return el(`
-    <div class="card fade-in loading">
-      <div class="spinner"></div>
-      <div>正在生成一份「不合理地像你」的未來草稿...</div>
-    </div>
-  `);
+  return el(`<div class="card fade-in loading"><div class="spinner"></div><div>正在寫一個三年後的普通日子…</div></div>`);
 }
 
 function renderResult(){
-  const card = el(`<div class="card fade-in"></div>`);
-  card.appendChild(el(`<div class="story-title">你的未來草稿</div>`));
-  card.appendChild(el(`<div class="story">${escapeHtml(state.storyText)}</div>`));
+  const qlabel=(LOVE_QUESTIONS.find(q=>q.key===state.question)||{}).label||'';
+  const card=el(`<div class="card fade-in"></div>`);
+  card.appendChild(el(`<div class="scene-q">${esc(qlabel)} ｜ Ordinary Life</div>`));
+  card.appendChild(el(`<div class="scene">${esc(state.sceneText)}</div>`));
 
-  const reflectDiv = el(`<div style="margin-top:26px; padding-top:20px; border-top:1px solid var(--border);"></div>`);
-  reflectDiv.appendChild(el(`<div class="step-label" style="margin-bottom:14px;">讀完之後，問問自己</div>`));
-  const reflectQs = [
-    '哪一段最讓你起雞皮疙瘩？',
-    '你覺得它是在描述你，還是在誘惑你？',
-    '看完後，你更想採取行動了嗎？',
-    '哪一版讓你覺得「不合理地像自己」？'
-  ];
-  reflectQs.forEach(q=>{
-    reflectDiv.appendChild(el(`<div class="reflect-q"><label>${q}</label></div>`));
+  // reactions
+  card.appendChild(el(`<div class="react-title">讀完之後，哪個反應最接近你現在的感覺？</div>`));
+  const grid=el(`<div class="react-grid"></div>`);
+  REACTIONS.forEach(r=>{
+    const b=el(`<button class="react-btn ${state.reactions[r.key]?'picked':''}">${r.label}</button>`);
+    b.onclick=()=>onReact(r.key);
+    grid.appendChild(b);
   });
-  card.appendChild(reflectDiv);
+  card.appendChild(grid);
 
-  const nav = el(`<div class="nav-row"></div>`);
-  const editBtn = el(`<button class="btn-ghost">回去改答案</button>`);
-  editBtn.onclick = ()=>{ state.screen = 'wizard'; render(); };
-  const regenBtn = el(`<button class="btn-primary">用同樣答案重新生成</button>`);
-  regenBtn.onclick = generateStory;
-  nav.appendChild(editBtn);
-  nav.appendChild(regenBtn);
+  // reflections for picked non-deeper reactions
+  REACTIONS.forEach(r=>{
+    if(r.reflect && state.reactions[r.key]){
+      card.appendChild(el(`<div class="reflect"><span class="tag">${r.tag}</span>${esc(r.reflect)}</div>`));
+    }
+  });
+
+  // deepen output / loading
+  if(state.loadingDeepen){
+    card.appendChild(el(`<div class="deepen-block loading"><div class="spinner"></div><div>把鏡頭推近那個瞬間…</div></div>`));
+  } else if(state.deepenText){
+    const d=el(`<div class="deepen-block"></div>`);
+    d.appendChild(el(`<div class="step-label">深入這條線 · 把鏡頭推近</div>`));
+    d.appendChild(el(`<div class="scene">${esc(state.deepenText)}</div>`));
+    card.appendChild(d);
+  }
+
+  const nav=el(`<div class="nav-row"></div>`);
+  const again=el(`<button class="btn-ghost">生成另一個版本</button>`);
+  again.onclick=generateScene;
+  const changeQ=el(`<button class="btn-ghost">換個問題</button>`);
+  changeQ.onclick=()=>{ resetForNewQuestion(); state.screen='question'; render(); };
+  nav.appendChild(again); nav.appendChild(changeQ);
   card.appendChild(nav);
-
   return card;
 }
 
 function renderError(){
-  const card = el(`<div class="card fade-in"></div>`);
-  card.appendChild(el(`<div class="error-box">${escapeHtml(state.error)}</div>`));
-  const nav = el(`<div class="nav-row"></div>`);
-  const editBtn = el(`<button class="btn-ghost">回去改答案</button>`);
-  editBtn.onclick = ()=>{ state.screen = 'wizard'; render(); };
-  const retryBtn = el(`<button class="btn-primary">再試一次</button>`);
-  retryBtn.onclick = generateStory;
-  nav.appendChild(editBtn);
-  nav.appendChild(retryBtn);
+  const card=el(`<div class="card fade-in"></div>`);
+  card.appendChild(el(`<div class="error-box">${esc(state.error)}</div>`));
+  const nav=el(`<div class="nav-row"></div>`);
+  const back=el(`<button class="btn-ghost">回去改答案</button>`);
+  back.onclick=()=>{ state.screen='context'; render(); };
+  const retry=el(`<button class="btn-primary">再試一次</button>`);
+  retry.onclick=generateScene;
+  nav.appendChild(back); nav.appendChild(retry);
   card.appendChild(nav);
   return card;
 }
 
-function escapeHtml(s){
-  return (s||'').replace(/[&<>"']/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+function resetForNewQuestion(){
+  state.sceneText=''; state.reactions={}; state.deepenText=''; state.loadingDeepen=false;
 }
 
-async function generateStory(){
-  state.error = '';
-  state.screen = 'loading';
-  render();
-
-  try{
-    const res = await fetch('/api/generate', {
-      method: 'POST',
-      headers: { 'content-type': 'application/json' },
-      body: JSON.stringify(state.answers),
-    });
-
-    const data = await res.json().catch(()=>({}));
-
-    if(!res.ok){
-      throw new Error(data.error || `伺服器錯誤 (${res.status})`);
+function onReact(key){
+  state.reactions[key]=!state.reactions[key];
+  if(key==='deeper'){
+    if(state.reactions.deeper && !state.deepenText && !state.loadingDeepen){
+      deepen();
+      return;
     }
-
-    state.storyText = data.story || '(沒有收到內容，請再試一次)';
-    state.screen = 'result';
-  }catch(err){
-    state.error = err.message || String(err);
-    state.screen = 'error';
   }
   render();
+}
+
+async function generateScene(){
+  state.error=''; state.screen='loading';
+  resetForNewQuestion();
+  render();
+  try{
+    const res=await fetch('/api/generate',{
+      method:'POST', headers:{'content-type':'application/json'},
+      body:JSON.stringify({ mode:'scene', question:state.question, ...state.answers }),
+    });
+    const data=await res.json().catch(()=>({}));
+    if(!res.ok) throw new Error(data.error||`伺服器錯誤 (${res.status})`);
+    state.sceneText=data.scene||'(沒有收到內容，請再試一次)';
+    state.screen='result';
+  }catch(err){
+    state.error=err.message||String(err); state.screen='error';
+  }
+  render();
+}
+
+async function deepen(){
+  state.loadingDeepen=true; render();
+  try{
+    const res=await fetch('/api/generate',{
+      method:'POST', headers:{'content-type':'application/json'},
+      body:JSON.stringify({ mode:'deepen', previousScene:state.sceneText }),
+    });
+    const data=await res.json().catch(()=>({}));
+    if(!res.ok) throw new Error(data.error||`伺服器錯誤 (${res.status})`);
+    state.deepenText=data.scene||'';
+  }catch(err){
+    state.deepenText='（深入這條線時出錯了，可以再點一次試試。）';
+    state.reactions.deeper=false;
+  }
+  state.loadingDeepen=false; render();
 }
 
 render();
