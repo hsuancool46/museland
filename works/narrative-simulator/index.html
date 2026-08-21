@@ -147,7 +147,7 @@ const REACTIONS = [
 let state = {
   screen:'question',   // question | context | loading | result | error
   question:null,
-  answers:{ status:'', dailyScene:'', quietThing:'', selfInRelationship:'', fear:'' },
+  answers:{ status:'', dailyScene:'', quietThing:'', selfInRelationship:'', fear:'', hope:'' },
   sceneText:'',
   reactions:{},        // key -> true
   deepenText:'',
@@ -224,6 +224,10 @@ function renderContext(){
   // fear (optional)
   card.appendChild(el(`<label class="field">你私下最怕這段關係，三年後變成什麼樣子？<span class="opt">（可跳過）</span></label>`));
   card.appendChild(mkText('fear',200));
+
+  // hope (optional) — balancing seed
+  card.appendChild(el(`<label class="field">你最希望三年後，你們之間還留著什麼？<span class="opt">（可跳過）</span></label>`));
+  card.appendChild(mkText('hope',200));
 
   const nav=el(`<div class="nav-row"></div>`);
   const back=el(`<button class="btn-ghost">換個問題</button>`);
