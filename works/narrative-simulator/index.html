@@ -79,7 +79,11 @@
   @media(max-width:460px){ .react-grid{ grid-template-columns:1fr; } }
   .react-btn{ background:var(--bg-panel-2); border:1px solid var(--border); color:var(--text); border-radius:11px; padding:13px 14px; font-size:14.5px; cursor:pointer; text-align:left; transition:border-color .12s; }
   .react-btn:hover{ border-color:var(--accent-2); }
-  .react-btn.picked{ border-color:var(--accent); background:rgba(255,93,93,.08); }
+  .react-btn.picked{ border-color:var(--accent); background:rgba(255,93,93,.12); font-weight:600; }
+  .react-btn.react-locked{ opacity:.32; }
+  .react-btn:disabled{ cursor:default; }
+  .react-btn:disabled:hover{ border-color:var(--border); }
+  .react-btn.picked:disabled:hover{ border-color:var(--accent); }
 
   .reflect{ margin-top:16px; padding:14px 16px; border-radius:11px; background:var(--bg-panel-2); border:1px solid var(--border); font-size:14px; line-height:1.7; color:var(--text); }
   .reflect .tag{ display:block; font-size:11.5px; letter-spacing:1px; text-transform:uppercase; color:var(--text-dim); margin-bottom:6px; }
@@ -145,13 +149,14 @@ const REACTIONS = [
 ];
 
 let state = {
-  screen:'question',   // question | context | loading | result | error
+  screen:'question',   // question | context | loading | result | declined | error
   question:null,
   answers:{ status:'', dailyScene:'', quietThing:'', selfInRelationship:'', fear:'', hope:'' },
   sceneText:'',
-  reactions:{},        // key -> true
+  reaction:null,       // single locked choice (once set, immutable)
   deepenText:'',
   loadingDeepen:false,
+  declineMessage:'',
   error:'',
 };
 
@@ -170,6 +175,7 @@ function render(){
   if(state.screen==='context')  app.appendChild(renderContext());
   if(state.screen==='loading')  app.appendChild(renderLoading());
   if(state.screen==='result')   app.appendChild(renderResult());
+  if(state.screen==='declined') app.appendChild(renderDeclined());
   if(state.screen==='error')    app.appendChild(renderError());
   app.appendChild(el(`<footer>這不是預言，只是其中一種看法。<br>Not a prediction. A perspective.</footer>`));
 }
@@ -219,15 +225,15 @@ function renderContext(){
   // selfInRelationship
   card.appendChild(el(`<label class="field">在關係裡，你自己通常是什麼樣子？</label>`));
   card.appendChild(el(`<div class="field-hint">例如：容易先退一步／需要很多獨處空間／討厭衝突／嘴上說不在意其實會在意。</div>`));
-  card.appendChild(mkText('selfInRelationship',200));
+  card.appendChild(mkTextarea('selfInRelationship',200));
 
   // fear (optional)
   card.appendChild(el(`<label class="field">你私下最怕這段關係，三年後變成什麼樣子？<span class="opt">（可跳過）</span></label>`));
-  card.appendChild(mkText('fear',200));
+  card.appendChild(mkTextarea('fear',200));
 
   // hope (optional) — balancing seed
   card.appendChild(el(`<label class="field">你最希望三年後，你們之間還留著什麼？<span class="opt">（可跳過）</span></label>`));
-  card.appendChild(mkText('hope',200));
+  card.appendChild(mkTextarea('hope',200));
 
   const nav=el(`<div class="nav-row"></div>`);
   const back=el(`<button class="btn-ghost">換個問題</button>`);
@@ -275,22 +281,28 @@ function renderResult(){
   card.appendChild(el(`<div class="scene-q">${esc(qlabel)} ｜ Ordinary Life</div>`));
   card.appendChild(el(`<div class="scene">${esc(state.sceneText)}</div>`));
 
-  // reactions
+  // reactions — single choice, locks once picked
+  const locked = state.reaction !== null;
   card.appendChild(el(`<div class="react-title">讀完之後，哪個反應最接近你現在的感覺？</div>`));
+  if(!locked){
+    card.appendChild(el(`<div class="hint" style="margin:-6px 0 12px;">只能選一個，選了就鎖定——所以選那個你身體最先有反應的。</div>`));
+  }
   const grid=el(`<div class="react-grid"></div>`);
   REACTIONS.forEach(r=>{
-    const b=el(`<button class="react-btn ${state.reactions[r.key]?'picked':''}">${r.label}</button>`);
-    b.onclick=()=>onReact(r.key);
+    const isPicked = state.reaction===r.key;
+    const cls = isPicked ? 'picked' : (locked ? 'react-locked' : '');
+    const b=el(`<button class="react-btn ${cls}">${isPicked?'✓ ':''}${r.label}</button>`);
+    if(!locked) b.onclick=()=>onReact(r.key);
+    else b.disabled = true;
     grid.appendChild(b);
   });
   card.appendChild(grid);
 
-  // reflections for picked non-deeper reactions
-  REACTIONS.forEach(r=>{
-    if(r.reflect && state.reactions[r.key]){
-      card.appendChild(el(`<div class="reflect"><span class="tag">${r.tag}</span>${esc(r.reflect)}</div>`));
-    }
-  });
+  // reflection for the single picked non-deeper reaction
+  const picked = REACTIONS.find(r=>r.key===state.reaction);
+  if(picked && picked.reflect){
+    card.appendChild(el(`<div class="reflect"><span class="tag">${picked.tag}</span>${esc(picked.reflect)}</div>`));
+  }
 
   // deepen output / loading
   if(state.loadingDeepen){
@@ -312,6 +324,20 @@ function renderResult(){
   return card;
 }
 
+function renderDeclined(){
+  const card=el(`<div class="card fade-in"></div>`);
+  card.appendChild(el(`<div class="step-label">這一次，先停在這裡</div>`));
+  card.appendChild(el(`<div class="scene" style="opacity:.95">${esc(state.declineMessage)}</div>`));
+  const nav=el(`<div class="nav-row"></div>`);
+  const back=el(`<button class="btn-ghost">回去改答案</button>`);
+  back.onclick=()=>{ state.screen='context'; render(); };
+  const changeQ=el(`<button class="btn-ghost">換個問題</button>`);
+  changeQ.onclick=()=>{ resetForNewQuestion(); state.screen='question'; render(); };
+  nav.appendChild(back); nav.appendChild(changeQ);
+  card.appendChild(nav);
+  return card;
+}
+
 function renderError(){
   const card=el(`<div class="card fade-in"></div>`);
   card.appendChild(el(`<div class="error-box">${esc(state.error)}</div>`));
@@ -326,16 +352,15 @@ function renderError(){
 }
 
 function resetForNewQuestion(){
-  state.sceneText=''; state.reactions={}; state.deepenText=''; state.loadingDeepen=false;
+  state.sceneText=''; state.reaction=null; state.deepenText=''; state.loadingDeepen=false;
 }
 
 function onReact(key){
-  state.reactions[key]=!state.reactions[key];
+  if(state.reaction!==null) return;   // locked — one choice only, no take-backs
+  state.reaction=key;
   if(key==='deeper'){
-    if(state.reactions.deeper && !state.deepenText && !state.loadingDeepen){
-      deepen();
-      return;
-    }
+    deepen();   // deepen() calls render()
+    return;
   }
   render();
 }
@@ -351,6 +376,7 @@ async function generateScene(){
     });
     const data=await res.json().catch(()=>({}));
     if(!res.ok) throw new Error(data.error||`伺服器錯誤 (${res.status})`);
+    if(data.declined){ state.declineMessage=data.message||''; state.screen='declined'; render(); return; }
     state.sceneText=data.scene||'(沒有收到內容，請再試一次)';
     state.screen='result';
   }catch(err){
@@ -368,10 +394,10 @@ async function deepen(){
     });
     const data=await res.json().catch(()=>({}));
     if(!res.ok) throw new Error(data.error||`伺服器錯誤 (${res.status})`);
-    state.deepenText=data.scene||'';
+    state.deepenText = data.declined ? (data.message||'') : (data.scene||'（這次沒有生成出來。）');
   }catch(err){
-    state.deepenText='（深入這條線時出錯了，可以再點一次試試。）';
-    state.reactions.deeper=false;
+    state.deepenText='';
+    state.reaction=null;   // deepen failed — unlock so the choice can be made again
   }
   state.loadingDeepen=false; render();
 }

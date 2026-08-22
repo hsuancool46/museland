@@ -62,13 +62,15 @@ function sceneUser(a) {
 function deepenSystem() {
   return `你是「Personalized Narrative Simulator」的人生情境模擬引擎，主題「感情」，lens 為 Ordinary Life。
 
-使用者剛讀完上一個場景，點了「我想深入這條線」。你的任務不是重寫整個場景，而是「把鏡頭推近」：找出上一個場景裡情緒最濃、張力最緊的那一個瞬間（通常是那個小摩擦、那個沉默、那個沒說出口的念頭發生的當下），放慢它，只寫那 30 秒到幾分鐘。
+使用者剛讀完上一個場景，點了「我想深入這條線」。你要做的是「把鏡頭推到最近」——不是重講、不是續寫、不是總結。
 
-規則：
-- 長度 500–900 字，繁體中文，第二人稱「你」。
-- 用具體的動作、對話、身體感受、視線、呼吸來寫那個瞬間，不要抽象的心理分析，不要下結論、不要幫使用者命名他是怎樣的人。
-- 延續上一個場景的人物、設定、時間，不要換場景。
-- 誠實但不殘忍，結尾一樣留一點餘地。
+嚴格規則（違反任何一條都算失敗）：
+1. 假設讀者「剛剛才讀完」上一個場景，對人物、時間、地點、發生的事完全清楚。所以：不要重述劇情、不要摘要已經發生的事、不要重複上一段出現過的句子或描述。一句都不要重覆。
+2. 從上一個場景裡挑「唯一一個」情緒最濃的瞬間（那個動作、那個沉默、那個沒說出口的半句話發生的當下），把時間放慢到只有幾秒鐘。整段就只寫這幾秒。
+3. 只用「上一段沒寫過的新細節」把那一瞬間撐開：一個更近的身體感受、一次呼吸、視線落在哪一個具體的東西上、指尖的動作、心裡閃過但沒說出來的那半句話。不是把場景往前推進，是往裡面鑽。
+4. 不要換場景、不要跳到別的時間、不要加入新事件或新對話。鏡頭釘在那一個瞬間不動。
+5. 長度 250–500 字，繁體中文，第二人稱「你」。寧可短而準，不要長而重複——如果你發現自己在重講上一段，就是錯了。
+6. 不要下心理診斷、不要替使用者命名他是怎樣的人。誠實但不殘忍。
 
 結尾另起一行，原文照放：
 這不是預言，只是其中一種看法。Not a prediction. A perspective.
@@ -77,10 +79,10 @@ function deepenSystem() {
 }
 
 function deepenUser(a) {
-  return `上一個場景如下：
+  return `上一個場景如下（讀者剛讀完，你完全不需要、也不准重述它）：
 「${a.previousScene}」
 
-請把鏡頭推近，放大這個場景裡情緒最濃的那一個瞬間。`;
+請只挑其中情緒最濃的那一個瞬間，把時間放慢到幾秒，用上一段「沒寫過的新細節」把它往裡面撐開。不要重講劇情、不要重複任何句子。`;
 }
 
 // ---- Rate limit (best-effort; the real cap is the API key's spend limit) --
@@ -106,7 +108,7 @@ module.exports = async function handler(req, res) {
     req.socket?.remoteAddress ||
     'unknown';
   if (!checkRateLimit(ip)) {
-    res.status(429).json({ error: '生成次數太多了，請稍後再試（每小時每人上限 12 次）。' });
+    res.status(429).json({ error: '你在短時間內生成太多次了，目前暫時無法生成內容，請過一會兒再試（每小時每人上限 12 次）。' });
     return;
   }
 
@@ -128,7 +130,7 @@ module.exports = async function handler(req, res) {
     }
     system = deepenSystem();
     userMessage = deepenUser({ previousScene });
-    maxTokens = 1600;
+    maxTokens = 1100;
   } else {
     const a = {
       question: LOVE_QUESTIONS[body.question] ? body.question : '',
@@ -167,12 +169,40 @@ module.exports = async function handler(req, res) {
     if (!apiRes.ok) {
       const errText = await apiRes.text();
       console.error('Anthropic API error', apiRes.status, errText);
-      res.status(502).json({ error: '生成服務暫時出錯，請稍後再試。' });
+      let errType = '';
+      try { errType = (JSON.parse(errText).error || {}).type || ''; } catch (e) {}
+      let userMsg = '目前暫時無法生成內容，請稍後再試。';
+      if (apiRes.status === 429 || errType === 'rate_limit_error' || errType === 'overloaded_error') {
+        userMsg = '目前使用的人比較多、或用量已達上限，暫時無法生成內容，請過幾分鐘再試。';
+      } else if (/credit|balance|billing|quota|insufficient/i.test(errText)) {
+        userMsg = '目前無法生成內容：服務用量已達上限。請稍後再試。';
+      } else if (apiRes.status === 401 || errType === 'authentication_error') {
+        userMsg = '目前無法生成內容：服務設定有誤（API 金鑰）。';
+      }
+      res.status(502).json({ error: userMsg });
       return;
     }
 
     const data = await apiRes.json();
     const text = (data.content && data.content[0] && data.content[0].text) || '';
+
+    // The model can return HTTP 200 but decline to generate (stop_reason:
+    // "refusal", empty content) — typically when the input reads as acute
+    // distress: a fresh breakup, betrayal, hopelessness. Handing someone in
+    // that moment a vivid immersive future scene is the wrong move, so surface
+    // a caring message instead of a blank/broken screen.
+    if (data.stop_reason === 'refusal' || !text) {
+      console.log('generate declined/empty', { mode, stop_reason: data.stop_reason });
+      res.status(200).json({
+        declined: true,
+        message:
+          '這一組情境，我這次沒有辦法幫你模擬。\n\n' +
+          '有時候是因為輸入裡的狀態太重、太靠近正在發生的痛——那種時候，一篇虛構的未來場景幫不上什麼，甚至可能更難受。如果你現在正經歷這樣的事，找一個信得過的人聊聊，會比讀一篇模擬來得實在。\n\n' +
+          '你也可以換一個問題，或把情境寫得輕一點、具體一點，再試一次。',
+      });
+      return;
+    }
+
     res.status(200).json({ scene: text });
   } catch (err) {
     console.error(err);
