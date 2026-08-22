@@ -19,7 +19,7 @@
 const WORKS = [
   {
     slug: "theater",
-    title: "胡思劇場",
+    title: "亂想劇場",
     subtitle: "The Reverie",
     blurb: "一座選集式小戲院。每一季一個獨立的世界，風格自由跳動。",
     color: "#e8b04b",

@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>胡思劇場・The Reverie</title>
-<meta name="description" content="胡思樂園裡的一座選集式放映室。每一季都是一個獨立的世界，風格自由跳動。" />
+<title>亂想劇場・The Reverie</title>
+<meta name="description" content="胡思樂園裡的一座放映室。每一部都是一個獨立的故事，目前都是第一季，之後有沒有第二季再說。" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Noto+Serif+TC:wght@400;500;600;700;900&family=Noto+Sans+TC:wght@300;400;500;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet" />
@@ -72,6 +72,7 @@
   .poster .art{position:absolute;inset:0;z-index:-2}
   .poster .motif{position:absolute;z-index:-1;right:-.08em;bottom:-.14em;font-family:var(--font-serif);font-weight:900;font-size:12rem;line-height:.8;opacity:.16;color:#fff;pointer-events:none;text-shadow:0 4px 30px rgba(0,0,0,.4)}
   .poster .grain{position:absolute;inset:0;z-index:-1;opacity:.5;background-image:radial-gradient(rgba(255,255,255,.09) .5px,transparent .5px);background-size:3px 3px;mix-blend-mode:overlay}
+  .poster .posterimg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;display:block}
   .poster .scrim{position:absolute;inset:0;z-index:0;background:linear-gradient(180deg,rgba(8,5,12,.05) 30%,rgba(8,5,12,.62) 72%,rgba(8,5,12,.92) 100%)}
   .poster .meta{position:absolute;z-index:1;inset:auto 0 0 0;padding:15px 15px 16px}
   .poster .stylet{font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.72);font-weight:500;margin-bottom:7px}
@@ -96,6 +97,7 @@
   .posterMini{position:relative;border-radius:12px;overflow:hidden;aspect-ratio:2/3;border:1px solid var(--line);max-width:220px}
   .posterMini .motif{position:absolute;inset:0;display:grid;place-items:center;font-family:var(--font-serif);font-weight:900;font-size:8rem;color:#fff;opacity:.18}
   .posterMini .grain2{position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.09) .5px,transparent .5px);background-size:3px 3px;opacity:.5}
+  .posterMini .pimg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:2;display:block}
   .sinfo .eyebrow{font-family:var(--font-disp);letter-spacing:.28em;text-transform:uppercase;color:var(--gold);font-size:.74rem;margin-bottom:12px}
   .sinfo h2{margin:0;font-family:var(--font-serif);font-weight:900;font-size:clamp(2rem,5vw,3.1rem);letter-spacing:.04em;line-height:1.05}
   .sinfo .logline{margin:16px 0 0;color:var(--ink-dim);font-size:1.04rem;line-height:1.8;max-width:40rem;font-family:var(--font-serif)}
@@ -187,7 +189,7 @@
 <main id="app"></main>
 
 <footer class="sitefoot"><div class="wrap frow">
-  <span class="note">胡思劇場 · 每一季皆為獨立單元 — 風格自由跳動，看完就走，偶爾回來</span>
+  <span class="note">亂想劇場 · 每一部都是獨立的故事 — 目前都是第一季，之後有沒有第二季再說</span>
   <span class="en">Not a channel. An anthology.</span>
 </div></footer>
 
@@ -214,10 +216,15 @@
     return map;
   }
   function splitEpisodes(raw){
-    const lines = raw.replace(/\r/g,"").split("\n"); const map={}; let cur=null;
+    // 支援兩種寫法：腳本體「# EP01｜《標題》」與章節體「## 第一章」。集數依出現順序排。
+    const lines = raw.replace(/\r/g,"").split("\n"); const map={}; let cur=null; let n=0;
+    const reEP = /^#\s+EP0*\d+｜(.+?)\s*$/;
+    const reCh = /^#{1,3}\s+(第[〇0-9一二三四五六七八九十百千零兩]+[章話回集節])\s*$/;
     for (const ln of lines){
-      const m = ln.match(/^#\s+EP0*(\d+)｜(.+?)\s*$/);
-      if (m){ const no=parseInt(m[1],10); let title=m[2].trim().replace(/^《/,"").replace(/》$/,""); cur={title,lines:[]}; map[no]=cur; }
+      let title=null, m;
+      if ((m=ln.match(reEP))){ title=m[1].trim().replace(/^《/,"").replace(/》$/,""); }
+      else if ((m=ln.match(reCh))){ title=m[1].trim(); }
+      if (title!==null){ n++; cur={title,lines:[]}; map[n]=cur; }
       else if (cur){ cur.lines.push(ln); }
     }
     Object.values(map).forEach(e=>{ e.body=e.lines.join("\n"); delete e.lines; });
@@ -284,7 +291,8 @@
         radial-gradient(120% 80% at 78% 12%, ${c.accent}44 0%, transparent 46%),
         radial-gradient(90% 70% at 20% 96%, ${c.a} 0%, transparent 60%),
         linear-gradient(160deg, ${c.b} 0%, ${c.a} 100%);"></div>
-      <div class="motif" style="color:${c.accent}">${esc(s.motif||"")}</div><div class="grain"></div>`;
+      <div class="motif" style="color:${c.accent}">${esc(s.motif||"")}</div><div class="grain"></div>
+      ${s.poster?`<img class="posterimg" src="${esc(s.poster)}" alt="${esc(s.title||"")} 海報" loading="lazy" onerror="this.remove()">`:``}`;
   }
 
   /* ============ WALL ============ */
@@ -297,14 +305,14 @@
         <span class="sep"></span><span class="sellabel">類型</span>${ALL_GENRES.map(v=>chip("genre",v)).join("")}
         <span class="sep"></span><span class="sellabel">狀態</span>${ALL_STATUS.map(v=>chip("status",v,STATUS[v].label)).join("")}
         ${anyFilter()?`<button class="chip reset" id="resetf">清除</button>`:``}
-        <span class="count">${shown.length} / ${SEASONS_.length} 季</span>
+        <span class="count">${shown.length} / ${SEASONS_.length} 部</span>
       </div></div></div>` : ``;
     app.innerHTML=`
       <div class="view">
         <div class="wrap hero">
           <div class="kicker">Now Screening</div>
-          <h1>胡思劇場<span class="en">The Reverie</span></h1>
-          <p class="tag">胡思樂園裡的一座小戲院。每一季都是一個<em>獨立的世界</em>——日劇、韓劇、動畫、歐美影集，風格自由跳動，看完就走，偶爾回來。</p>
+          <h1>亂想劇場<span class="en">The Reverie</span></h1>
+          <p class="tag">胡思樂園裡的一座小戲院。每一部都是一個<em>獨立的故事</em>——日劇、韓劇、動畫、歐美影集，風格自由跳動，看完就走，偶爾回來。</p>
           <div class="rule"></div>
         </div>
         ${filterRow}
@@ -346,9 +354,10 @@
         <div class="shead">
           <div class="posterMini" style="background:linear-gradient(160deg, ${(s.color||{}).b}, ${(s.color||{}).a});">
             <div class="motif" style="color:${(s.color||{}).accent}">${esc(s.motif||"")}</div><div class="grain2"></div>
+            ${s.poster?`<img class="pimg" src="${esc(s.poster)}" alt="${esc(s.title||"")} 海報" onerror="this.remove()">`:``}
           </div>
           <div class="sinfo">
-            <div class="eyebrow">${esc(s.style)} · Season 01</div>
+            <div class="eyebrow">${esc(s.style)} · 第一季</div>
             <h2>${esc(s.title)}</h2>
             <p class="logline">${esc(s.logline||"")}</p>
             <div class="metaline">
