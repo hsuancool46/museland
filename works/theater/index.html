@@ -154,6 +154,10 @@
   .beatquote p{margin:0 0 .4em;font-size:1.12rem;line-height:1.7;color:var(--gold-soft);font-weight:500}
   .beatquote p:last-child{margin-bottom:0}
   .beatquote strong{color:#fff}
+    /* 世界觀／設定框 —— 用 ~ 標記，紫色細框＋淡發光，跟金色銘牌區隔 */
+  .script .lore{ margin:1.4em 0; padding:14px 18px; border:1px solid rgba(157,143,208,.35); border-radius:10px; background:rgba(157,143,208,.07); }
+  .script .lore p{ margin:.3em 0; font-family:var(--font-serif); font-size:1rem; line-height:1.9; letter-spacing:.05em; color:#d7cfe6; text-shadow:0 0 10px rgba(157,143,208,.22); }
+  .script .lore p:first-child{ margin-top:0 } .script .lore p:last-child{ margin-bottom:0 }
   .script ul{margin:.4em 0 1em;padding-left:1.3em}
   .script li{margin:.2em 0;color:#d9d0e0;line-height:1.6}
   hr.scene{border:none;height:0;margin:1.7em auto;width:60px;border-top:1px dotted var(--ink-faint);opacity:.6}
@@ -263,6 +267,14 @@
         const buf=[];
         while (i<lines.length && /^>/.test(lines[i].replace(/\s+$/,""))){ const t=lines[i].replace(/\s+$/,"").replace(/^>\s?/,""); if(t!=="")buf.push(t); i++; }
         out.push(`<blockquote class="beatquote">${buf.map(t=>`<p>${inlineFmt(t)}</p>`).join("")}</blockquote>`); continue;
+      }
+            if (/^[~～]\s/.test(line)){
+        const buf=[];
+        while (i<lines.length && /^[~～]\s/.test(lines[i].replace(/\s+$/,""))){
+          const t=lines[i].replace(/\s+$/,"").replace(/^[~～]\s?/,""); if(t!=="")buf.push(t); i++;
+        }
+        out.push(`<div class="lore">${buf.map(t=>`<p>${inlineFmt(t)}</p>`).join("")}</div>`);
+        continue;
       }
       if (/^[-*]\s+/.test(line)){
         const buf=[];
