@@ -32,9 +32,23 @@
 
 const SEASONS = [
   {
+    id: "royal-spirits",
+    title: "王室祖靈管理處",
+    style: "動畫",
+    motif: "靈",
+    genres: ["奇幻", "喜劇", "職場"],
+    status: "done",                              // 先當第一季完結；若還會續拍改成 "live"
+    runtime: "24",                               // 估的，實際不同再改
+    color: { a: "#12141f", b: "#1b1d30", accent: "#d0aa55" },
+    poster: "stories/royal-spirits/poster.jpg",
+    logline: "王國的祖先死了也不肯乖乖待著。一名只想準時下班的祖靈維護員，靠公文、程序與加班費，擺平一個又一個荒謬的王室亡者。",
+    md: "stories/royal-spirits/s1.md",
+    episodes: Array.from({ length: 10 }, () => ({})),   // 腳本體，10 集，標題自動從 .md 來
+  },
+  {
     id: "studio-life",
     title: "工作室日常",
-    style: "日本",
+    style: "深夜劇",
     motif: "室",
     genres: ["日常", "群像", "喜劇"],
     status: "done",
@@ -64,8 +78,8 @@ const SEASONS = [
     title: "老街最後一盞燈",
     style: "台劇",
     motif: "燈",
-    genres: ["社會寫實", "都市更新", "職場", "家庭", "群像"],
-    status: "single",
+    genres: ["社會寫實", "家庭", "群像"],
+    status: "done",
     runtime: "38–45",
     color: { a: "#141a24", b: "#1b202b", accent: "#d8b070" },
     poster: "stories/old-street/poster.jpg",
