@@ -295,7 +295,7 @@
   function matches(s){
     if (filter.style.size && !filter.style.has(s.style)) return false;
     if (filter.status.size && !filter.status.has(s.status)) return false;
-    if (filter.genre.size && !(s.genres||[]).some(g=>filter.genre.has(g))) return false;
+    if (filter.genre.size && ![...filter.genre].every(g=>(s.genres||[]).includes(g))) return false;
     return true;
   }
   function posterArt(s){ const c=s.color||{a:"#222",b:"#333",accent:"#e8b04b"};
