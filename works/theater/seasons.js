@@ -31,6 +31,21 @@
    ========================================================================= */
 
 const SEASONS = [
+    {
+    id: "pact",
+    title: "此契非緣",
+    style: "古裝",
+    motif: "契",
+    genres: ["仙俠", "愛情", "懸疑"],
+    status: "live",                              // 連載中；全部連載完再改成 "done"
+    runtime: "20",                              // 估的，實際不同再改
+    color: { a: "#20222a", b: "#2a2430", accent: "#c05a5a" },
+    poster: "stories/pact/poster.jpg",
+    logline: "循著失蹤修士的血跡，一名劍修在秘境深處撞見正在施換命術的醫修。綁住兩人的是一紙契約，不是姻緣——可契約，有時比緣分更難解。",
+    md: "stories/pact/s1.md",
+    episodes: Array.from({ length: 15 }, () => ({})),   // 目前 15 章（連載中，每更一章就多一個 {}）
+  },
+  
   {
     id: "royal-spirits",
     title: "王室祖靈管理處",
@@ -46,21 +61,6 @@ const SEASONS = [
     episodes: Array.from({ length: 10 }, () => ({})),   // 腳本體，10 集，標題自動從 .md 來
   },
   
-    {
-    id: "pact",
-    title: "此契非緣",
-    style: "古裝",
-    motif: "契",
-    genres: ["仙俠", "奇幻", "愛情", "懸疑"],
-    status: "live",                              // 連載中；全部連載完再改成 "done"
-    runtime: "20",                              // 估的，實際不同再改
-    color: { a: "#20222a", b: "#2a2430", accent: "#c05a5a" },
-    poster: "stories/pact/poster.jpg",
-    logline: "循著失蹤修士的血跡，一名劍修在秘境深處撞見正在施換命術的醫修。綁住兩人的是一紙契約，不是姻緣——可契約，有時比緣分更難解。",
-    md: "stories/pact/s1.md",
-    episodes: Array.from({ length: 15 }, () => ({})),   // 目前 15 章（連載中，每更一章就多一個 {}）
-  },
-
   {
     id: "studio-life",
     title: "工作室日常",
