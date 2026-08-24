@@ -32,6 +32,21 @@
 
 const SEASONS = [
     {
+    id: "readthrough",
+    title: "讀本",
+    style: "歐美影集",
+    motif: "讀",
+    genres: ["懸疑", "推理", "群像"],
+    status: "live",                              // 連載中
+    runtime: "58",
+    color: { a: "#181a20", b: "#20222c", accent: "#b8a06a" },
+    poster: "stories/readthrough/poster.jpg",
+    logline: "五名演員第一次圍桌讀一部密室謀殺劇。",
+    md: "stories/readthrough/s1.md",
+    episodes: Array.from({ length: 1 }, () => ({})),   // 目前 EP01（連載中，每更一集就多一個 {}）
+  },  
+  
+  {
     id: "pact",
     title: "此契非緣",
     style: "古裝",
