@@ -43,7 +43,7 @@ const SEASONS = [
     poster: "stories/readthrough/poster.jpg",
     logline: "五名演員第一次圍桌讀一部密室謀殺劇。",
     md: "stories/readthrough/s1.md",
-    episodes: Array.from({ length: 1 }, () => ({})),   // 目前 EP01（連載中，每更一集就多一個 {}）
+    episodes: Array.from({ length: 2 }, () => ({})),   // 目前 EP01（連載中，每更一集就多一個 {}）
   },  
   
   {
