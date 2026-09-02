@@ -97,6 +97,9 @@
 
   .error-box{ background:#2a1414; border:1px solid #5a2a2a; color:#ffb3b3; padding:12px 14px; border-radius:10px; font-size:13.5px; margin-bottom:14px; }
 
+  .privacy-notice{ background:var(--bg-panel-2); border:1px solid var(--border); border-radius:11px; padding:12px 14px; font-size:12.5px; line-height:1.6; color:var(--text-dim); margin:0 0 18px; }
+  .privacy-notice strong{ color:var(--text); font-weight:600; }
+
   footer{ text-align:center; color:var(--text-dim); font-size:11.5px; margin-top:24px; line-height:1.7; }
 
   .back-link{
@@ -153,6 +156,7 @@ let state = {
   question:null,
   answers:{ status:'', dailyScene:'', quietThing:'', selfInRelationship:'', fear:'', hope:'' },
   sceneText:'',
+  sceneToken:'',        // HMAC token bound to sceneText, required to call deepen
   reaction:null,       // single locked choice (once set, immutable)
   deepenText:'',
   loadingDeepen:false,
@@ -202,6 +206,7 @@ function renderContext(){
   card.appendChild(el(`<div class="step-label">Tell us enough to make it yours</div>`));
   card.appendChild(el(`<div class="lead">${esc(qlabel)}</div>`));
   card.appendChild(el(`<div class="hint">講得越具體，場景越可能「不合理地像你」。不用寫得漂亮，寫真的。</div>`));
+  card.appendChild(el(`<div class="privacy-notice"><strong>送出前提醒：</strong>你填的內容會傳送給第三方 AI 服務（Anthropic）以生成場景，不會被本站保存。請避免填入真實姓名、聯絡方式等可辨識身份的個人資訊。</div>`));
 
   // status chips
   card.appendChild(el(`<label class="field">你現在的感情狀態？</label>`));
@@ -352,7 +357,7 @@ function renderError(){
 }
 
 function resetForNewQuestion(){
-  state.sceneText=''; state.reaction=null; state.deepenText=''; state.loadingDeepen=false;
+  state.sceneText=''; state.sceneToken=''; state.reaction=null; state.deepenText=''; state.loadingDeepen=false;
 }
 
 function onReact(key){
@@ -378,6 +383,7 @@ async function generateScene(){
     if(!res.ok) throw new Error(data.error||`伺服器錯誤 (${res.status})`);
     if(data.declined){ state.declineMessage=data.message||''; state.screen='declined'; render(); return; }
     state.sceneText=data.scene||'(沒有收到內容，請再試一次)';
+    state.sceneToken=data.sceneToken||'';
     state.screen='result';
   }catch(err){
     state.error=err.message||String(err); state.screen='error';
@@ -390,7 +396,7 @@ async function deepen(){
   try{
     const res=await fetch('/api/generate',{
       method:'POST', headers:{'content-type':'application/json'},
-      body:JSON.stringify({ mode:'deepen', previousScene:state.sceneText }),
+      body:JSON.stringify({ mode:'deepen', previousScene:state.sceneText, sceneToken:state.sceneToken }),
     });
     const data=await res.json().catch(()=>({}));
     if(!res.ok) throw new Error(data.error||`伺服器錯誤 (${res.status})`);

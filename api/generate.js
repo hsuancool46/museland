@@ -2,6 +2,10 @@
 // 主題：感情 Love ｜ Lens：Ordinary Life ｜ 深度：Life Scene ｜ 反應回饋
 //
 // ANTHROPIC_API_KEY 只存在 Vercel 環境變數，永不進到前端、永不寫死於此。
+// SCENE_SIGNING_SECRET 同樣只存在 Vercel 環境變數，且必須與 ANTHROPIC_API_KEY 不同，
+// 只用來簽署／驗證 sceneToken（見下方 MUSE-SEC-001 SEC-001 remediation）。
+
+const crypto = require('crypto');
 
 const LOVE_QUESTIONS = {
   continue3y: '如果跟現在這個人繼續三年？',
@@ -21,6 +25,8 @@ const STATUS = {
 };
 
 // ---- Prompt construction ------------------------------------------------
+// (creative prompt content unchanged from the approved baseline — this
+// Security Fix does not touch prompt behavior)
 
 function sceneSystem() {
   return `你是「Personalized Narrative Simulator」的人生情境模擬引擎。這一格的主題是「感情」，觀測角度（lens）是 Ordinary Life。
@@ -85,7 +91,71 @@ function deepenUser(a) {
 請只挑其中情緒最濃的那一個瞬間，把時間放慢到幾秒，用上一段「沒寫過的新細節」把它往裡面撐開。不要重講劇情、不要重複任何句子。`;
 }
 
-// ---- Rate limit (best-effort; the real cap is the API key's spend limit) --
+// ---- MUSE-SEC-001 remediation: request-level defenses ---------------------
+
+// SEC-001 (Origin allowlist): production must fail closed when ALLOWED_ORIGINS
+// isn't configured, rather than silently accepting every origin. Outside
+// production (no VERCEL_ENV/NODE_ENV=production) we stay permissive so local
+// dev and the mocked test harness keep working without extra setup.
+function isAllowedOrigin(req) {
+  const isProd =
+    process.env.VERCEL_ENV === 'production' || process.env.NODE_ENV === 'production';
+  const configured = String(process.env.ALLOWED_ORIGINS || '')
+    .split(',')
+    .map((s) => s.trim())
+    .filter(Boolean);
+
+  if (configured.length === 0) {
+    return !isProd;
+  }
+  const origin = req.headers.origin;
+  if (!origin) {
+    // Allowlist is configured but the caller sent no Origin header — cannot
+    // verify a browser-origin claim, so reject rather than guess.
+    return false;
+  }
+  return configured.includes(origin);
+}
+
+// SEC-001 (Content-Type enforcement): only accept application/json bodies.
+function isJsonContentType(req) {
+  const ct = String(req.headers['content-type'] || '').trim();
+  return /^application\/json(\s*;.*)?$/i.test(ct);
+}
+
+// SEC-001 (sceneToken): HMAC-sign the exact scene text returned to the
+// caller so a later `deepen` call can prove it's continuing a scene this
+// server actually generated, rather than an arbitrary caller-supplied
+// string used to run this endpoint as a free-form text generation proxy.
+// Uses a dedicated SCENE_SIGNING_SECRET — never the Anthropic API key.
+function signSceneText(sceneText) {
+  const secret = process.env.SCENE_SIGNING_SECRET;
+  return crypto.createHmac('sha256', secret).update('museland-scene-v1:' + sceneText).digest('hex');
+}
+
+function verifySceneToken(sceneText, token) {
+  const secret = process.env.SCENE_SIGNING_SECRET;
+  if (!secret) return false;
+  if (typeof token !== 'string' || !/^[0-9a-f]{64}$/i.test(token)) return false;
+  const expected = signSceneText(sceneText);
+  const expectedBuf = Buffer.from(expected, 'hex');
+  const givenBuf = Buffer.from(token.toLowerCase(), 'hex');
+  if (expectedBuf.length !== givenBuf.length) return false;
+  return crypto.timingSafeEqual(expectedBuf, givenBuf);
+}
+
+// Bound the raw previousScene payload before we ever HMAC/compare it —
+// keeps a caller from forcing large hashing work with an oversized body.
+// This is independent of, and prior to, the existing 4000-char slice that
+// is applied (unchanged) to whatever text actually goes into the prompt.
+const MAX_PREVIOUS_SCENE_RAW_LEN = 8000;
+
+// ---- Rate limit (best-effort second layer only) ---------------------------
+// This is a single-instance, in-memory Map. It resets on cold start and is
+// NOT shared across concurrent serverless instances or regions, so it must
+// never be described or relied on as a distributed rate limiter — see
+// MUSE-SEC-001 Owner Actions for the real primary defenses (Vercel WAF rate
+// limiting on this route, and a hard Anthropic spend limit).
 const hits = new Map();
 const WINDOW_MS = 60 * 60 * 1000;
 const MAX_PER_WINDOW = 12;
@@ -97,9 +167,45 @@ function checkRateLimit(ip) {
   return arr.length <= MAX_PER_WINDOW;
 }
 
+// ---- Anthropic call with timeout ------------------------------------------
+const ANTHROPIC_TIMEOUT_MS = 25_000;
+
+async function callAnthropic(payload) {
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), ANTHROPIC_TIMEOUT_MS);
+  try {
+    return await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: {
+        'content-type': 'application/json',
+        'x-api-key': process.env.ANTHROPIC_API_KEY,
+        'anthropic-version': '2023-06-01',
+      },
+      body: JSON.stringify(payload),
+      signal: controller.signal,
+    });
+  } finally {
+    clearTimeout(timer);
+  }
+}
+
 module.exports = async function handler(req, res) {
+  // SEC-001 / item 9: every response from this endpoint is dynamic and
+  // must never be cached by a browser, CDN, or intermediary.
+  res.setHeader('Cache-Control', 'no-store');
+
   if (req.method !== 'POST') {
     res.status(405).json({ error: 'Method not allowed' });
+    return;
+  }
+
+  if (!isAllowedOrigin(req)) {
+    res.status(403).json({ error: '不允許的來源。' });
+    return;
+  }
+
+  if (!isJsonContentType(req)) {
+    res.status(415).json({ error: '只接受 application/json 格式的請求。' });
     return;
   }
 
@@ -116,6 +222,18 @@ module.exports = async function handler(req, res) {
     res.status(500).json({ error: '伺服器還沒設定 ANTHROPIC_API_KEY，請到 Vercel 專案設定裡加上這個環境變數。' });
     return;
   }
+  if (!process.env.SCENE_SIGNING_SECRET) {
+    res.status(500).json({ error: '伺服器還沒設定 SCENE_SIGNING_SECRET，請到 Vercel 專案設定裡加上這個環境變數（須與 ANTHROPIC_API_KEY 不同）。' });
+    return;
+  }
+  if (process.env.SCENE_SIGNING_SECRET === process.env.ANTHROPIC_API_KEY) {
+    // SEC-001 / item 6: defensive guard against accidental key reuse — this
+    // cannot be caught until both values are known at request time, so we
+    // fail closed here rather than silently signing tokens with the same
+    // secret that authenticates to Anthropic.
+    res.status(500).json({ error: '伺服器設定錯誤：SCENE_SIGNING_SECRET 不得與 ANTHROPIC_API_KEY 相同，請到 Vercel 專案設定修正。' });
+    return;
+  }
 
   const body = req.body || {};
   const mode = body.mode === 'deepen' ? 'deepen' : 'scene';
@@ -123,11 +241,26 @@ module.exports = async function handler(req, res) {
   let system, userMessage, maxTokens;
 
   if (mode === 'deepen') {
-    const previousScene = String(body.previousScene || '').slice(0, 4000);
-    if (!previousScene) {
+    const rawPreviousScene = typeof body.previousScene === 'string' ? body.previousScene : '';
+    if (!rawPreviousScene) {
       res.status(400).json({ error: '缺少上一個場景，無法深入。' });
       return;
     }
+    if (rawPreviousScene.length > MAX_PREVIOUS_SCENE_RAW_LEN) {
+      res.status(400).json({ error: '上一個場景內容過長。' });
+      return;
+    }
+    const sceneToken = typeof body.sceneToken === 'string' ? body.sceneToken : '';
+    if (!sceneToken) {
+      res.status(401).json({ error: '缺少 sceneToken，無法深入這個場景，請從頭生成一次。' });
+      return;
+    }
+    if (!verifySceneToken(rawPreviousScene, sceneToken)) {
+      res.status(401).json({ error: 'sceneToken 無效或場景內容已變更，無法深入，請從頭生成一次。' });
+      return;
+    }
+
+    const previousScene = rawPreviousScene.slice(0, 4000);
     system = deepenSystem();
     userMessage = deepenUser({ previousScene });
     maxTokens = 1100;
@@ -151,26 +284,21 @@ module.exports = async function handler(req, res) {
   }
 
   try {
-    const apiRes = await fetch('https://api.anthropic.com/v1/messages', {
-      method: 'POST',
-      headers: {
-        'content-type': 'application/json',
-        'x-api-key': process.env.ANTHROPIC_API_KEY,
-        'anthropic-version': '2023-06-01',
-      },
-      body: JSON.stringify({
-        model: process.env.MODEL_ID || 'claude-sonnet-5',
-        max_tokens: maxTokens,
-        system,
-        messages: [{ role: 'user', content: userMessage }],
-      }),
+    const apiRes = await callAnthropic({
+      model: process.env.MODEL_ID || 'claude-sonnet-5',
+      max_tokens: maxTokens,
+      system,
+      messages: [{ role: 'user', content: userMessage }],
     });
 
     if (!apiRes.ok) {
       const errText = await apiRes.text();
-      console.error('Anthropic API error', apiRes.status, errText);
+      // SEC-001 / item 10: do not log the raw upstream error body — it can
+      // echo back parts of the request. Log only the status and a parsed,
+      // non-sensitive error type.
       let errType = '';
       try { errType = (JSON.parse(errText).error || {}).type || ''; } catch (e) {}
+      console.error('Anthropic API error', { status: apiRes.status, errType: errType || 'unknown' });
       let userMsg = '目前暫時無法生成內容，請稍後再試。';
       if (apiRes.status === 429 || errType === 'rate_limit_error' || errType === 'overloaded_error') {
         userMsg = '目前使用的人比較多、或用量已達上限，暫時無法生成內容，請過幾分鐘再試。';
@@ -203,9 +331,18 @@ module.exports = async function handler(req, res) {
       return;
     }
 
-    res.status(200).json({ scene: text });
+    if (mode === 'deepen') {
+      res.status(200).json({ scene: text });
+    } else {
+      res.status(200).json({ scene: text, sceneToken: signSceneText(text) });
+    }
   } catch (err) {
-    console.error(err);
+    if (err && err.name === 'AbortError') {
+      console.error('Anthropic request timeout', { mode });
+      res.status(504).json({ error: '目前伺服器等待太久沒有回應，請稍後再試。' });
+      return;
+    }
+    console.error('generate handler error', { mode, name: err && err.name });
     res.status(500).json({ error: '伺服器錯誤，請稍後再試。' });
   }
 };
