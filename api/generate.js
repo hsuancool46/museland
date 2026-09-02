@@ -168,11 +168,27 @@ function checkRateLimit(ip) {
 }
 
 // ---- Anthropic call with timeout ------------------------------------------
-const ANTHROPIC_TIMEOUT_MS = 25_000;
+// Scene generation is a NON-STREAMING call: the function waits for the whole
+// 800–1500 字 completion before it can respond. That routinely runs past the
+// original 25s budget, which made every scene request fail closed with 504
+// (MUSE-SEC-001 Scope Amendment 01). The budget is tunable per environment and
+// clamped so it always stays under the `maxDuration` declared for this route in
+// vercel.json — the app-level abort must win the race against the platform,
+// otherwise Vercel kills the invocation first and the caller gets a raw
+// FUNCTION_INVOCATION_TIMEOUT with none of our headers or error message.
+const DEFAULT_ANTHROPIC_TIMEOUT_MS = 60_000;
+const MIN_ANTHROPIC_TIMEOUT_MS = 5_000;
+const MAX_ANTHROPIC_TIMEOUT_MS = 100_000; // vercel.json declares maxDuration 120
+
+function anthropicTimeoutMs() {
+  const raw = Number.parseInt(process.env.ANTHROPIC_TIMEOUT_MS || '', 10);
+  if (!Number.isFinite(raw)) return DEFAULT_ANTHROPIC_TIMEOUT_MS;
+  return Math.min(Math.max(raw, MIN_ANTHROPIC_TIMEOUT_MS), MAX_ANTHROPIC_TIMEOUT_MS);
+}
 
 async function callAnthropic(payload) {
   const controller = new AbortController();
-  const timer = setTimeout(() => controller.abort(), ANTHROPIC_TIMEOUT_MS);
+  const timer = setTimeout(() => controller.abort(), anthropicTimeoutMs());
   try {
     return await fetch('https://api.anthropic.com/v1/messages', {
       method: 'POST',

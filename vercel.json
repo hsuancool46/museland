@@ -1,6 +1,11 @@
 {
   "cleanUrls": true,
   "trailingSlash": true,
+  "functions": {
+    "api/generate.js": {
+      "maxDuration": 120
+    }
+  },
   "headers": [
     {
       "source": "/(.*)",
