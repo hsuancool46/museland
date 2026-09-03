@@ -32,6 +32,25 @@
 
 const SEASONS = [
     {
+    id: "small-things",
+    title: "今天也有小事",
+    style: "兒童動畫",
+    motif: "事",
+    genres: ["校園", "日常", "喜劇"],
+    status: "live",                              // 先設連載中；若是完結短篇就改 "done"
+    runtime: "15",
+    color: { a: "#1e2620", b: "#26302a", accent: "#8fbf7a" },
+    poster: "stories/small-things/poster.jpg",
+    logline: "一群狗狗學生組了「生活支援社」，專門處理校園裡的小事——找失物、拆謠言、當白老鼠試吃。事情常常先被弄大，再剛剛好收好。",
+    md: "stories/small-things/s1.md",
+    episodes: [
+      { syn: "生活支援社成立第一天，一件失物讓兩隻個性相反的狗同時入社。" },
+      { syn: "小滿被謠傳能預知未來，全校排隊求問——其實他只是看得比較仔細。" },
+      { syn: "「連小滿都吃完」的烤布蕾，第二天卻被他嫌，烘焙社急著找出哪裡不一樣。" },
+    ],
+  },
+
+    {
     id: "readthrough",
     title: "讀本",
     style: "歐美影集",
