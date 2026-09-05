@@ -62,7 +62,7 @@ const SEASONS = [
     poster: "stories/readthrough/poster.jpg",
     logline: "五名演員第一次圍桌讀一部密室謀殺劇。",
     md: "stories/readthrough/s1.md",
-    episodes: Array.from({ length: 2 }, () => ({})),   // 目前 EP01（連載中，每更一集就多一個 {}）
+    episodes: Array.from({ length: 4 }, () => ({})),   // 目前 EP04（連載中，每更一集就多一個 {}）
   },  
   
   {
@@ -77,7 +77,7 @@ const SEASONS = [
     poster: "stories/pact/poster.jpg",
     logline: "循著失蹤修士的血跡，一名劍修在秘境深處撞見正在施換命術的醫修。綁住兩人的是一紙契約，不是姻緣——可契約，有時比緣分更難解。",
     md: "stories/pact/s1.md",
-    episodes: Array.from({ length: 15 }, () => ({})),   // 目前 15 章（連載中，每更一章就多一個 {}）
+    episodes: Array.from({ length: 20 }, () => ({})),   // 目前 20 章（連載中，每更一章就多一個 {}）
   },
   
   {
