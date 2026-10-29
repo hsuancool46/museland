@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; connect-src 'self'; img-src 'self' data:; font-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>翻書架｜Museland</title>
+<link rel="stylesheet" href="style.css">
+<script src="app.js" defer></script>
+</head>
+<body>
+  <div class="page">
+    <header class="masthead">
+      <a class="home-link" href="../../">← Museland</a>
+      <div class="masthead-title">
+        <h1>翻書架</h1>
+        <p class="masthead-sub">Shelf Swipe</p>
+      </div>
+      <div class="progress" id="progress">
+        <p class="progress-text"><span class="progress-label">已翻</span> <span id="progress-count">0</span> / <span id="progress-total">40</span></p>
+        <div class="progress-track" id="progress-track" role="progressbar" aria-label="翻卡進度" aria-valuemin="0" aria-valuemax="40" aria-valuenow="0">
+          <div class="progress-fill" id="progress-fill"></div>
+        </div>
+      </div>
+    </header>
+
+    <nav class="tabs" aria-label="檢視切換">
+      <button type="button" class="tab" id="tab-deck" data-view="deck" aria-controls="view-deck" aria-pressed="true">翻卡</button>
+      <button type="button" class="tab" id="tab-yes" data-view="yes" aria-controls="view-yes" aria-pressed="false">想讀 (0)</button>
+      <button type="button" class="tab" id="tab-no" data-view="no" aria-controls="view-no" aria-pressed="false">略過 (0)</button>
+    </nav>
+
+    <main>
+      <section class="view view-deck" id="view-deck" aria-label="翻卡">
+        <div class="deck" id="deck">
+          <p class="deck-message" id="deck-message">書單載入中…</p>
+          <div class="stack" id="stack" hidden></div>
+
+          <div class="finish" id="finish" hidden>
+            <p class="finish-kicker">借閱卡已全部歸位</p>
+            <h2 class="finish-title" id="finish-title" tabindex="-1">這一批翻完了，你挑了 0 本想讀</h2>
+            <div class="finish-actions">
+              <button type="button" class="btn btn-ink" id="finish-show-yes">看想讀清單</button>
+              <div class="copy-block">
+                <button type="button" class="btn btn-line" id="finish-copy">複製翻卡紀錄</button>
+                <p class="copy-status" id="finish-copy-status" aria-live="polite"></p>
+                <div class="copy-fallback" id="finish-copy-fallback" hidden>
+                  <p class="copy-fallback-hint">無法自動複製，請手動複製</p>
+                  <textarea class="copy-fallback-text" id="finish-copy-text" readonly rows="8" aria-label="翻卡紀錄文字"></textarea>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="controls" id="controls" hidden>
+          <button type="button" class="btn-round btn-skip" id="btn-skip" aria-label="略過">✕</button>
+          <button type="button" class="btn btn-undo" id="btn-undo" disabled>↶ 上一張</button>
+          <button type="button" class="btn-round btn-want" id="btn-want" aria-label="想讀">♥</button>
+        </div>
+        <p class="hint" id="hint" hidden>拖曳卡片，或按鍵盤 ← 略過、→ 想讀</p>
+      </section>
+
+      <section class="view view-list" id="view-yes" aria-label="想讀清單" hidden>
+        <div class="list-head">
+          <h2 class="list-title">想讀</h2>
+          <div class="copy-block">
+            <button type="button" class="btn btn-line" id="yes-copy">複製翻卡紀錄</button>
+            <p class="copy-status" id="yes-copy-status" aria-live="polite"></p>
+            <div class="copy-fallback" id="yes-copy-fallback" hidden>
+              <p class="copy-fallback-hint">無法自動複製，請手動複製</p>
+              <textarea class="copy-fallback-text" id="yes-copy-text" readonly rows="8" aria-label="翻卡紀錄文字"></textarea>
+            </div>
+          </div>
+        </div>
+        <ol class="book-list" id="list-yes"></ol>
+        <p class="list-empty" id="empty-yes">還沒有放進想讀的書。</p>
+      </section>
+
+      <section class="view view-list" id="view-no" aria-label="略過清單" hidden>
+        <div class="list-head">
+          <h2 class="list-title">略過</h2>
+        </div>
+        <ol class="book-list" id="list-no"></ol>
+        <p class="list-empty" id="empty-no">還沒有略過的書。</p>
+      </section>
+    </main>
+  </div>
+</body>
+</html>

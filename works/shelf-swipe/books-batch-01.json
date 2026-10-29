@@ -1,0 +1,725 @@
+{
+ "batch": "batch-01",
+ "theme": "工作與人生的轉換・換個角度看事情・框架型為主・中英各半",
+ "createdAt": "2026-10-28",
+ "books": [
+  {
+   "id": "e1",
+   "lang": "EN",
+   "title": "Working Identity",
+   "author": "Herminia Ibarra",
+   "pages": 199,
+   "url": "https://www.goodreads.com/book/show/26089",
+   "urlLabel": "Goodreads",
+   "zhTitle": null,
+   "zhUrl": null,
+   "hook": "轉職不是想清楚才做，而是做了才想清楚。",
+   "why": "伊巴拉研究了一群轉職者，發現他們很少是先內省、想清楚才行動。他們多半是透過工作實驗、新的人脈，重新說自己的故事，慢慢摸索出新的身分。這是職涯轉換最經典的研究，而且不到兩百頁。",
+   "tags": [
+    "職涯轉換",
+    "研究型",
+    "薄"
+   ],
+   "lane": "core"
+  },
+  {
+   "id": "z1",
+   "lang": "ZH",
+   "title": "做自己的生命設計師",
+   "author": "比爾．柏內特、戴夫．埃文斯",
+   "pages": 272,
+   "url": "https://www.books.com.tw/products/E050010705",
+   "urlLabel": "博客來電子書",
+   "hook": "人生能不能像產品一樣，先做原型再決定？",
+   "why": "史丹佛生涯設計課的方法：先建立人生羅盤，畫出幾條不同的人生計畫，再用小原型一一測試。方向還沒想清楚時，它給你的是能動手的步驟，而不是更多內省。",
+   "tags": [
+    "職涯設計",
+    "框架型",
+    "中等"
+   ],
+   "lane": "core"
+  },
+  {
+   "id": "e2",
+   "lang": "EN",
+   "title": "So Good They Can't Ignore You",
+   "author": "Cal Newport",
+   "pages": 288,
+   "url": "https://goodreads.com/book/show/13525945",
+   "urlLabel": "Goodreads",
+   "zhTitle": "深度職場力",
+   "zhUrl": "https://www.books.com.tw/products/0010788090",
+   "hook": "先找熱情，還是先變強？",
+   "why": "紐波特反駁「追隨熱情」的建議，主張熱情多半是精通技能之後才出現的。四條規則的核心，是累積稀少又有價值的「職涯資本」，再用它換取工作上的自主權。想換方向時，可以拿來盤點手上有哪些職涯資本帶得走。",
+   "tags": [
+    "職涯資本",
+    "框架型",
+    "中等"
+   ],
+   "lane": "core"
+  },
+  {
+   "id": "z15",
+   "lang": "ZH",
+   "title": "真確",
+   "author": "漢斯．羅斯林 等",
+   "pages": 352,
+   "url": "https://www.books.com.tw/products/0010790443",
+   "urlLabel": "博客來",
+   "hook": "你對世界的印象，可能已經過時二十年。",
+   "why": "用全球統計資料指出十種讓人誤判世界的直覺，每一章教你怎麼用數據校正。和《人類大歷史》一樣，屬於讀完會換一副眼鏡看世界的書，只是這本改用數據說話。",
+   "tags": [
+    "世界觀",
+    "研究型",
+    "偏厚"
+   ],
+   "lane": "explore"
+  },
+  {
+   "id": "e4",
+   "lang": "EN",
+   "title": "Pivot",
+   "author": "Jenny Blake",
+   "pages": 283,
+   "url": "https://www.goodreads.com/book/show/29921776",
+   "urlLabel": "Goodreads",
+   "zhTitle": null,
+   "zhUrl": null,
+   "hook": "轉職不必歸零，以現在為軸心轉向。",
+   "why": "布雷克把轉職拆成四個階段：釐清方向、盤點技能與人脈、用小實驗測試，最後判斷時機正式轉換。重點是以你現有的基礎為軸心，轉向相關的新領域，而不是從零開始。",
+   "tags": [
+    "職涯轉換",
+    "框架型",
+    "中等"
+   ],
+   "lane": "core"
+  },
+  {
+   "id": "z2",
+   "lang": "ZH",
+   "title": "一個人的獲利模式",
+   "author": "提姆．克拉克 等",
+   "pages": 256,
+   "url": "https://www.books.com.tw/products/0010756794",
+   "urlLabel": "博客來",
+   "hook": "把自己畫成一張商業模式圖，會看到什麼？",
+   "why": "把商業模式圖的九格搬到個人身上：你的客戶是誰、你提供什麼價值、透過什麼管道。它讓「我想轉去哪」變成「我能為誰創造什麼」，連壓力和滿足感都算進成本與收益。",
+   "tags": [
+    "職涯轉換",
+    "框架型",
+    "中等"
+   ],
+   "lane": "core"
+  },
+  {
+   "id": "e12",
+   "lang": "EN",
+   "title": "Super Thinking",
+   "author": "Gabriel Weinberg & Lauren McCann",
+   "pages": 354,
+   "url": "https://www.goodreads.com/book/show/41181911-super-thinking",
+   "urlLabel": "Goodreads",
+   "zhTitle": "超級思維",
+   "zhUrl": "https://www.books.com.tw/products/0011013426",
+   "hook": "三百個思考模型，一本收齊。",
+   "why": "從物理、經濟、統計等領域整理出約三百個心智模型，分成九章，每個都附例子。喜歡框架清單、又想多幾種看事情的角度，這本很合適。適合當工具書翻，不必從頭讀到尾。",
+   "tags": [
+    "心智模型",
+    "框架型",
+    "偏厚"
+   ],
+   "lane": "core"
+  },
+  {
+   "id": "z5",
+   "lang": "ZH",
+   "title": "葛洛夫給經理人的第一課",
+   "author": "安德魯．葛洛夫",
+   "pages": 288,
+   "url": "https://www.books.com.tw/products/0010816790",
+   "urlLabel": "博客來",
+   "hook": "經理人的產出，到底該怎麼算？",
+   "why": "英特爾前執行長用早餐店的生產線講管理：經理人的產出等於團隊的產出，開會、決策和規劃都是槓桿。這是矽谷常被推薦的管理經典，也是了解科技公司怎麼談營運的入門。",
+   "tags": [
+    "營運管理",
+    "框架型",
+    "中等"
+   ],
+   "lane": "core"
+  },
+  {
+   "id": "e17",
+   "lang": "EN",
+   "title": "How Big Things Get Done",
+   "author": "Bent Flyvbjerg & Dan Gardner",
+   "pages": null,
+   "url": "https://www.goodreads.com/book/show/220938052-how-big-things-get-done",
+   "urlLabel": "Goodreads",
+   "zhTitle": "超級專案管理",
+   "zhUrl": "https://www.books.com.tw/products/0010986409",
+   "hook": "為什麼大多數專案都會超支又延誤？",
+   "why": "牛津教授分析一萬六千多個大型專案，提出「慢思考、快行動」：在規劃期反覆模擬、用參考類別預測，執行時再加快速度。不只大型工程，任何有截止日的計畫都用得上。",
+   "tags": [
+    "專案管理",
+    "研究型"
+   ],
+   "lane": "explore"
+  },
+  {
+   "id": "e7",
+   "lang": "EN",
+   "title": "Transitions",
+   "author": "William Bridges",
+   "pages": 170,
+   "url": "https://www.goodreads.com/book/show/944379.Transitions",
+   "urlLabel": "Goodreads",
+   "zhTitle": "轉變之書",
+   "zhUrl": "https://www.books.com.tw/products/0010859874",
+   "hook": "改變是外在的，轉變是內在的。",
+   "why": "布瑞奇把轉變分成三段：先是結束，接著是迷惘的中立區，然後才是新的開始。人生轉換中那段「舊的已經放下、新的還沒來」的空白期，這本說得最清楚。一百七十頁，一個週末就能讀完。",
+   "tags": [
+    "心理過渡",
+    "框架型",
+    "薄"
+   ],
+   "lane": "core"
+  },
+  {
+   "id": "z10",
+   "lang": "ZH",
+   "title": "文化地圖",
+   "author": "艾琳．梅爾",
+   "pages": 384,
+   "url": "https://www.books.com.tw/products/0010961206",
+   "urlLabel": "博客來",
+   "hook": "同一句話，在不同國家為什麼意思不同？",
+   "why": "INSEAD 教授提出八個文化量表，包括溝通、回饋、決策和信任，用來看各國在商務互動上的相對位置。跟不同國家的人一起工作時，這是最實用的一張地圖。",
+   "tags": [
+    "跨文化",
+    "框架型",
+    "偏厚"
+   ],
+   "lane": "core"
+  },
+  {
+   "id": "z18",
+   "lang": "ZH",
+   "title": "用十張地圖看懂全球政經局勢",
+   "author": "提姆．馬歇爾",
+   "pages": 320,
+   "url": "https://www.books.com.tw/products/0010695570",
+   "urlLabel": "博客來",
+   "hook": "山脈和河流，怎麼決定一國的外交？",
+   "why": "用十張地圖分章解析俄羅斯、中國、美國、中東等地區，說明地理如何限制各國的選擇。一張地圖一章，結構清楚，適合喜歡大尺度解釋、也想補國際背景知識的人。",
+   "tags": [
+    "地緣政治",
+    "框架型",
+    "中等"
+   ],
+   "lane": "explore"
+  },
+  {
+   "id": "e5",
+   "lang": "EN",
+   "title": "The Start-up of You",
+   "author": "Reid Hoffman & Ben Casnocha",
+   "pages": 251,
+   "url": "https://www.goodreads.com/book/show/12030438-the-startup-of-you",
+   "urlLabel": "Goodreads",
+   "zhTitle": "自創思維",
+   "zhUrl": "https://www.books.com.tw/products/0010705475",
+   "hook": "把職涯當成一家永遠在測試的新創。",
+   "why": "LinkedIn 共同創辦人用創業思維經營職涯：結合你的資產、志向和市場現實，用 ABZ 計畫保留彈性，並主動經營人脈。讀完也會更熟悉矽谷看職涯的方式。",
+   "tags": [
+    "職涯策略",
+    "框架型",
+    "中等"
+   ],
+   "lane": "core"
+  },
+  {
+   "id": "z3",
+   "lang": "ZH",
+   "title": "跨能致勝",
+   "author": "大衛．艾波斯坦",
+   "pages": 432,
+   "url": "https://www.books.com.tw/products/0010865065",
+   "urlLabel": "博客來",
+   "hook": "起步晚、經歷雜，反而是優勢嗎？",
+   "why": "作者比較運動員、科學家和發明家的經歷，發現在規則不明確的領域，多方嘗試、晚一點專精的人反而占上風。如果你擔心換跑道會讓過去的經歷歸零，這本書提供另一種看法。書偏厚，不過章節可以分開讀。",
+   "tags": [
+    "通才",
+    "研究型",
+    "偏厚"
+   ],
+   "lane": "core"
+  },
+  {
+   "id": "e16",
+   "lang": "EN",
+   "title": "The Scout Mindset",
+   "author": "Julia Galef",
+   "pages": 283,
+   "url": "https://www.goodreads.com/book/show/42041926-the-scout-mindset",
+   "urlLabel": "Goodreads",
+   "zhTitle": "零盲點思維",
+   "zhUrl": "https://www.books.com.tw/products/0010905954",
+   "hook": "你是在捍衛立場，還是想看清事實？",
+   "why": "區分捍衛既有信念的「士兵心態」和想看清事實的「偵察兵心態」，談怎麼察覺自欺、校準自己的信心。這是一本換個角度檢查自己判斷的書。",
+   "tags": [
+    "判斷力",
+    "框架型",
+    "中等"
+   ],
+   "lane": "explore"
+  },
+  {
+   "id": "z7",
+   "lang": "ZH",
+   "title": "系統思考",
+   "author": "唐內拉．梅多斯",
+   "pages": 344,
+   "url": "https://www.books.com.tw/products/0010702990",
+   "urlLabel": "博客來",
+   "hook": "為什麼問題總是換個樣子又回來？",
+   "why": "用存量、流量和回饋環解釋系統的行為，最後提出 12 個可以介入的槓桿點。這套看法可以套用在組織、專案或自己的職涯上，屬於讀完會改變你看事情角度的書。",
+   "tags": [
+    "系統",
+    "框架型",
+    "中等"
+   ],
+   "lane": "core"
+  },
+  {
+   "id": "e9",
+   "lang": "EN",
+   "title": "Tiny Experiments",
+   "author": "Anne-Laure Le Cunff",
+   "pages": 304,
+   "url": "https://www.goodreads.com/book/show/227934598-tiny-experiments",
+   "urlLabel": "Goodreads",
+   "zhTitle": "微實驗",
+   "zhUrl": "https://www.books.com.tw/products/0011057872",
+   "hook": "不設大目標，改用小實驗過生活。",
+   "why": "作者認為線性的目標設定容易讓人倦怠，提出「契約」這個工具：在固定期間重複一個行動，期滿後依觀察決定要堅持、暫停或調整。適合習慣用實驗推進事情的人。2025 年的新書。",
+   "tags": [
+    "實驗心態",
+    "框架型",
+    "中等"
+   ],
+   "lane": "core"
+  },
+  {
+   "id": "z17",
+   "lang": "ZH",
+   "title": "21世紀的21堂課",
+   "author": "哈拉瑞",
+   "pages": 416,
+   "url": "https://www.books.com.tw/products/0010938857",
+   "urlLabel": "博客來",
+   "hook": "《人類大歷史》的作者，怎麼看現在？",
+   "why": "哈拉瑞前兩本談過去和未來，這本聚焦當下：21 個主題從 AI 與工作、國族主義、後真相談到教育。每堂課都能單獨讀，不必一口氣看完，是哈拉瑞的書裡最容易入手的一本。連結是 2022 增訂版。",
+   "tags": [
+    "世界觀",
+    "隨筆型",
+    "偏厚"
+   ],
+   "lane": "explore"
+  },
+  {
+   "id": "z6",
+   "lang": "ZH",
+   "title": "清單革命",
+   "author": "葛文德",
+   "pages": 236,
+   "url": "https://www.books.com.tw/products/0010800479",
+   "urlLabel": "博客來",
+   "hook": "專家犯錯，多半不是因為不懂。",
+   "why": "外科醫師考察航空、建築和醫療，發現簡短的檢查清單就能攔下執行上的疏漏，他和世界衛生組織合作的手術安全檢查表就是實例。任何靠流程把事情做對的工作，都能從這本找到好用的方法和說法。",
+   "tags": [
+    "流程設計",
+    "故事型",
+    "薄"
+   ],
+   "lane": "core"
+  },
+  {
+   "id": "e8",
+   "lang": "EN",
+   "title": "The Long Game",
+   "author": "Dorie Clark",
+   "pages": 239,
+   "url": "https://www.goodreads.com/book/show/57511240",
+   "urlLabel": "Goodreads",
+   "zhTitle": "長線思維",
+   "zhUrl": "https://www.books.com.tw/products/0010922435",
+   "hook": "在短視的世界裡，怎麼下長期的棋？",
+   "why": "杜克商學院教授主張先為思考騰出空白，再用組合的角度挑出少數長期目標，透過實驗探索方向。適合規劃需要時間才會開花的改變，也提醒你初期進展慢是正常的。",
+   "tags": [
+    "長期規劃",
+    "框架型",
+    "薄"
+   ],
+   "lane": "core"
+  },
+  {
+   "id": "e19",
+   "lang": "EN",
+   "title": "The Psychology of Money",
+   "author": "Morgan Housel",
+   "pages": 242,
+   "url": "https://www.goodreads.com/book/show/41881472-the-psychology-of-money",
+   "urlLabel": "Goodreads",
+   "zhTitle": "致富心態",
+   "zhUrl": "https://www.books.com.tw/products/0010882259",
+   "hook": "理財成敗，靠的是行為，不是知識。",
+   "why": "二十篇短章，每篇談一個金錢心理主題，例如運氣與風險、「足夠」的概念、安全邊際。人生轉換常伴隨收入的變動，這本能幫你用比較穩的心態看錢。每章都很短，好讀。",
+   "tags": [
+    "金錢觀",
+    "隨筆型",
+    "薄"
+   ],
+   "lane": "explore"
+  },
+  {
+   "id": "z11",
+   "lang": "ZH",
+   "title": "上游思維",
+   "author": "丹．希思",
+   "pages": 304,
+   "url": "https://www.books.com.tw/products/0010884647",
+   "urlLabel": "博客來",
+   "hook": "與其一直救火，不如找出火源。",
+   "why": "先拆解三個讓人只顧下游的原因，再用七個問題教你從源頭預防問題，例如該由誰負責、怎麼找施力點、怎麼證明「沒發生的事」有成效。對花時間在預防、而不是救火的人，這本也教你怎麼讓看不見的成果被看見。",
+   "tags": [
+    "問題預防",
+    "框架型",
+    "中等"
+   ],
+   "lane": "core"
+  },
+  {
+   "id": "e13",
+   "lang": "EN",
+   "title": "Never Split the Difference",
+   "author": "Chris Voss",
+   "pages": 288,
+   "url": "https://www.goodreads.com/book/show/123857637-never-split-the-difference",
+   "urlLabel": "Goodreads",
+   "zhTitle": "FBI談判協商術",
+   "zhUrl": "https://www.books.com.tw/products/0010927433",
+   "hook": "FBI 談判專家為什麼反對各讓一步？",
+   "why": "前 FBI 人質談判專家主張談判是在處理情緒，並提出鏡像、情緒標籤、校準式提問等技巧。從日常的協調到重要的談判場合，都能直接用上。",
+   "tags": [
+    "談判",
+    "框架型",
+    "中等"
+   ],
+   "lane": "core"
+  },
+  {
+   "id": "z20",
+   "lang": "ZH",
+   "title": "被討厭的勇氣",
+   "author": "岸見一郎、古賀史健",
+   "pages": 304,
+   "url": "https://www.books.com.tw/products/0010653153",
+   "urlLabel": "博客來",
+   "hook": "一切煩惱，都來自人際關係？",
+   "why": "用哲學家和青年對話的形式介紹阿德勒心理學，例如課題分離、不追求他人認可。全書是對話體，讀法跟框架型的書完全不同，適合想換一種閱讀節奏的時候。",
+   "tags": [
+    "心理學",
+    "對話型",
+    "中等"
+   ],
+   "lane": "explore"
+  },
+  {
+   "id": "z4",
+   "lang": "ZH",
+   "title": "第二曲線",
+   "author": "查爾斯．韓第",
+   "pages": 320,
+   "url": "https://www.books.com.tw/products/0010862673",
+   "urlLabel": "博客來",
+   "hook": "在頂峰之前，就該開始下一條路。",
+   "why": "韓第用 S 曲線解釋個人和組織的興衰：成長見頂後一定會下滑，所以要趁第一條曲線還在上升時，開啟第二條。這是判斷「什麼時候該轉」的框架，後半段延伸到資本主義、教育和金錢，屬於大尺度的觀察。",
+   "tags": [
+    "轉型時機",
+    "隨筆型",
+    "中等"
+   ],
+   "lane": "core"
+  },
+  {
+   "id": "e10",
+   "lang": "EN",
+   "title": "Quit",
+   "author": "Annie Duke",
+   "pages": null,
+   "url": "https://www.goodreads.com/book/show/197174932",
+   "urlLabel": "Goodreads",
+   "zhTitle": "停損的勝算",
+   "zhUrl": "https://www.books.com.tw/products/0010992792",
+   "hook": "什麼時候該放棄，反而贏更多？",
+   "why": "世界撲克冠軍分析沉沒成本和身分認同如何讓人放棄得太晚，並提出事先設定停損標準、設檢查點等工具。換跑道不只是選一條新路，也是決定什麼時候離開舊的。",
+   "tags": [
+    "決策",
+    "框架型"
+   ],
+   "lane": "core"
+  },
+  {
+   "id": "e20",
+   "lang": "EN",
+   "title": "The Mom Test",
+   "author": "Rob Fitzpatrick",
+   "pages": 130,
+   "url": "https://www.goodreads.com/book/show/30748320-the-mom-test",
+   "urlLabel": "Goodreads",
+   "zhTitle": null,
+   "zhUrl": null,
+   "hook": "連你媽都會對你的點子說謊。",
+   "why": "教你怎麼訪談使用者：談對方的生活，而不是你的點子；問過去的具體行為，而不是假設。只有一百三十頁，任何想驗證點子的人都用得上，也是產品思維的好入門。",
+   "tags": [
+    "使用者訪談",
+    "框架型",
+    "薄"
+   ],
+   "lane": "explore"
+  },
+  {
+   "id": "z12",
+   "lang": "ZH",
+   "title": "OKR：做最重要的事",
+   "author": "約翰．杜爾",
+   "pages": 336,
+   "url": "https://www.books.com.tw/products/0010813170",
+   "urlLabel": "博客來",
+   "hook": "Google 怎麼讓幾萬人朝同一個方向走？",
+   "why": "介紹從英特爾傳到 Google 的 OKR 目標管理法：目標說明要達成什麼，關鍵結果用可衡量的方式檢驗。很多科技公司都用 OKR 設定目標，讀完會熟悉這套共同語言。",
+   "tags": [
+    "目標管理",
+    "案例型",
+    "中等"
+   ],
+   "lane": "core"
+  },
+  {
+   "id": "e3",
+   "lang": "EN",
+   "title": "The Squiggly Career",
+   "author": "Helen Tupper & Sarah Ellis",
+   "pages": 240,
+   "url": "https://www.goodreads.com/book/show/44778173",
+   "urlLabel": "Goodreads",
+   "zhTitle": null,
+   "zhUrl": null,
+   "hook": "職涯不是梯子，那它是什麼？",
+   "why": "主張職涯是彎彎曲曲的路，而不是直線晉升。全書用五種能力當框架：超級優勢、價值觀、自信、人脈和未來的可能性，每一部分都附練習工具，適合週末邊讀邊做。",
+   "tags": [
+    "職涯設計",
+    "框架型",
+    "薄"
+   ],
+   "lane": "core"
+  },
+  {
+   "id": "z16",
+   "lang": "ZH",
+   "title": "人生4千個禮拜",
+   "author": "奧利佛．柏克曼",
+   "pages": null,
+   "url": "https://www.books.com.tw/products/0010914255",
+   "urlLabel": "博客來",
+   "hook": "人生只有四千週，還要清空待辦清單嗎？",
+   "why": "作者認為追求效率只會讓人更忙，主張接受人生有限，有意識地選擇放棄。它不是框架書，而是一本談時間與取捨的哲學小品，適合讀累了效率書的時候。",
+   "tags": [
+    "時間觀",
+    "隨筆型"
+   ],
+   "lane": "explore"
+  },
+  {
+   "id": "e14",
+   "lang": "EN",
+   "title": "Show Your Work!",
+   "author": "Austin Kleon",
+   "pages": 215,
+   "url": "https://www.goodreads.com/book/show/18290401-show-your-work",
+   "urlLabel": "Goodreads",
+   "zhTitle": "點子就要秀出來",
+   "zhUrl": "https://www.books.com.tw/products/0010650214",
+   "hook": "不必等作品完成，才讓別人看見你。",
+   "why": "十個原則教你持續公開過程、分享你知道的事。想讓別人看見你在做什麼時，公開的作品和思考紀錄常常比一份簡介更有說服力。很薄，一個下午就能讀完。",
+   "tags": [
+    "個人品牌",
+    "框架型",
+    "薄"
+   ],
+   "lane": "core"
+  },
+  {
+   "id": "z8",
+   "lang": "ZH",
+   "title": "少，但是更好",
+   "author": "葛瑞格．麥基昂",
+   "pages": 320,
+   "url": "https://www.books.com.tw/products/0010912185",
+   "urlLabel": "博客來",
+   "hook": "轉職之前，先決定什麼不做。",
+   "why": "提出精挑、簡化、執行三步：分辨出關鍵的少數，有紀律地拒絕其他事。新編版改成 21 天的練習結構。轉換期最常遇到的問題是什麼都想試，這本能幫你收斂。",
+   "tags": [
+    "取捨",
+    "框架型",
+    "中等"
+   ],
+   "lane": "core"
+  },
+  {
+   "id": "e15",
+   "lang": "EN",
+   "title": "The Almanack of Naval Ravikant",
+   "author": "Eric Jorgenson",
+   "pages": 242,
+   "url": "https://www.goodreads.com/book/show/55148500-the-almanack-of-naval-ravikant",
+   "urlLabel": "Goodreads",
+   "zhTitle": "納瓦爾寶典",
+   "zhUrl": "https://www.books.com.tw/products/0010977461",
+   "hook": "財富和幸福，都是學得會的技能？",
+   "why": "整理創投家納瓦爾的推文和訪談，分成「財富」和「幸福」兩部，談專業知識、槓桿和判斷力。想快速了解矽谷式的人生哲學，這是最短的一條路。",
+   "tags": [
+    "人生哲學",
+    "語錄型",
+    "薄"
+   ],
+   "lane": "explore"
+  },
+  {
+   "id": "z14",
+   "lang": "ZH",
+   "title": "內在成就",
+   "author": "愛瑞克",
+   "pages": 280,
+   "url": "https://www.books.com.tw/products/0010973167",
+   "urlLabel": "博客來",
+   "hook": "職稱以外，什麼才算你的成就？",
+   "why": "區分仰賴他人肯定的外在成就，和源自自身價值的內在成就。三個部分分別談認識自己、發揮天賦和利他，每章都附行動清單。轉換期少了舊職稱帶來的認同時，這本能幫你重新定義成功。",
+   "tags": [
+    "自我定位",
+    "框架型",
+    "中等"
+   ],
+   "lane": "core"
+  },
+  {
+   "id": "e11",
+   "lang": "EN",
+   "title": "The Making of a Manager",
+   "author": "Julie Zhuo",
+   "pages": 336,
+   "url": "https://www.goodreads.com/book/show/38821039-the-making-of-a-manager",
+   "urlLabel": "Goodreads",
+   "zhTitle": "當上主管後，難道只能默默崩潰？",
+   "zhUrl": "https://www.books.com.tw/products/0010855700",
+   "hook": "管理的本質，是讓一群人做出更好的成果。",
+   "why": "Facebook 前設計副總用目的、人和流程三個槓桿拆解管理，分章談回饋、招募和開會。想知道科技公司怎麼看待管理與協作，這本是很好的入門。",
+   "tags": [
+    "科技業管理",
+    "框架型",
+    "中等"
+   ],
+   "lane": "core"
+  },
+  {
+   "id": "z19",
+   "lang": "ZH",
+   "title": "從0到1",
+   "author": "彼得．提爾",
+   "pages": 272,
+   "url": "https://www.books.com.tw/products/0011044514",
+   "urlLabel": "博客來",
+   "hook": "別人都同意的事，還有價值嗎？",
+   "why": "提爾區分複製既有模式的「1 到 n」和創造新事物的「0 到 1」，主張好公司應該追求獨占，而不是競爭。是理解科技產業與創業思維的經典之一。",
+   "tags": [
+    "創業思維",
+    "隨筆型",
+    "中等"
+   ],
+   "lane": "explore"
+  },
+  {
+   "id": "e6",
+   "lang": "EN",
+   "title": "The 2-Hour Job Search",
+   "author": "Steve Dalton",
+   "pages": 242,
+   "url": "https://www.goodreads.com/book/show/18658300",
+   "urlLabel": "Goodreads",
+   "zhTitle": null,
+   "zhUrl": null,
+   "hook": "與其投一百份履歷，不如先列一張名單。",
+   "why": "一套可量化的求職流程，叫做 LAMP：先列出目標公司，再依人脈、動機和職缺排序，然後透過資訊性面談爭取內部推薦。這本最實戰，適合已經準備開始找工作的人。書裡的例子以美國求職為主。",
+   "tags": [
+    "求職方法",
+    "框架型",
+    "薄"
+   ],
+   "lane": "core"
+  },
+  {
+   "id": "z9",
+   "lang": "ZH",
+   "title": "零秒思考力",
+   "author": "赤羽雄二",
+   "pages": 272,
+   "url": "https://www.sanmin.com.tw/product/index/011982798",
+   "urlLabel": "三民書局",
+   "hook": "每天十張 A4，能練出思考速度嗎？",
+   "why": "前麥肯錫顧問的訓練法：一張紙一個主題，一分鐘寫四到六行，每天寫十張。轉換期很適合用來整理「我到底想要什麼」，週末讀完就能開始練。台灣版目前標示售完，可能要找二手書或去圖書館借。",
+   "tags": [
+    "思考訓練",
+    "框架型",
+    "可能絕版",
+    "中等"
+   ],
+   "lane": "core"
+  },
+  {
+   "id": "e18",
+   "lang": "EN",
+   "title": "Humankind",
+   "author": "Rutger Bregman",
+   "pages": null,
+   "url": "https://www.goodreads.com/book/show/52593321-humankind",
+   "urlLabel": "Goodreads",
+   "zhTitle": "人慈",
+   "zhUrl": "https://www.books.com.tw/products/0010900281",
+   "hook": "如果人性本善，歷史要怎麼重寫？",
+   "why": "作者重新檢視《蒼蠅王》、史丹佛監獄實驗等案例，主張大多數人本質上善良、樂於合作。和《人類大歷史》一樣，用大歷史翻轉常識。書偏厚，不是一個週末讀得完的份量。",
+   "tags": [
+    "人性",
+    "研究型",
+    "偏厚"
+   ],
+   "lane": "explore"
+  },
+  {
+   "id": "z13",
+   "lang": "ZH",
+   "title": "斜槓青年",
+   "author": "Susan Kuang",
+   "pages": 256,
+   "url": "https://www.books.com.tw/products/0010762201",
+   "urlLabel": "博客來",
+   "hook": "一定要只有一個職稱嗎？",
+   "why": "台灣作者談不靠單一職業、用多重身分與技能建構收入和自我實現，並整理出五種常見的斜槓模式。想一邊試新方向、一邊經營副業或個人作品的人可以參考。",
+   "tags": [
+    "多職人生",
+    "框架型",
+    "中等"
+   ],
+   "lane": "core"
+  }
+ ]
+}

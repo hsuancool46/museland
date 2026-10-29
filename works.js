@@ -40,7 +40,15 @@ const WORKS = [
     blurb: "測測看你的每一天，被工作花掉多少「認知貨幣」，又換回了什麼。",
     color: "#c8ff4d",
     isNew: true,
-  },
+},
+
+  { slug: "shelf-swipe", 
+    title: "翻書架", 
+    subtitle: "Shelf Swipe", 
+    blurb: "一次一張書卡，右滑想讀、左滑略過。", 
+    color: "#2f4ba0", 
+    isNew: true 
+},
 
   // ↓↓↓ 下一項設施加在這裡（複製上面那塊改一改） ↓↓↓
 ];

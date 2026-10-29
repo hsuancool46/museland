@@ -1,0 +1,763 @@
+/* 翻書架 Shelf Swipe — 圖書館借書卡
+   米白卡紙、深靛藍墨水、細線分隔、印章字。整體安靜，只有翻卡在動。 */
+
+:root {
+  --font-serif-zh: "Noto Serif TC", "Songti TC", "PMingLiU", serif;
+  --font-serif-en: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Palatino, Georgia, "Times New Roman", serif;
+  --font-sans: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif;
+  --font-type: "Courier New", Courier, ui-monospace, monospace;
+
+  --desk: #e4dfd2;            /* 借書檯 */
+  --desk-shadow: rgba(40, 44, 70, 0.16);
+  --paper: #fbf7ec;           /* 米白卡紙 */
+  --paper-back: #f3eedf;
+  --ink: #22306b;             /* 深靛藍墨水 */
+  --ink-soft: #4b5688;
+  --ink-faint: #8890b3;
+  --rule: #c9d2e6;            /* 卡片上的淡藍細格線 */
+  --rule-head: #c98d8d;       /* 卡片頂端的紅線 */
+  --accent: #2f4ba0;
+  --stamp-yes-ink: #2e7a4c;   /* 想讀綠 */
+  --stamp-no-ink: #b13a36;    /* 略過紅 */
+  --focus: #2f4ba0;
+  --hole: #e4dfd2;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --desk: #11141f;
+    --desk-shadow: rgba(0, 0, 0, 0.5);
+    --paper: #1c2133;
+    --paper-back: #181c2c;
+    --ink: #e9e2cd;
+    --ink-soft: #bcb7a6;
+    --ink-faint: #7f8299;
+    --rule: #2b3250;
+    --rule-head: #8a4f55;
+    --accent: #9cadee;
+    --stamp-yes-ink: #6cc28e;
+    --stamp-no-ink: #e57b74;
+    --focus: #b9c6ff;
+    --hole: #11141f;
+  }
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--desk);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 3px;
+}
+
+.page {
+  max-width: 560px;
+  margin: 0 auto;
+  padding: 12px 16px 40px;
+}
+
+/* ---------- 頁首 ---------- */
+
+.masthead {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-template-areas:
+    "home progress"
+    "title title";
+  align-items: center;
+  gap: 4px 12px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--rule);
+}
+
+.home-link {
+  grid-area: home;
+  justify-self: start;
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0 4px;
+  color: var(--ink-soft);
+  font-size: 14px;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+}
+
+.home-link:hover {
+  color: var(--ink);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.masthead-title {
+  grid-area: title;
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+}
+
+.masthead h1 {
+  margin: 0;
+  font-family: var(--font-serif-zh);
+  font-size: 26px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+}
+
+.masthead-sub {
+  margin: 0;
+  font-family: var(--font-serif-en);
+  font-style: italic;
+  font-size: 15px;
+  color: var(--ink-soft);
+}
+
+.progress {
+  grid-area: progress;
+  min-width: 120px;
+  text-align: right;
+}
+
+.progress-text {
+  margin: 0 0 4px;
+  font-family: var(--font-type);
+  font-size: 14px;
+  color: var(--ink-soft);
+}
+
+.progress-label {
+  font-family: var(--font-sans);
+}
+
+.progress-track {
+  height: 4px;
+  background: var(--rule);
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: var(--accent);
+  transform-origin: left center;
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+}
+
+/* ---------- 分頁 ---------- */
+
+.tabs {
+  display: flex;
+  gap: 4px;
+  margin: 12px 0 16px;
+  border-bottom: 1px solid var(--rule);
+}
+
+.tab {
+  flex: 1 1 0;
+  min-height: 44px;
+  padding: 6px 8px;
+  border: 0;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+  background: transparent;
+  color: var(--ink-faint);
+  font: inherit;
+  font-size: 15px;
+  letter-spacing: 0.06em;
+  cursor: pointer;
+}
+
+.tab:hover {
+  color: var(--ink);
+}
+
+.tab[aria-pressed="true"] {
+  color: var(--ink);
+  border-bottom-color: var(--ink);
+  font-weight: 700;
+}
+
+/* ---------- 牌堆 ---------- */
+
+.deck {
+  position: relative;
+}
+
+.deck-message {
+  margin: 48px 0;
+  text-align: center;
+  color: var(--ink-soft);
+}
+
+.deck-message.is-error {
+  color: var(--stamp-no-ink);
+  font-weight: 700;
+}
+
+.stack {
+  display: grid;
+  padding-bottom: 22px; /* 讓後面兩張卡露出邊 */
+}
+
+.card {
+  grid-area: 1 / 1;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  padding: 18px 20px 30px;
+  background-color: var(--paper);
+  border: 1px solid var(--rule);
+  border-top: 3px double var(--rule-head);
+  border-radius: 3px;
+  box-shadow: 0 1px 0 var(--desk-shadow), 0 8px 18px -10px var(--desk-shadow);
+  transform-origin: 50% 100%;
+  transition: transform 0.28s ease, opacity 0.28s ease;
+  touch-action: pan-y;
+  user-select: none;
+  -webkit-user-select: none;
+  cursor: grab;
+  overflow-wrap: anywhere;
+}
+
+.card.pos-0 {
+  z-index: 3;
+}
+
+.card.pos-1 {
+  z-index: 2;
+  transform: translateY(11px) scale(0.955);
+  background-color: var(--paper-back);
+  cursor: default;
+}
+
+.card.pos-2 {
+  z-index: 1;
+  transform: translateY(22px) scale(0.91);
+  background-color: var(--paper-back);
+  cursor: default;
+}
+
+.card.is-entering {
+  opacity: 0;
+}
+
+.card.is-dragging {
+  transition: none;
+  cursor: grabbing;
+}
+
+.card.is-flying {
+  transition: transform 0.32s ease-in, opacity 0.32s ease-in;
+  opacity: 0;
+}
+
+.card.fly-right {
+  transform: translateX(120vw) rotate(18deg);
+}
+
+.card.fly-left {
+  transform: translateX(-120vw) rotate(-18deg);
+}
+
+.card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  min-height: 26px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--rule);
+}
+
+.card-meta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0;
+  font-size: 13px;
+  color: var(--ink-soft);
+}
+
+.card-lang {
+  padding: 0 6px;
+  border: 1px solid currentColor;
+  border-radius: 2px;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  line-height: 1.5;
+}
+
+.card-pages {
+  font-family: var(--font-type);
+}
+
+.card-serial {
+  font-family: var(--font-type);
+  font-size: 13px;
+  color: var(--ink-soft);
+  letter-spacing: 0.06em;
+}
+
+.card-explore {
+  padding: 0 8px;
+  border: 1px dashed var(--accent);
+  color: var(--accent);
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  line-height: 1.6;
+  cursor: help;
+}
+
+.card-title {
+  margin: 14px 0 4px;
+  font-size: 28px;
+  line-height: 1.25;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.card-zh .card-title {
+  font-family: var(--font-serif-zh);
+  letter-spacing: 0.04em;
+}
+
+.card-en .card-title {
+  font-family: var(--font-serif-en);
+}
+
+.card-author {
+  margin: 0 0 14px;
+  font-size: 14px;
+  color: var(--ink-soft);
+}
+
+.card-hook {
+  margin: 0 0 16px;
+  padding: 2px 0 2px 12px;
+  border-left: 3px solid var(--accent);
+  font-family: var(--font-serif-zh);
+  font-size: 19px;
+  line-height: 1.55;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.card-why {
+  padding-top: 8px;
+  border-top: 1px solid var(--rule);
+}
+
+.card-why-label {
+  margin: 0 0 2px;
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  color: var(--ink-faint);
+}
+
+.card-why-text {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.75;
+  color: var(--ink);
+}
+
+.card-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: auto 0 0;
+  padding: 14px 0 0;
+  list-style: none;
+}
+
+.card-tag {
+  padding: 0 8px;
+  border: 1px solid var(--rule);
+  background: var(--paper);
+  font-size: 12px;
+  color: var(--ink-soft);
+  line-height: 1.8;
+}
+
+/* 借書卡底部的穿孔 */
+.card-hole {
+  position: absolute;
+  left: 50%;
+  bottom: 9px;
+  width: 12px;
+  height: 12px;
+  margin-left: -6px;
+  border-radius: 50%;
+  background: var(--hole);
+  box-shadow: inset 0 1px 2px var(--desk-shadow);
+}
+
+/* 印章字 */
+.stamp {
+  position: absolute;
+  top: 46px;
+  z-index: 2;
+  padding: 2px 12px;
+  border: 3px double currentColor;
+  border-radius: 4px;
+  font-family: var(--font-serif-zh);
+  font-size: 28px;
+  font-weight: 900;
+  letter-spacing: 0.2em;
+  line-height: 1.3;
+  background: var(--paper);
+  pointer-events: none;
+}
+
+.stamp-yes {
+  right: max(16px, 18%); /* 往內收一點，卡片往右飛時印章才看得到 */
+  color: var(--stamp-yes-ink);
+  transform: rotate(12deg);
+  opacity: var(--stamp-yes, 0);
+}
+
+.stamp-no {
+  left: max(16px, 18%);
+  color: var(--stamp-no-ink);
+  transform: rotate(-12deg);
+  opacity: var(--stamp-no, 0);
+}
+
+/* ---------- 按鈕 ---------- */
+
+.controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  margin-top: 16px;
+}
+
+.btn,
+.btn-round {
+  font: inherit;
+  cursor: pointer;
+  color: var(--ink);
+  background: var(--paper);
+  border: 1px solid var(--ink-faint);
+}
+
+.btn {
+  min-height: 44px;
+  min-width: 44px;
+  padding: 8px 16px;
+  border-radius: 3px;
+  font-size: 15px;
+  letter-spacing: 0.04em;
+}
+
+.btn:hover:not(:disabled) {
+  border-color: var(--ink);
+}
+
+.btn:disabled {
+  color: var(--ink-faint);
+  border-color: var(--rule);
+  cursor: not-allowed;
+}
+
+.btn-ink {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: var(--paper);
+}
+
+.btn-ink:hover:not(:disabled) {
+  background: var(--ink-soft);
+}
+
+.btn-small {
+  font-size: 14px;
+  padding: 6px 12px;
+}
+
+.btn-round {
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  border-width: 2px;
+  font-size: 24px;
+  line-height: 1;
+}
+
+.btn-skip {
+  color: var(--stamp-no-ink);
+  border-color: var(--stamp-no-ink);
+}
+
+.btn-want {
+  color: var(--stamp-yes-ink);
+  border-color: var(--stamp-yes-ink);
+}
+
+.btn-round:hover {
+  background: var(--paper-back);
+}
+
+.hint {
+  margin: 10px 0 0;
+  text-align: center;
+  font-size: 13px;
+  color: var(--ink-faint);
+}
+
+/* ---------- 翻完 ---------- */
+
+.finish {
+  padding: 28px 22px 26px;
+  background: var(--paper);
+  border: 1px solid var(--rule);
+  border-top: 3px double var(--rule-head);
+  border-radius: 3px;
+  text-align: center;
+}
+
+.finish-kicker {
+  margin: 0 0 6px;
+  font-size: 13px;
+  letter-spacing: 0.14em;
+  color: var(--ink-faint);
+}
+
+.finish-title {
+  margin: 0 0 20px;
+  font-family: var(--font-serif-zh);
+  font-size: 22px;
+  line-height: 1.5;
+}
+
+.finish-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+/* ---------- 複製 ---------- */
+
+.copy-block {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 4px;
+  max-width: 100%;
+}
+
+.finish .copy-block {
+  align-items: center;
+}
+
+.copy-status {
+  margin: 0;
+  min-height: 1em;
+  font-size: 13px;
+  color: var(--stamp-yes-ink);
+}
+
+.copy-status:empty {
+  display: none;
+}
+
+.copy-fallback {
+  width: 100%;
+  min-width: min(320px, 80vw);
+  text-align: left;
+}
+
+.copy-fallback-hint {
+  margin: 4px 0;
+  font-size: 13px;
+  color: var(--stamp-no-ink);
+}
+
+.copy-fallback-text {
+  display: block;
+  width: 100%;
+  padding: 8px;
+  border: 1px solid var(--ink-faint);
+  border-radius: 2px;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-type);
+  font-size: 13px;
+  line-height: 1.5;
+  resize: vertical;
+}
+
+/* ---------- 清單 ---------- */
+
+.list-head {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.list-title {
+  margin: 6px 0 0;
+  font-family: var(--font-serif-zh);
+  font-size: 22px;
+  letter-spacing: 0.1em;
+}
+
+.book-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  background: var(--paper);
+  border: 1px solid var(--rule);
+  border-top: 3px double var(--rule-head);
+  border-radius: 3px;
+}
+
+.book-list:empty {
+  display: none;
+}
+
+.entry {
+  padding: 14px 18px;
+  border-bottom: 1px solid var(--rule);
+  overflow-wrap: anywhere;
+}
+
+.entry:last-child {
+  border-bottom: 0;
+}
+
+.entry-title {
+  margin: 0;
+  font-family: var(--font-serif-zh);
+  font-size: 18px;
+  line-height: 1.35;
+}
+
+.entry-title-en {
+  font-family: var(--font-serif-en);
+}
+
+.entry-author {
+  margin: 2px 0 6px;
+  font-size: 13px;
+  color: var(--ink-soft);
+}
+
+.entry-hook {
+  margin: 0 0 8px;
+  padding-left: 10px;
+  border-left: 2px solid var(--accent);
+  font-size: 15px;
+}
+
+.entry-footer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+}
+
+.entry-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 14px;
+  margin: 0;
+}
+
+.entry-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  color: var(--accent);
+  font-size: 14px;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.list-empty {
+  margin: 32px 0;
+  text-align: center;
+  color: var(--ink-faint);
+}
+
+/* ---------- 窄螢幕 ---------- */
+
+@media (max-width: 420px) {
+  .page {
+    padding: 8px 12px 32px;
+  }
+
+  .card {
+    padding: 16px 16px 28px;
+  }
+
+  .card-title {
+    font-size: 25px;
+  }
+
+  .card-hook {
+    font-size: 18px;
+  }
+
+  .controls {
+    gap: 16px;
+  }
+
+  /* 手機卡片幾乎滿版，印章再往內收，拖到門檻時才看得到整個字 */
+  .stamp-yes {
+    right: 30%;
+  }
+
+  .stamp-no {
+    left: 30%;
+  }
+}
+
+/* ---------- 減少動態 ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+  .card,
+  .card.is-flying,
+  .progress-fill {
+    transition: none;
+  }
+
+  .card.fly-right,
+  .card.fly-left {
+    transform: none;
+  }
+
+  .stamp-yes,
+  .stamp-no {
+    transform: none;
+  }
+}
