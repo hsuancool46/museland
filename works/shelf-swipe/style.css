@@ -550,8 +550,9 @@ body {
   transition: transform 0.38s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.2s ease-out;
 }
 
+/* 飛出時先移動、晚一點才淡出，印章在飛行途中仍看得清楚 */
 .card.is-flying {
-  transition: transform 0.32s ease-in, opacity 0.32s ease-in;
+  transition: transform 0.32s ease-in, opacity 0.18s ease-in 0.14s;
   opacity: 0;
 }
 

@@ -15,6 +15,7 @@
   var answers = null; // { themes: [...], style, lang, length }
   var SWIPE_THRESHOLD = 90; // px，超過才算決定
   var FLY_MS = 320;
+  var STAMP_HOLD_MS = 280; // 按鈕／鍵盤：印章壓下後停多久再飛出
   var STACK_DEPTH = 3; // 最上面一張 + 後面兩張
 
   // 只有這些主機（且必須是 https:）才會產生書店連結
@@ -449,10 +450,11 @@
     }
 
     busy = true;
+    // 拖過門檻放開時印章早已壓下；按鈕或鍵盤則先蓋章、停一下，讓人看到印章再飛走
+    var alreadyStamped = card.classList.contains("armed-" + decision);
     card.classList.remove("is-dragging", "armed-yes", "armed-no");
-    card.classList.add("is-flying", decision === "yes" ? "fly-right" : "fly-left", "armed-" + decision);
-    card.style.transform = "";
-    // 後卡在飛出的同時補到最前面的位置
+    card.classList.add("armed-" + decision);
+    // 後卡在蓋章、飛出的同時補到最前面的位置
     $("stack").classList.remove("is-pulling");
     $("stack").style.setProperty("--pull", "1");
 
@@ -467,8 +469,17 @@
     function onEnd(event) {
       if (event.target === card && event.propertyName === "transform") finish();
     }
-    card.addEventListener("transitionend", onEnd);
-    window.setTimeout(finish, FLY_MS + 120); // 保險：沒收到 transitionend 也會完成
+    function flyOut() {
+      card.classList.add("is-flying", decision === "yes" ? "fly-right" : "fly-left");
+      card.style.transform = "";
+      card.addEventListener("transitionend", onEnd);
+      window.setTimeout(finish, FLY_MS + 120); // 保險：沒收到 transitionend 也會完成
+    }
+    if (alreadyStamped) {
+      flyOut();
+    } else {
+      window.setTimeout(flyOut, STAMP_HOLD_MS);
+    }
   }
 
   function undo() {
