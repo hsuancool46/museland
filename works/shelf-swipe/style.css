@@ -108,8 +108,11 @@
   box-sizing: border-box;
 }
 
+/* 卡片飛出、飛回時會移到螢幕外。用 clip 在螢幕邊緣剪掉，頁面才不會被撐寬：
+   iOS Safari 不理會 body 上的 overflow-x: hidden，頁面一變寬就會左右飄、自動縮小 */
 html {
   -webkit-text-size-adjust: 100%;
+  overflow-x: clip;
 }
 
 body {
@@ -119,7 +122,13 @@ body {
   font-family: var(--font-sans);
   font-size: 16px;
   line-height: 1.6;
-  overflow-x: hidden;
+  overflow-x: clip;
+}
+
+/* 手機上快速連按按鈕不要被當成「點兩下放大」 */
+button,
+a {
+  touch-action: manipulation;
 }
 
 [hidden] {
