@@ -1,0 +1,2586 @@
+{
+  "pool": "pool-120",
+  "createdAt": "2026-10-29",
+  "themes": [
+    {
+      "id": "career",
+      "label": "職涯與轉換"
+    },
+    {
+      "id": "thinking",
+      "label": "思考與決策"
+    },
+    {
+      "id": "work",
+      "label": "工作與管理"
+    },
+    {
+      "id": "world",
+      "label": "世界觀與歷史"
+    },
+    {
+      "id": "learning",
+      "label": "學習方法"
+    },
+    {
+      "id": "expression",
+      "label": "寫作與表達"
+    },
+    {
+      "id": "fiction",
+      "label": "小說"
+    },
+    {
+      "id": "science",
+      "label": "科普"
+    },
+    {
+      "id": "people",
+      "label": "心理與人際"
+    },
+    {
+      "id": "money",
+      "label": "金錢與生活習慣"
+    }
+  ],
+  "books": [
+    {
+      "id": "a-e1",
+      "lang": "EN",
+      "title": "Working Identity",
+      "author": "Herminia Ibarra",
+      "pages": 199,
+      "url": "https://www.goodreads.com/book/show/26089",
+      "urlLabel": "Goodreads",
+      "zhTitle": null,
+      "zhUrl": null,
+      "hook": "轉職不是想清楚才做，而是做了才想清楚。",
+      "why": "伊巴拉研究了一群轉職者，發現他們很少是先內省、想清楚才行動。他們多半是透過工作實驗、新的人脈，重新說自己的故事，慢慢摸索出新的身分。這是職涯轉換最經典的研究，而且不到兩百頁。",
+      "tags": [
+        "職涯轉換",
+        "研究型",
+        "薄"
+      ],
+      "themes": [
+        "career"
+      ],
+      "style": "research"
+    },
+    {
+      "id": "a-z1",
+      "lang": "ZH",
+      "title": "做自己的生命設計師",
+      "author": "比爾．柏內特、戴夫．埃文斯",
+      "pages": 272,
+      "url": "https://www.books.com.tw/products/E050010705",
+      "urlLabel": "博客來電子書",
+      "hook": "人生能不能像產品一樣，先做原型再決定？",
+      "why": "史丹佛生涯設計課的方法：先建立人生羅盤，畫出幾條不同的人生計畫，再用小原型一一測試。方向還沒想清楚時，它給你的是能動手的步驟，而不是更多內省。",
+      "tags": [
+        "職涯設計",
+        "框架型",
+        "中等"
+      ],
+      "themes": [
+        "career"
+      ],
+      "style": "framework"
+    },
+    {
+      "id": "a-e2",
+      "lang": "EN",
+      "title": "So Good They Can't Ignore You",
+      "author": "Cal Newport",
+      "pages": 288,
+      "url": "https://goodreads.com/book/show/13525945",
+      "urlLabel": "Goodreads",
+      "zhTitle": "深度職場力",
+      "zhUrl": "https://www.books.com.tw/products/0010788090",
+      "hook": "先找熱情，還是先變強？",
+      "why": "紐波特反駁「追隨熱情」的建議，主張熱情多半是精通技能之後才出現的。四條規則的核心，是累積稀少又有價值的「職涯資本」，再用它換取工作上的自主權。想換方向時，可以拿來盤點手上有哪些職涯資本帶得走。",
+      "tags": [
+        "職涯資本",
+        "框架型",
+        "中等"
+      ],
+      "themes": [
+        "career",
+        "work"
+      ],
+      "style": "framework"
+    },
+    {
+      "id": "a-z15",
+      "lang": "ZH",
+      "title": "真確",
+      "author": "漢斯．羅斯林 等",
+      "pages": 352,
+      "url": "https://www.books.com.tw/products/0010790443",
+      "urlLabel": "博客來",
+      "hook": "你對世界的印象，可能已經過時二十年。",
+      "why": "用全球統計資料指出十種讓人誤判世界的直覺，每一章教你怎麼用數據校正。和《人類大歷史》一樣，屬於讀完會換一副眼鏡看世界的書，只是這本改用數據說話。",
+      "tags": [
+        "世界觀",
+        "研究型",
+        "偏厚"
+      ],
+      "themes": [
+        "world",
+        "thinking"
+      ],
+      "style": "research"
+    },
+    {
+      "id": "a-e4",
+      "lang": "EN",
+      "title": "Pivot",
+      "author": "Jenny Blake",
+      "pages": 283,
+      "url": "https://www.goodreads.com/book/show/29921776",
+      "urlLabel": "Goodreads",
+      "zhTitle": null,
+      "zhUrl": null,
+      "hook": "轉職不必歸零，以現在為軸心轉向。",
+      "why": "布雷克把轉職拆成四個階段：釐清方向、盤點技能與人脈、用小實驗測試，最後判斷時機正式轉換。重點是以你現有的基礎為軸心，轉向相關的新領域，而不是從零開始。",
+      "tags": [
+        "職涯轉換",
+        "框架型",
+        "中等"
+      ],
+      "themes": [
+        "career"
+      ],
+      "style": "framework"
+    },
+    {
+      "id": "a-z2",
+      "lang": "ZH",
+      "title": "一個人的獲利模式",
+      "author": "提姆．克拉克 等",
+      "pages": 256,
+      "url": "https://www.books.com.tw/products/0010756794",
+      "urlLabel": "博客來",
+      "hook": "把自己畫成一張商業模式圖，會看到什麼？",
+      "why": "把商業模式圖的九格搬到個人身上：你的客戶是誰、你提供什麼價值、透過什麼管道。它讓「我想轉去哪」變成「我能為誰創造什麼」，連壓力和滿足感都算進成本與收益。",
+      "tags": [
+        "職涯轉換",
+        "框架型",
+        "中等"
+      ],
+      "themes": [
+        "career"
+      ],
+      "style": "framework"
+    },
+    {
+      "id": "a-e12",
+      "lang": "EN",
+      "title": "Super Thinking",
+      "author": "Gabriel Weinberg & Lauren McCann",
+      "pages": 354,
+      "url": "https://www.goodreads.com/book/show/41181911-super-thinking",
+      "urlLabel": "Goodreads",
+      "zhTitle": "超級思維",
+      "zhUrl": "https://www.books.com.tw/products/0011013426",
+      "hook": "三百個思考模型，一本收齊。",
+      "why": "從物理、經濟、統計等領域整理出約三百個心智模型，分成九章，每個都附例子。喜歡框架清單、又想多幾種看事情的角度，這本很合適。適合當工具書翻，不必從頭讀到尾。",
+      "tags": [
+        "心智模型",
+        "框架型",
+        "偏厚"
+      ],
+      "themes": [
+        "thinking"
+      ],
+      "style": "framework"
+    },
+    {
+      "id": "a-z5",
+      "lang": "ZH",
+      "title": "葛洛夫給經理人的第一課",
+      "author": "安德魯．葛洛夫",
+      "pages": 288,
+      "url": "https://www.books.com.tw/products/0010816790",
+      "urlLabel": "博客來",
+      "hook": "經理人的產出，到底該怎麼算？",
+      "why": "英特爾前執行長用早餐店的生產線講管理：經理人的產出等於團隊的產出，開會、決策和規劃都是槓桿。這是矽谷常被推薦的管理經典，也是了解科技公司怎麼談營運的入門。",
+      "tags": [
+        "營運管理",
+        "框架型",
+        "中等"
+      ],
+      "themes": [
+        "work"
+      ],
+      "style": "framework"
+    },
+    {
+      "id": "a-e17",
+      "lang": "EN",
+      "title": "How Big Things Get Done",
+      "author": "Bent Flyvbjerg & Dan Gardner",
+      "pages": null,
+      "url": "https://www.goodreads.com/book/show/220938052-how-big-things-get-done",
+      "urlLabel": "Goodreads",
+      "zhTitle": "超級專案管理",
+      "zhUrl": "https://www.books.com.tw/products/0010986409",
+      "hook": "為什麼大多數專案都會超支又延誤？",
+      "why": "牛津教授分析一萬六千多個大型專案，提出「慢思考、快行動」：在規劃期反覆模擬、用參考類別預測，執行時再加快速度。不只大型工程，任何有截止日的計畫都用得上。",
+      "tags": [
+        "專案管理",
+        "研究型"
+      ],
+      "themes": [
+        "work"
+      ],
+      "style": "research"
+    },
+    {
+      "id": "a-e7",
+      "lang": "EN",
+      "title": "Transitions",
+      "author": "William Bridges",
+      "pages": 170,
+      "url": "https://www.goodreads.com/book/show/944379.Transitions",
+      "urlLabel": "Goodreads",
+      "zhTitle": "轉變之書",
+      "zhUrl": "https://www.books.com.tw/products/0010859874",
+      "hook": "改變是外在的，轉變是內在的。",
+      "why": "布瑞奇把轉變分成三段：先是結束，接著是迷惘的中立區，然後才是新的開始。人生轉換中那段「舊的已經放下、新的還沒來」的空白期，這本說得最清楚。一百七十頁，一個週末就能讀完。",
+      "tags": [
+        "心理過渡",
+        "框架型",
+        "薄"
+      ],
+      "themes": [
+        "career",
+        "people"
+      ],
+      "style": "framework"
+    },
+    {
+      "id": "a-z10",
+      "lang": "ZH",
+      "title": "文化地圖",
+      "author": "艾琳．梅爾",
+      "pages": 384,
+      "url": "https://www.books.com.tw/products/0010961206",
+      "urlLabel": "博客來",
+      "hook": "同一句話，在不同國家為什麼意思不同？",
+      "why": "INSEAD 教授提出八個文化量表，包括溝通、回饋、決策和信任，用來看各國在商務互動上的相對位置。跟不同國家的人一起工作時，這是最實用的一張地圖。",
+      "tags": [
+        "跨文化",
+        "框架型",
+        "偏厚"
+      ],
+      "themes": [
+        "world",
+        "people"
+      ],
+      "style": "framework"
+    },
+    {
+      "id": "a-z18",
+      "lang": "ZH",
+      "title": "用十張地圖看懂全球政經局勢",
+      "author": "提姆．馬歇爾",
+      "pages": 320,
+      "url": "https://www.books.com.tw/products/0010695570",
+      "urlLabel": "博客來",
+      "hook": "山脈和河流，怎麼決定一國的外交？",
+      "why": "用十張地圖分章解析俄羅斯、中國、美國、中東等地區，說明地理如何限制各國的選擇。一張地圖一章，結構清楚，適合喜歡大尺度解釋、也想補國際背景知識的人。",
+      "tags": [
+        "地緣政治",
+        "框架型",
+        "中等"
+      ],
+      "themes": [
+        "world"
+      ],
+      "style": "framework"
+    },
+    {
+      "id": "a-e5",
+      "lang": "EN",
+      "title": "The Start-up of You",
+      "author": "Reid Hoffman & Ben Casnocha",
+      "pages": 251,
+      "url": "https://www.goodreads.com/book/show/12030438-the-startup-of-you",
+      "urlLabel": "Goodreads",
+      "zhTitle": "自創思維",
+      "zhUrl": "https://www.books.com.tw/products/0010705475",
+      "hook": "把職涯當成一家永遠在測試的新創。",
+      "why": "LinkedIn 共同創辦人用創業思維經營職涯：結合你的資產、志向和市場現實，用 ABZ 計畫保留彈性，並主動經營人脈。讀完也會更熟悉矽谷看職涯的方式。",
+      "tags": [
+        "職涯策略",
+        "框架型",
+        "中等"
+      ],
+      "themes": [
+        "career"
+      ],
+      "style": "framework"
+    },
+    {
+      "id": "a-z3",
+      "lang": "ZH",
+      "title": "跨能致勝",
+      "author": "大衛．艾波斯坦",
+      "pages": 432,
+      "url": "https://www.books.com.tw/products/0010865065",
+      "urlLabel": "博客來",
+      "hook": "起步晚、經歷雜，反而是優勢嗎？",
+      "why": "作者比較運動員、科學家和發明家的經歷，發現在規則不明確的領域，多方嘗試、晚一點專精的人反而占上風。如果你擔心換跑道會讓過去的經歷歸零，這本書提供另一種看法。書偏厚，不過章節可以分開讀。",
+      "tags": [
+        "通才",
+        "研究型",
+        "偏厚"
+      ],
+      "themes": [
+        "career",
+        "learning"
+      ],
+      "style": "research"
+    },
+    {
+      "id": "a-e16",
+      "lang": "EN",
+      "title": "The Scout Mindset",
+      "author": "Julia Galef",
+      "pages": 283,
+      "url": "https://www.goodreads.com/book/show/42041926-the-scout-mindset",
+      "urlLabel": "Goodreads",
+      "zhTitle": "零盲點思維",
+      "zhUrl": "https://www.books.com.tw/products/0010905954",
+      "hook": "你是在捍衛立場，還是想看清事實？",
+      "why": "區分捍衛既有信念的「士兵心態」和想看清事實的「偵察兵心態」，談怎麼察覺自欺、校準自己的信心。這是一本換個角度檢查自己判斷的書。",
+      "tags": [
+        "判斷力",
+        "框架型",
+        "中等"
+      ],
+      "themes": [
+        "thinking"
+      ],
+      "style": "framework"
+    },
+    {
+      "id": "a-z7",
+      "lang": "ZH",
+      "title": "系統思考",
+      "author": "唐內拉．梅多斯",
+      "pages": 344,
+      "url": "https://www.books.com.tw/products/0010702990",
+      "urlLabel": "博客來",
+      "hook": "為什麼問題總是換個樣子又回來？",
+      "why": "用存量、流量和回饋環解釋系統的行為，最後提出 12 個可以介入的槓桿點。這套看法可以套用在組織、專案或自己的職涯上，屬於讀完會改變你看事情角度的書。",
+      "tags": [
+        "系統",
+        "框架型",
+        "中等"
+      ],
+      "themes": [
+        "thinking"
+      ],
+      "style": "framework"
+    },
+    {
+      "id": "a-e9",
+      "lang": "EN",
+      "title": "Tiny Experiments",
+      "author": "Anne-Laure Le Cunff",
+      "pages": 304,
+      "url": "https://www.goodreads.com/book/show/227934598-tiny-experiments",
+      "urlLabel": "Goodreads",
+      "zhTitle": "微實驗",
+      "zhUrl": "https://www.books.com.tw/products/0011057872",
+      "hook": "不設大目標，改用小實驗過生活。",
+      "why": "作者認為線性的目標設定容易讓人倦怠，提出「契約」這個工具：在固定期間重複一個行動，期滿後依觀察決定要堅持、暫停或調整。適合習慣用實驗推進事情的人。2025 年的新書。",
+      "tags": [
+        "實驗心態",
+        "框架型",
+        "中等"
+      ],
+      "themes": [
+        "career",
+        "thinking"
+      ],
+      "style": "framework"
+    },
+    {
+      "id": "a-z17",
+      "lang": "ZH",
+      "title": "21世紀的21堂課",
+      "author": "哈拉瑞",
+      "pages": 416,
+      "url": "https://www.books.com.tw/products/0010938857",
+      "urlLabel": "博客來",
+      "hook": "《人類大歷史》的作者，怎麼看現在？",
+      "why": "哈拉瑞前兩本談過去和未來，這本聚焦當下：21 個主題從 AI 與工作、國族主義、後真相談到教育。每堂課都能單獨讀，不必一口氣看完，是哈拉瑞的書裡最容易入手的一本。連結是 2022 增訂版。",
+      "tags": [
+        "世界觀",
+        "隨筆型",
+        "偏厚"
+      ],
+      "themes": [
+        "world"
+      ],
+      "style": "essay"
+    },
+    {
+      "id": "a-z6",
+      "lang": "ZH",
+      "title": "清單革命",
+      "author": "葛文德",
+      "pages": 236,
+      "url": "https://www.books.com.tw/products/0010800479",
+      "urlLabel": "博客來",
+      "hook": "專家犯錯，多半不是因為不懂。",
+      "why": "外科醫師考察航空、建築和醫療，發現簡短的檢查清單就能攔下執行上的疏漏，他和世界衛生組織合作的手術安全檢查表就是實例。任何靠流程把事情做對的工作，都能從這本找到好用的方法和說法。",
+      "tags": [
+        "流程設計",
+        "故事型",
+        "薄"
+      ],
+      "themes": [
+        "work",
+        "thinking"
+      ],
+      "style": "story"
+    },
+    {
+      "id": "a-e8",
+      "lang": "EN",
+      "title": "The Long Game",
+      "author": "Dorie Clark",
+      "pages": 239,
+      "url": "https://www.goodreads.com/book/show/57511240",
+      "urlLabel": "Goodreads",
+      "zhTitle": "長線思維",
+      "zhUrl": "https://www.books.com.tw/products/0010922435",
+      "hook": "在短視的世界裡，怎麼下長期的棋？",
+      "why": "杜克商學院教授主張先為思考騰出空白，再用組合的角度挑出少數長期目標，透過實驗探索方向。適合規劃需要時間才會開花的改變，也提醒你初期進展慢是正常的。",
+      "tags": [
+        "長期規劃",
+        "框架型",
+        "薄"
+      ],
+      "themes": [
+        "career"
+      ],
+      "style": "framework"
+    },
+    {
+      "id": "a-e19",
+      "lang": "EN",
+      "title": "The Psychology of Money",
+      "author": "Morgan Housel",
+      "pages": 242,
+      "url": "https://www.goodreads.com/book/show/41881472-the-psychology-of-money",
+      "urlLabel": "Goodreads",
+      "zhTitle": "致富心態",
+      "zhUrl": "https://www.books.com.tw/products/0010882259",
+      "hook": "理財成敗，靠的是行為，不是知識。",
+      "why": "二十篇短章，每篇談一個金錢心理主題，例如運氣與風險、「足夠」的概念、安全邊際。人生轉換常伴隨收入的變動，這本能幫你用比較穩的心態看錢。每章都很短，好讀。",
+      "tags": [
+        "金錢觀",
+        "隨筆型",
+        "薄"
+      ],
+      "themes": [
+        "money"
+      ],
+      "style": "essay"
+    },
+    {
+      "id": "a-z11",
+      "lang": "ZH",
+      "title": "上游思維",
+      "author": "丹．希思",
+      "pages": 304,
+      "url": "https://www.books.com.tw/products/0010884647",
+      "urlLabel": "博客來",
+      "hook": "與其一直救火，不如找出火源。",
+      "why": "先拆解三個讓人只顧下游的原因，再用七個問題教你從源頭預防問題，例如該由誰負責、怎麼找施力點、怎麼證明「沒發生的事」有成效。對花時間在預防、而不是救火的人，這本也教你怎麼讓看不見的成果被看見。",
+      "tags": [
+        "問題預防",
+        "框架型",
+        "中等"
+      ],
+      "themes": [
+        "thinking"
+      ],
+      "style": "framework"
+    },
+    {
+      "id": "a-e13",
+      "lang": "EN",
+      "title": "Never Split the Difference",
+      "author": "Chris Voss",
+      "pages": 288,
+      "url": "https://www.goodreads.com/book/show/123857637-never-split-the-difference",
+      "urlLabel": "Goodreads",
+      "zhTitle": "FBI談判協商術",
+      "zhUrl": "https://www.books.com.tw/products/0010927433",
+      "hook": "FBI 談判專家為什麼反對各讓一步？",
+      "why": "前 FBI 人質談判專家主張談判是在處理情緒，並提出鏡像、情緒標籤、校準式提問等技巧。從日常的協調到重要的談判場合，都能直接用上。",
+      "tags": [
+        "談判",
+        "框架型",
+        "中等"
+      ],
+      "themes": [
+        "people",
+        "expression"
+      ],
+      "style": "framework"
+    },
+    {
+      "id": "a-z20",
+      "lang": "ZH",
+      "title": "被討厭的勇氣",
+      "author": "岸見一郎、古賀史健",
+      "pages": 304,
+      "url": "https://www.books.com.tw/products/0010653153",
+      "urlLabel": "博客來",
+      "hook": "一切煩惱，都來自人際關係？",
+      "why": "用哲學家和青年對話的形式介紹阿德勒心理學，例如課題分離、不追求他人認可。全書是對話體，讀法跟框架型的書完全不同，適合想換一種閱讀節奏的時候。",
+      "tags": [
+        "心理學",
+        "對話型",
+        "中等"
+      ],
+      "themes": [
+        "people"
+      ],
+      "style": "story"
+    },
+    {
+      "id": "a-z4",
+      "lang": "ZH",
+      "title": "第二曲線",
+      "author": "查爾斯．韓第",
+      "pages": 320,
+      "url": "https://www.books.com.tw/products/0010862673",
+      "urlLabel": "博客來",
+      "hook": "在頂峰之前，就該開始下一條路。",
+      "why": "韓第用 S 曲線解釋個人和組織的興衰：成長見頂後一定會下滑，所以要趁第一條曲線還在上升時，開啟第二條。這是判斷「什麼時候該轉」的框架，後半段延伸到資本主義、教育和金錢，屬於大尺度的觀察。",
+      "tags": [
+        "轉型時機",
+        "隨筆型",
+        "中等"
+      ],
+      "themes": [
+        "career",
+        "work"
+      ],
+      "style": "essay"
+    },
+    {
+      "id": "a-e10",
+      "lang": "EN",
+      "title": "Quit",
+      "author": "Annie Duke",
+      "pages": null,
+      "url": "https://www.goodreads.com/book/show/197174932",
+      "urlLabel": "Goodreads",
+      "zhTitle": "停損的勝算",
+      "zhUrl": "https://www.books.com.tw/products/0010992792",
+      "hook": "什麼時候該放棄，反而贏更多？",
+      "why": "世界撲克冠軍分析沉沒成本和身分認同如何讓人放棄得太晚，並提出事先設定停損標準、設檢查點等工具。換跑道不只是選一條新路，也是決定什麼時候離開舊的。",
+      "tags": [
+        "決策",
+        "框架型"
+      ],
+      "themes": [
+        "thinking",
+        "career"
+      ],
+      "style": "framework"
+    },
+    {
+      "id": "a-e20",
+      "lang": "EN",
+      "title": "The Mom Test",
+      "author": "Rob Fitzpatrick",
+      "pages": 130,
+      "url": "https://www.goodreads.com/book/show/30748320-the-mom-test",
+      "urlLabel": "Goodreads",
+      "zhTitle": null,
+      "zhUrl": null,
+      "hook": "連你媽都會對你的點子說謊。",
+      "why": "教你怎麼訪談使用者：談對方的生活，而不是你的點子；問過去的具體行為，而不是假設。只有一百三十頁，任何想驗證點子的人都用得上，也是產品思維的好入門。",
+      "tags": [
+        "使用者訪談",
+        "框架型",
+        "薄"
+      ],
+      "themes": [
+        "work",
+        "expression"
+      ],
+      "style": "framework"
+    },
+    {
+      "id": "a-z12",
+      "lang": "ZH",
+      "title": "OKR：做最重要的事",
+      "author": "約翰．杜爾",
+      "pages": 336,
+      "url": "https://www.books.com.tw/products/0010813170",
+      "urlLabel": "博客來",
+      "hook": "Google 怎麼讓幾萬人朝同一個方向走？",
+      "why": "介紹從英特爾傳到 Google 的 OKR 目標管理法：目標說明要達成什麼，關鍵結果用可衡量的方式檢驗。很多科技公司都用 OKR 設定目標，讀完會熟悉這套共同語言。",
+      "tags": [
+        "目標管理",
+        "案例型",
+        "中等"
+      ],
+      "themes": [
+        "work"
+      ],
+      "style": "framework"
+    },
+    {
+      "id": "a-e3",
+      "lang": "EN",
+      "title": "The Squiggly Career",
+      "author": "Helen Tupper & Sarah Ellis",
+      "pages": 240,
+      "url": "https://www.goodreads.com/book/show/44778173",
+      "urlLabel": "Goodreads",
+      "zhTitle": null,
+      "zhUrl": null,
+      "hook": "職涯不是梯子，那它是什麼？",
+      "why": "主張職涯是彎彎曲曲的路，而不是直線晉升。全書用五種能力當框架：超級優勢、價值觀、自信、人脈和未來的可能性，每一部分都附練習工具，適合週末邊讀邊做。",
+      "tags": [
+        "職涯設計",
+        "框架型",
+        "薄"
+      ],
+      "themes": [
+        "career"
+      ],
+      "style": "framework"
+    },
+    {
+      "id": "a-z16",
+      "lang": "ZH",
+      "title": "人生4千個禮拜",
+      "author": "奧利佛．柏克曼",
+      "pages": null,
+      "url": "https://www.books.com.tw/products/0010914255",
+      "urlLabel": "博客來",
+      "hook": "人生只有四千週，還要清空待辦清單嗎？",
+      "why": "作者認為追求效率只會讓人更忙，主張接受人生有限，有意識地選擇放棄。它不是框架書，而是一本談時間與取捨的哲學小品，適合讀累了效率書的時候。",
+      "tags": [
+        "時間觀",
+        "隨筆型"
+      ],
+      "themes": [
+        "money",
+        "thinking"
+      ],
+      "style": "essay"
+    },
+    {
+      "id": "a-e14",
+      "lang": "EN",
+      "title": "Show Your Work!",
+      "author": "Austin Kleon",
+      "pages": 215,
+      "url": "https://www.goodreads.com/book/show/18290401-show-your-work",
+      "urlLabel": "Goodreads",
+      "zhTitle": "點子就要秀出來",
+      "zhUrl": "https://www.books.com.tw/products/0010650214",
+      "hook": "不必等作品完成，才讓別人看見你。",
+      "why": "十個原則教你持續公開過程、分享你知道的事。想讓別人看見你在做什麼時，公開的作品和思考紀錄常常比一份簡介更有說服力。很薄，一個下午就能讀完。",
+      "tags": [
+        "個人品牌",
+        "框架型",
+        "薄"
+      ],
+      "themes": [
+        "expression",
+        "career"
+      ],
+      "style": "framework"
+    },
+    {
+      "id": "a-z8",
+      "lang": "ZH",
+      "title": "少，但是更好",
+      "author": "葛瑞格．麥基昂",
+      "pages": 320,
+      "url": "https://www.books.com.tw/products/0010912185",
+      "urlLabel": "博客來",
+      "hook": "轉職之前，先決定什麼不做。",
+      "why": "提出精挑、簡化、執行三步：分辨出關鍵的少數，有紀律地拒絕其他事。新編版改成 21 天的練習結構。轉換期最常遇到的問題是什麼都想試，這本能幫你收斂。",
+      "tags": [
+        "取捨",
+        "框架型",
+        "中等"
+      ],
+      "themes": [
+        "work",
+        "money"
+      ],
+      "style": "framework"
+    },
+    {
+      "id": "a-e15",
+      "lang": "EN",
+      "title": "The Almanack of Naval Ravikant",
+      "author": "Eric Jorgenson",
+      "pages": 242,
+      "url": "https://www.goodreads.com/book/show/55148500-the-almanack-of-naval-ravikant",
+      "urlLabel": "Goodreads",
+      "zhTitle": "納瓦爾寶典",
+      "zhUrl": "https://www.books.com.tw/products/0010977461",
+      "hook": "財富和幸福，都是學得會的技能？",
+      "why": "整理創投家納瓦爾的推文和訪談，分成「財富」和「幸福」兩部，談專業知識、槓桿和判斷力。想快速了解矽谷式的人生哲學，這是最短的一條路。",
+      "tags": [
+        "人生哲學",
+        "語錄型",
+        "薄"
+      ],
+      "themes": [
+        "thinking",
+        "money"
+      ],
+      "style": "essay"
+    },
+    {
+      "id": "a-z14",
+      "lang": "ZH",
+      "title": "內在成就",
+      "author": "愛瑞克",
+      "pages": 280,
+      "url": "https://www.books.com.tw/products/0010973167",
+      "urlLabel": "博客來",
+      "hook": "職稱以外，什麼才算你的成就？",
+      "why": "區分仰賴他人肯定的外在成就，和源自自身價值的內在成就。三個部分分別談認識自己、發揮天賦和利他，每章都附行動清單。轉換期少了舊職稱帶來的認同時，這本能幫你重新定義成功。",
+      "tags": [
+        "自我定位",
+        "框架型",
+        "中等"
+      ],
+      "themes": [
+        "career",
+        "people"
+      ],
+      "style": "framework"
+    },
+    {
+      "id": "a-e11",
+      "lang": "EN",
+      "title": "The Making of a Manager",
+      "author": "Julie Zhuo",
+      "pages": 336,
+      "url": "https://www.goodreads.com/book/show/38821039-the-making-of-a-manager",
+      "urlLabel": "Goodreads",
+      "zhTitle": "當上主管後，難道只能默默崩潰？",
+      "zhUrl": "https://www.books.com.tw/products/0010855700",
+      "hook": "管理的本質，是讓一群人做出更好的成果。",
+      "why": "Facebook 前設計副總用目的、人和流程三個槓桿拆解管理，分章談回饋、招募和開會。想知道科技公司怎麼看待管理與協作，這本是很好的入門。",
+      "tags": [
+        "科技業管理",
+        "框架型",
+        "中等"
+      ],
+      "themes": [
+        "work"
+      ],
+      "style": "framework"
+    },
+    {
+      "id": "a-z19",
+      "lang": "ZH",
+      "title": "從0到1",
+      "author": "彼得．提爾",
+      "pages": 272,
+      "url": "https://www.books.com.tw/products/0011044514",
+      "urlLabel": "博客來",
+      "hook": "別人都同意的事，還有價值嗎？",
+      "why": "提爾區分複製既有模式的「1 到 n」和創造新事物的「0 到 1」，主張好公司應該追求獨占，而不是競爭。是理解科技產業與創業思維的經典之一。",
+      "tags": [
+        "創業思維",
+        "隨筆型",
+        "中等"
+      ],
+      "themes": [
+        "work",
+        "thinking"
+      ],
+      "style": "essay"
+    },
+    {
+      "id": "a-e6",
+      "lang": "EN",
+      "title": "The 2-Hour Job Search",
+      "author": "Steve Dalton",
+      "pages": 242,
+      "url": "https://www.goodreads.com/book/show/18658300",
+      "urlLabel": "Goodreads",
+      "zhTitle": null,
+      "zhUrl": null,
+      "hook": "與其投一百份履歷，不如先列一張名單。",
+      "why": "一套可量化的求職流程，叫做 LAMP：先列出目標公司，再依人脈、動機和職缺排序，然後透過資訊性面談爭取內部推薦。這本最實戰，適合已經準備開始找工作的人。書裡的例子以美國求職為主。",
+      "tags": [
+        "求職方法",
+        "框架型",
+        "薄"
+      ],
+      "themes": [
+        "career"
+      ],
+      "style": "framework"
+    },
+    {
+      "id": "a-z9",
+      "lang": "ZH",
+      "title": "零秒思考力",
+      "author": "赤羽雄二",
+      "pages": 272,
+      "url": "https://www.sanmin.com.tw/product/index/011982798",
+      "urlLabel": "三民書局",
+      "hook": "每天十張 A4，能練出思考速度嗎？",
+      "why": "前麥肯錫顧問的訓練法：一張紙一個主題，一分鐘寫四到六行，每天寫十張。轉換期很適合用來整理「我到底想要什麼」，週末讀完就能開始練。台灣版目前標示售完，可能要找二手書或去圖書館借。",
+      "tags": [
+        "思考訓練",
+        "框架型",
+        "可能絕版",
+        "中等"
+      ],
+      "themes": [
+        "thinking",
+        "expression"
+      ],
+      "style": "framework"
+    },
+    {
+      "id": "a-e18",
+      "lang": "EN",
+      "title": "Humankind",
+      "author": "Rutger Bregman",
+      "pages": null,
+      "url": "https://www.goodreads.com/book/show/52593321-humankind",
+      "urlLabel": "Goodreads",
+      "zhTitle": "人慈",
+      "zhUrl": "https://www.books.com.tw/products/0010900281",
+      "hook": "如果人性本善，歷史要怎麼重寫？",
+      "why": "作者重新檢視《蒼蠅王》、史丹佛監獄實驗等案例，主張大多數人本質上善良、樂於合作。和《人類大歷史》一樣，用大歷史翻轉常識。書偏厚，不是一個週末讀得完的份量。",
+      "tags": [
+        "人性",
+        "研究型",
+        "偏厚"
+      ],
+      "themes": [
+        "world",
+        "people"
+      ],
+      "style": "research"
+    },
+    {
+      "id": "a-z13",
+      "lang": "ZH",
+      "title": "斜槓青年",
+      "author": "Susan Kuang",
+      "pages": 256,
+      "url": "https://www.books.com.tw/products/0010762201",
+      "urlLabel": "博客來",
+      "hook": "一定要只有一個職稱嗎？",
+      "why": "台灣作者談不靠單一職業、用多重身分與技能建構收入和自我實現，並整理出五種常見的斜槓模式。想一邊試新方向、一邊經營副業或個人作品的人可以參考。",
+      "tags": [
+        "多職人生",
+        "框架型",
+        "中等"
+      ],
+      "themes": [
+        "career"
+      ],
+      "style": "framework"
+    },
+    {
+      "id": "b-e1",
+      "lang": "EN",
+      "title": "Make It Stick",
+      "author": "Peter C. Brown 等",
+      "pages": null,
+      "url": "https://www.goodreads.com/book/show/129039743-make-it-stick",
+      "urlLabel": "Goodreads",
+      "hook": "反覆重讀是最沒效的讀書法。",
+      "why": "三位認知科學家整理學習研究：提取練習、間隔複習、交錯練習，比重讀和畫線有效得多。讀完會想把自己的讀書方法整個翻修。",
+      "tags": [
+        "學習方法",
+        "研究型"
+      ],
+      "themes": [
+        "learning"
+      ],
+      "style": "research",
+      "zhTitle": null,
+      "zhUrl": null
+    },
+    {
+      "id": "b-e2",
+      "lang": "EN",
+      "title": "Ultralearning",
+      "author": "Scott H. Young",
+      "pages": null,
+      "url": "https://www.goodreads.com/book/show/45834953-ultralearning",
+      "urlLabel": "Goodreads",
+      "hook": "自己設計一門課，用一個月學會一件事。",
+      "why": "作者自學完 MIT 課程的經驗，整理成九個原則：先拆解、直接做、找回饋、反覆提取。適合想靠自學轉換技能的人。",
+      "tags": [
+        "自學",
+        "框架型"
+      ],
+      "themes": [
+        "learning",
+        "career"
+      ],
+      "style": "framework",
+      "zhTitle": "超速學習",
+      "zhUrl": "https://www.books.com.tw/products/0010855836"
+    },
+    {
+      "id": "b-e3",
+      "lang": "EN",
+      "title": "How to Take Smart Notes",
+      "author": "Sönke Ahrens",
+      "pages": null,
+      "url": "https://www.goodreads.com/book/show/34507927",
+      "urlLabel": "Goodreads",
+      "hook": "筆記不是存檔，是幫你寫作的另一個大腦。",
+      "why": "介紹社會學家魯曼的卡片盒方法：每張卡只寫一個想法、用自己的話寫、和舊卡片連起來。讀書、研究和寫作串成同一條流程。",
+      "tags": [
+        "筆記",
+        "框架型"
+      ],
+      "themes": [
+        "learning",
+        "expression"
+      ],
+      "style": "framework",
+      "zhTitle": "卡片盒筆記",
+      "zhUrl": "https://www.books.com.tw/products/0010922143"
+    },
+    {
+      "id": "b-e4",
+      "lang": "EN",
+      "title": "On Writing Well",
+      "author": "William Zinsser",
+      "pages": null,
+      "url": "https://www.goodreads.com/book/show/53343.On_Writing_Well",
+      "urlLabel": "Goodreads",
+      "hook": "好文章的祕密，是把多餘的字刪掉。",
+      "why": "非虛構寫作的經典教科書：簡潔、清楚、有人味。從遊記、訪談到商業寫作都有章節，是可以反覆查的工具書。",
+      "tags": [
+        "寫作",
+        "經典"
+      ],
+      "themes": [
+        "expression"
+      ],
+      "style": "framework",
+      "zhTitle": "非虛構寫作指南",
+      "zhUrl": "https://www.books.com.tw/products/0010962715"
+    },
+    {
+      "id": "b-e5",
+      "lang": "EN",
+      "title": "Bird by Bird",
+      "author": "Anne Lamott",
+      "pages": 238,
+      "url": "https://www.goodreads.com/book/show/12543.Bird_by_Bird",
+      "urlLabel": "Goodreads",
+      "hook": "一隻鳥接著一隻鳥，一次只寫一小段。",
+      "why": "小說家寫給初學者的寫作課，坦白談拖延、爛初稿和自我懷疑。比起技巧，更像陪你把東西寫完的朋友。",
+      "tags": [
+        "寫作",
+        "隨筆型",
+        "薄"
+      ],
+      "themes": [
+        "expression"
+      ],
+      "style": "essay",
+      "zhTitle": null,
+      "zhUrl": null
+    },
+    {
+      "id": "b-e6",
+      "lang": "EN",
+      "title": "On Writing",
+      "author": "Stephen King",
+      "pages": 320,
+      "url": "https://www.goodreads.com/book/show/10569.On_Writing",
+      "urlLabel": "Goodreads",
+      "hook": "寫作的工具箱，加上一位作家的半生。",
+      "why": "前半是自傳，後半是寫作建議：多讀多寫、刪副詞、先關門寫再開門改。好讀又實用。",
+      "tags": [
+        "寫作",
+        "回憶錄",
+        "中等"
+      ],
+      "themes": [
+        "expression"
+      ],
+      "style": "story",
+      "zhTitle": "史蒂芬．金談寫作",
+      "zhUrl": "https://www.books.com.tw/products/0010958704"
+    },
+    {
+      "id": "b-e7",
+      "lang": "EN",
+      "title": "Made to Stick",
+      "author": "Chip Heath & Dan Heath",
+      "pages": 291,
+      "url": "https://www.goodreads.com/book/show/69242.Made_to_Stick",
+      "urlLabel": "Goodreads",
+      "hook": "為什麼有些想法一聽就忘，有些忘不掉？",
+      "why": "歸納出讓訊息被記住的六個特質：簡單、意外、具體、可信、情感、故事。做簡報、寫文案、教別人時都用得上。",
+      "tags": [
+        "表達",
+        "框架型",
+        "中等"
+      ],
+      "themes": [
+        "expression"
+      ],
+      "style": "framework",
+      "zhTitle": null,
+      "zhUrl": null
+    },
+    {
+      "id": "b-e8",
+      "lang": "EN",
+      "title": "Building a Second Brain",
+      "author": "Tiago Forte",
+      "pages": 272,
+      "url": "https://www.goodreads.com/book/show/59616977-building-a-second-brain",
+      "urlLabel": "Goodreads",
+      "hook": "把讀過的東西整理成下次真的用得到的素材。",
+      "why": "數位筆記的整理法：用專案而不是主題分類，邊讀邊摘要，最後產出作品。和《卡片盒筆記》可以對照著讀。",
+      "tags": [
+        "筆記",
+        "框架型",
+        "中等"
+      ],
+      "themes": [
+        "learning",
+        "work"
+      ],
+      "style": "framework",
+      "zhTitle": "打造第二大腦",
+      "zhUrl": "https://www.books.com.tw/products/0010948656"
+    },
+    {
+      "id": "b-e9",
+      "lang": "EN",
+      "title": "A Mind for Numbers",
+      "author": "Barbara Oakley",
+      "pages": null,
+      "url": "https://www.goodreads.com/book/show/18693655-a-mind-for-numbers",
+      "urlLabel": "Goodreads",
+      "hook": "專注模式和發散模式要輪流用。",
+      "why": "一位曾經數學很差的工程學教授，用大腦科學解釋怎麼學難的東西：分段練習、睡前複習、對抗拖延。",
+      "tags": [
+        "學習方法",
+        "大腦科學"
+      ],
+      "themes": [
+        "learning",
+        "science"
+      ],
+      "style": "framework",
+      "zhTitle": "大腦喜歡這樣學",
+      "zhUrl": "https://www.books.com.tw/products/E050111941"
+    },
+    {
+      "id": "b-e10",
+      "lang": "EN",
+      "title": "The First 20 Hours",
+      "author": "Josh Kaufman",
+      "pages": 288,
+      "url": "https://www.goodreads.com/book/show/16158493-the-first-20-hours",
+      "urlLabel": "Goodreads",
+      "hook": "學會一件新事，可能只要二十個小時。",
+      "why": "主張不用追求一萬小時，只要拆解技能、移除障礙、刻意練習前二十小時，就能從完全不會到堪用。書中拿幾項技能親身示範。",
+      "tags": [
+        "自學",
+        "實驗",
+        "中等"
+      ],
+      "themes": [
+        "learning"
+      ],
+      "style": "framework",
+      "zhTitle": null,
+      "zhUrl": null
+    },
+    {
+      "id": "b-e11",
+      "lang": "EN",
+      "title": "Writing Down the Bones",
+      "author": "Natalie Goldberg",
+      "pages": null,
+      "url": "https://www.goodreads.com/book/show/44905.Writing_Down_the_Bones",
+      "urlLabel": "Goodreads",
+      "hook": "手不要停，先寫再說。",
+      "why": "把寫作當成每天的練習：限時自由書寫、不刪不改、相信細節。適合卡住寫不出來的時候。",
+      "tags": [
+        "寫作",
+        "隨筆型"
+      ],
+      "themes": [
+        "expression"
+      ],
+      "style": "essay",
+      "zhTitle": "心靈寫作",
+      "zhUrl": "https://www.books.com.tw/products/0010706192"
+    },
+    {
+      "id": "b-e12",
+      "lang": "EN",
+      "title": "The Sense of Style",
+      "author": "Steven Pinker",
+      "pages": 368,
+      "url": "https://www.goodreads.com/book/show/20821371-the-sense-of-style",
+      "urlLabel": "Goodreads",
+      "hook": "看不懂的文章，常常是因為作者知道得太多。",
+      "why": "心理語言學家寫的寫作指南，用認知科學解釋為什麼文章難讀，例如「知識的詛咒」。比傳統文法書更講道理。",
+      "tags": [
+        "寫作",
+        "研究型",
+        "中等"
+      ],
+      "themes": [
+        "expression",
+        "science"
+      ],
+      "style": "research",
+      "zhTitle": null,
+      "zhUrl": null
+    },
+    {
+      "id": "b-e13",
+      "lang": "EN",
+      "title": "Crucial Conversations",
+      "author": "Kerry Patterson 等",
+      "pages": null,
+      "url": "https://www.goodreads.com/book/show/15014.Crucial_Conversations",
+      "urlLabel": "Goodreads",
+      "hook": "談話一變得重要，人就容易說錯話。",
+      "why": "高風險、意見分歧、情緒升高時怎麼談：先確認自己真正想要什麼，再讓對方覺得安全。職場和家庭都用得上。",
+      "tags": [
+        "溝通",
+        "框架型"
+      ],
+      "themes": [
+        "people",
+        "expression"
+      ],
+      "style": "framework",
+      "zhTitle": null,
+      "zhUrl": null
+    },
+    {
+      "id": "b-e14",
+      "lang": "EN",
+      "title": "Resonate",
+      "author": "Nancy Duarte",
+      "pages": 272,
+      "url": "https://www.goodreads.com/book/show/7970507-resonate",
+      "urlLabel": "Goodreads",
+      "hook": "好簡報的結構，跟好故事一樣。",
+      "why": "簡報設計師分析經典演講，提出在「現狀」和「可能的未來」之間來回切換的結構，讓聽眾跟著你走。",
+      "tags": [
+        "簡報",
+        "故事",
+        "中等"
+      ],
+      "themes": [
+        "expression"
+      ],
+      "style": "framework",
+      "zhTitle": null,
+      "zhUrl": null
+    },
+    {
+      "id": "b-e15",
+      "lang": "EN",
+      "title": "Moonwalking with Einstein",
+      "author": "Joshua Foer",
+      "pages": 307,
+      "url": "https://www.goodreads.com/book/show/6346975-moonwalking-with-einstein",
+      "urlLabel": "Goodreads",
+      "hook": "記者花一年練記憶，結果贏了全美記憶大賽。",
+      "why": "一本好看的紀實：記憶宮殿怎麼運作、為什麼現代人不再記東西，以及記憶和專業能力的關係。",
+      "tags": [
+        "記憶",
+        "紀實",
+        "中等"
+      ],
+      "themes": [
+        "learning",
+        "science"
+      ],
+      "style": "story",
+      "zhTitle": null,
+      "zhUrl": null
+    },
+    {
+      "id": "b-e16",
+      "lang": "EN",
+      "title": "The Pyramid Principle",
+      "author": "Barbara Minto",
+      "pages": null,
+      "url": "https://www.goodreads.com/book/show/3981669",
+      "urlLabel": "Goodreads",
+      "hook": "先講結論，再講理由。",
+      "why": "顧問業的寫作與思考經典：結論先行、以上統下、分類不重疊不遺漏。寫報告和提案前很值得讀。",
+      "tags": [
+        "表達",
+        "框架型"
+      ],
+      "themes": [
+        "expression",
+        "work"
+      ],
+      "style": "framework",
+      "zhTitle": "金字塔原理",
+      "zhUrl": "https://www.books.com.tw/products/0010369735"
+    },
+    {
+      "id": "b-e17",
+      "lang": "EN",
+      "title": "Steal Like an Artist",
+      "author": "Austin Kleon",
+      "pages": null,
+      "url": "https://www.goodreads.com/book/show/57299104-steal-like-an-artist",
+      "urlLabel": "Goodreads",
+      "hook": "沒有憑空出現的原創，只有好好的模仿和混搭。",
+      "why": "給創作者的十個短建議，圖文並茂，一個下午就能讀完。和《Show Your Work!》是同一位作者。",
+      "tags": [
+        "創作",
+        "薄"
+      ],
+      "themes": [
+        "expression"
+      ],
+      "style": "essay",
+      "zhTitle": "點子都是偷來的",
+      "zhUrl": "https://www.books.com.tw/products/0010580581"
+    },
+    {
+      "id": "b-e18",
+      "lang": "EN",
+      "title": "The Writing Life",
+      "author": "Annie Dillard",
+      "pages": 111,
+      "url": "https://www.goodreads.com/book/show/12530.The_Writing_Life",
+      "urlLabel": "Goodreads",
+      "hook": "每天寫的方式，就是你過一生的方式。",
+      "why": "一位散文家寫自己怎麼寫作的短篇集：在小屋裡、在桌前、在卡住的時候。篇幅很短，適合想寫卻一直沒寫的人。",
+      "tags": [
+        "寫作",
+        "隨筆型",
+        "薄"
+      ],
+      "themes": [
+        "expression"
+      ],
+      "style": "essay",
+      "zhTitle": null,
+      "zhUrl": null
+    },
+    {
+      "id": "b-e19",
+      "lang": "EN",
+      "title": "Talk Like TED",
+      "author": "Carmine Gallo",
+      "pages": null,
+      "url": "https://www.goodreads.com/book/show/17910144-talk-like-ted",
+      "urlLabel": "Goodreads",
+      "hook": "最受歡迎的 TED 演講有什麼共同點？",
+      "why": "分析大量 TED 演講，整理出九個表達技巧：熱情、故事、新鮮感、時間控制等。準備上台前翻一翻很有用。",
+      "tags": [
+        "說話",
+        "簡報"
+      ],
+      "themes": [
+        "expression"
+      ],
+      "style": "framework",
+      "zhTitle": null,
+      "zhUrl": null
+    },
+    {
+      "id": "b-e20",
+      "lang": "EN",
+      "title": "The Art of Learning",
+      "author": "Josh Waitzkin",
+      "pages": null,
+      "url": "https://www.goodreads.com/book/show/857333.The_Art_of_Learning",
+      "urlLabel": "Goodreads",
+      "hook": "從西洋棋神童到太極推手冠軍，學習的方法是同一套。",
+      "why": "作者用自己在兩個完全不同領域登頂的經驗，談怎麼深入基本功、面對失敗、在壓力下表現。",
+      "tags": [
+        "學習方法",
+        "回憶錄"
+      ],
+      "themes": [
+        "learning"
+      ],
+      "style": "story",
+      "zhTitle": null,
+      "zhUrl": null
+    },
+    {
+      "id": "b-z1",
+      "lang": "ZH",
+      "title": "如何閱讀一本書",
+      "author": "莫提默．艾德勒、查理．范多倫",
+      "pages": 448,
+      "url": "https://www.books.com.tw/products/0010226097",
+      "urlLabel": "博客來",
+      "hook": "讀書也有分級：從看懂字，到能跟作者辯論。",
+      "why": "把閱讀分成基礎、檢視、分析、主題四個層次，每層都有具體步驟。出版很久，仍是講閱讀方法最完整的一本。",
+      "tags": [
+        "閱讀",
+        "經典",
+        "偏厚"
+      ],
+      "themes": [
+        "learning"
+      ],
+      "style": "framework"
+    },
+    {
+      "id": "b-z2",
+      "lang": "ZH",
+      "title": "筆記的魔力",
+      "author": "前田裕二",
+      "pages": 256,
+      "url": "https://www.books.com.tw/products/0010971378",
+      "urlLabel": "博客來",
+      "hook": "筆記不只是記下來，是把事實轉成自己的行動。",
+      "why": "日本創業家的筆記法：記下事實、抽象思考、轉化應用三步，書末附自我分析的大量提問。想讓筆記真的改變做事方式的人適合讀。",
+      "tags": [
+        "筆記",
+        "框架型",
+        "中等"
+      ],
+      "themes": [
+        "learning",
+        "thinking"
+      ],
+      "style": "framework"
+    },
+    {
+      "id": "b-z3",
+      "lang": "ZH",
+      "title": "好好說話",
+      "author": "馬薇薇、黃執中、周玄毅 等",
+      "pages": 368,
+      "url": "https://www.books.com.tw/products/0010758868",
+      "urlLabel": "博客來",
+      "hook": "說話不是天分，是可以拆解的技術。",
+      "why": "辯論節目出身的團隊，把溝通、說服、談判、表達、論辯拆成一個個情境與技巧。例子貼近日常，翻到哪讀到哪都可以。",
+      "tags": [
+        "說話",
+        "框架型",
+        "中等"
+      ],
+      "themes": [
+        "expression",
+        "people"
+      ],
+      "style": "framework"
+    },
+    {
+      "id": "b-z4",
+      "lang": "ZH",
+      "title": "恆毅力",
+      "author": "安琪拉．達克沃斯",
+      "pages": 352,
+      "url": "https://www.books.com.tw/products/0010867931",
+      "urlLabel": "博客來",
+      "hook": "長期的熱情加上堅持，比天分更能預測成就。",
+      "why": "研究西點軍校、拼字比賽冠軍等案例，整理恆毅力的來源，以及怎麼在自己和別人身上培養它。",
+      "tags": [
+        "心態",
+        "研究型",
+        "中等"
+      ],
+      "themes": [
+        "learning",
+        "people"
+      ],
+      "style": "research"
+    },
+    {
+      "id": "b-z5",
+      "lang": "ZH",
+      "title": "心流",
+      "author": "米哈里．契克森米哈伊",
+      "pages": null,
+      "url": "https://www.books.com.tw/products/E050152877",
+      "urlLabel": "博客來",
+      "hook": "最投入的時刻，難度剛好比能力高一點。",
+      "why": "心流理論的原典：人在什麼條件下會全神貫注、忘記時間。理解它，就知道怎麼設計自己的學習難度。",
+      "tags": [
+        "專注",
+        "經典"
+      ],
+      "themes": [
+        "learning",
+        "people"
+      ],
+      "style": "research"
+    },
+    {
+      "id": "b-z6",
+      "lang": "ZH",
+      "title": "小說課之王",
+      "author": "許榮哲",
+      "pages": 320,
+      "url": "https://www.books.com.tw/products/0010850170",
+      "urlLabel": "博客來",
+      "hook": "好故事的祕密，在於讓讀者一直想知道接下來。",
+      "why": "台灣小說家的寫作課，用經典小說拆解懸念、人物和結構。就算不寫小說，對說故事和寫文章也有幫助。",
+      "tags": [
+        "寫作",
+        "故事",
+        "中等"
+      ],
+      "themes": [
+        "expression",
+        "fiction"
+      ],
+      "style": "framework"
+    },
+    {
+      "id": "b-z7",
+      "lang": "ZH",
+      "title": "蔡康永的說話之道",
+      "author": "蔡康永",
+      "pages": 224,
+      "url": "https://www.books.com.tw/products/0010867771",
+      "urlLabel": "博客來",
+      "hook": "說話不是表演，是讓對方舒服。",
+      "why": "主持人用四十篇短文談聊天、提問、接話和幽默。輕鬆好讀，適合想改善日常對話的人。",
+      "tags": [
+        "說話",
+        "隨筆型",
+        "薄"
+      ],
+      "themes": [
+        "expression",
+        "people"
+      ],
+      "style": "essay"
+    },
+    {
+      "id": "b-z8",
+      "lang": "ZH",
+      "title": "簡報美學",
+      "author": "賈爾．雷諾茲",
+      "pages": null,
+      "url": "https://www.books.com.tw/products/0010937104",
+      "urlLabel": "博客來",
+      "hook": "簡報的力量，來自刪掉的東西。",
+      "why": "《Presentation Zen》的繁中新譯本：先離開電腦想故事，再用大圖、少字和留白呈現。",
+      "tags": [
+        "簡報",
+        "設計"
+      ],
+      "themes": [
+        "expression"
+      ],
+      "style": "framework"
+    },
+    {
+      "id": "b-z9",
+      "lang": "ZH",
+      "title": "子彈思考整理術",
+      "author": "瑞德．卡洛",
+      "pages": 360,
+      "url": "https://www.books.com.tw/products/0010803003",
+      "urlLabel": "博客來",
+      "hook": "一本空白筆記本，就能整理你的生活。",
+      "why": "子彈筆記發明人親自說明方法：快速記錄、每月遷移、定期回顧。重點不在手帳多漂亮，而是想清楚什麼值得做。",
+      "tags": [
+        "筆記",
+        "框架型",
+        "中等"
+      ],
+      "themes": [
+        "learning",
+        "money"
+      ],
+      "style": "framework"
+    },
+    {
+      "id": "b-z10",
+      "lang": "ZH",
+      "title": "思考的藝術",
+      "author": "魯爾夫．杜伯里",
+      "pages": 240,
+      "url": "https://www.books.com.tw/products/0011004380",
+      "urlLabel": "博客來",
+      "hook": "你以為自己很理性，其實很容易被騙。",
+      "why": "用 52 篇短文逐一介紹常見的思考錯誤和認知偏誤，每篇幾分鐘就能讀完，適合當作思考的檢查清單。",
+      "tags": [
+        "思考",
+        "短篇",
+        "薄"
+      ],
+      "themes": [
+        "thinking"
+      ],
+      "style": "essay"
+    },
+    {
+      "id": "b-z11",
+      "lang": "ZH",
+      "title": "為什麼要睡覺？",
+      "author": "馬修．沃克",
+      "pages": 352,
+      "url": "https://www.books.com.tw/products/0010813161",
+      "urlLabel": "博客來",
+      "hook": "睡得好，記得才牢。",
+      "why": "神經科學家整理睡眠研究，說明睡眠對記憶、學習和情緒的影響。熬夜念書之前值得先讀這本。",
+      "tags": [
+        "大腦科學",
+        "研究型",
+        "中等"
+      ],
+      "themes": [
+        "science",
+        "learning"
+      ],
+      "style": "research"
+    },
+    {
+      "id": "b-z12",
+      "lang": "ZH",
+      "title": "給青年詩人的信",
+      "author": "里爾克",
+      "pages": 110,
+      "url": "https://www.books.com.tw/products/0010273766",
+      "urlLabel": "博客來",
+      "hook": "問問自己：非寫不可嗎？",
+      "why": "詩人寫給一位年輕寫作者的十封信，談孤獨、耐心和創作的理由。篇幅很短，適合慢慢讀。",
+      "tags": [
+        "寫作",
+        "經典",
+        "薄"
+      ],
+      "themes": [
+        "expression"
+      ],
+      "style": "essay"
+    },
+    {
+      "id": "b-z13",
+      "lang": "ZH",
+      "title": "TED TALKS 說話的力量",
+      "author": "克里斯．安德森",
+      "pages": 304,
+      "url": "https://www.books.com.tw/products/0010719057",
+      "urlLabel": "博客來",
+      "hook": "值得分享的想法，都能變成一場好演講。",
+      "why": "TED 策展人寫的官方演講指南：怎麼找到主軸、怎麼開場、怎麼解釋、怎麼練習。準備任何一場上台都用得上。",
+      "tags": [
+        "說話",
+        "框架型",
+        "中等"
+      ],
+      "themes": [
+        "expression"
+      ],
+      "style": "framework"
+    },
+    {
+      "id": "b-z14",
+      "lang": "ZH",
+      "title": "刻意練習",
+      "author": "安德斯．艾瑞克森、羅伯特．普爾",
+      "pages": 320,
+      "url": "https://www.books.com.tw/products/0010752714",
+      "urlLabel": "博客來",
+      "hook": "練習一萬小時不夠，要練對方法。",
+      "why": "提出「刻意練習」概念的研究者親自寫的書：明確目標、立即回饋、走出舒適圈。是理解專業能力怎麼養成的基本讀物。",
+      "tags": [
+        "學習方法",
+        "研究型",
+        "中等"
+      ],
+      "themes": [
+        "learning"
+      ],
+      "style": "research"
+    },
+    {
+      "id": "b-z15",
+      "lang": "ZH",
+      "title": "寫作吧！你值得被看見",
+      "author": "蔡淇華",
+      "pages": 240,
+      "url": "https://www.books.com.tw/products/0010714610",
+      "urlLabel": "博客來",
+      "hook": "寫作不是天分，是可以一步步練習的事。",
+      "why": "台灣高中老師的寫作書，整理四十種寫作能力，從覺察、五感到對話都有練習方法，例子貼近日常生活。",
+      "tags": [
+        "寫作",
+        "練習",
+        "薄"
+      ],
+      "themes": [
+        "expression"
+      ],
+      "style": "framework"
+    },
+    {
+      "id": "b-z16",
+      "lang": "ZH",
+      "title": "讓天賦自由",
+      "author": "肯．羅賓森、盧．亞若尼卡",
+      "pages": 344,
+      "url": "https://www.books.com.tw/products/0010929577",
+      "urlLabel": "博客來",
+      "hook": "找到你擅長又熱愛的那件事。",
+      "why": "教育學者用許多人生故事談「天命」：天賦和熱情交會的地方。也反思學校教育怎麼框住了人。",
+      "tags": [
+        "教育",
+        "故事",
+        "中等"
+      ],
+      "themes": [
+        "learning",
+        "career"
+      ],
+      "style": "story"
+    },
+    {
+      "id": "b-z17",
+      "lang": "ZH",
+      "title": "學生為什麼不喜歡上學？",
+      "author": "丹尼爾．威靈漢",
+      "pages": null,
+      "url": "https://www.books.com.tw/products/0010807825",
+      "urlLabel": "博客來",
+      "hook": "大腦其實不擅長思考，所以學習需要設計。",
+      "why": "認知心理學家寫給老師的書，用幾個原則解釋學習怎麼發生。自學的人也能拿來檢查自己的方法。",
+      "tags": [
+        "學習方法",
+        "研究型"
+      ],
+      "themes": [
+        "learning",
+        "science"
+      ],
+      "style": "research"
+    },
+    {
+      "id": "b-z18",
+      "lang": "ZH",
+      "title": "大腦當家",
+      "author": "約翰．麥迪納",
+      "pages": 320,
+      "url": "https://www.books.com.tw/products/0010740988",
+      "urlLabel": "博客來",
+      "hook": "運動、睡眠、重複，大腦才學得好。",
+      "why": "分子生物學家整理十二條大腦守則，把研究轉成工作和學習可以用的建議，寫得輕鬆好讀。",
+      "tags": [
+        "大腦科學",
+        "框架型",
+        "中等"
+      ],
+      "themes": [
+        "science",
+        "learning"
+      ],
+      "style": "framework"
+    },
+    {
+      "id": "b-z19",
+      "lang": "ZH",
+      "title": "一流的人讀書，都在哪裡畫線？",
+      "author": "土井英司",
+      "pages": 224,
+      "url": "https://www.books.com.tw/products/0010895146",
+      "urlLabel": "博客來",
+      "hook": "畫線要畫在讓你改變行動的地方。",
+      "why": "日本書評家談選書、讀書和畫線：不必整本讀完，也不要只畫自己本來就同意的句子。書末附作者畫線的商業書清單。",
+      "tags": [
+        "閱讀",
+        "框架型",
+        "薄"
+      ],
+      "themes": [
+        "learning"
+      ],
+      "style": "framework"
+    },
+    {
+      "id": "b-z20",
+      "lang": "ZH",
+      "title": "一流的人如何保持顛峰",
+      "author": "布萊德．史托伯格、史提夫．麥格尼斯",
+      "pages": 304,
+      "url": "https://www.books.com.tw/products/0010814765",
+      "urlLabel": "博客來",
+      "hook": "成長＝壓力＋休息。",
+      "why": "整理運動員、藝術家和科學家的研究，說明怎麼在挑戰和恢復之間找到節奏，避免學到一半就倦怠。",
+      "tags": [
+        "專注",
+        "研究型",
+        "中等"
+      ],
+      "themes": [
+        "learning",
+        "money"
+      ],
+      "style": "research"
+    },
+    {
+      "id": "c-f1",
+      "lang": "ZH",
+      "title": "解憂雜貨店",
+      "author": "東野圭吾",
+      "pages": 352,
+      "url": "https://www.books.com.tw/products/0010594847",
+      "urlLabel": "博客來",
+      "hook": "一封寄往三十年前的信，會得到回覆嗎？",
+      "why": "三個逃亡的小偷躲進廢棄雜貨店，收到來自過去的煩惱信。幾段人生慢慢串在一起，溫暖、好讀，很適合當作重新開始讀小說的第一本。",
+      "tags": [
+        "小說",
+        "溫暖",
+        "中等"
+      ],
+      "themes": [
+        "fiction"
+      ],
+      "style": "story"
+    },
+    {
+      "id": "c-f2",
+      "lang": "ZH",
+      "title": "天橋上的魔術師",
+      "author": "吳明益",
+      "pages": 224,
+      "url": "https://www.books.com.tw/products/0010525907",
+      "urlLabel": "博客來",
+      "hook": "中華商場的天橋上，有個會讓東西消失的魔術師。",
+      "why": "十個彼此相關的短篇，寫在中華商場長大的孩子。台北記憶、成長和失去交織在一起，每篇都可以單獨讀。",
+      "tags": [
+        "小說",
+        "短篇",
+        "薄"
+      ],
+      "themes": [
+        "fiction"
+      ],
+      "style": "story"
+    },
+    {
+      "id": "c-f3",
+      "lang": "ZH",
+      "title": "便利店人間",
+      "author": "村田沙耶香",
+      "pages": 224,
+      "url": "https://www.books.com.tw/products/0010933413",
+      "urlLabel": "博客來",
+      "hook": "在便利商店工作十八年，她終於覺得自己是「正常人」。",
+      "why": "芥川賞得獎作。主角只有在便利商店裡才知道怎麼當一個「正常」的人。篇幅短、讀來荒謬，卻讓人重新想什麼叫正常。",
+      "tags": [
+        "小說",
+        "芥川賞",
+        "薄"
+      ],
+      "themes": [
+        "fiction"
+      ],
+      "style": "story"
+    },
+    {
+      "id": "c-f4",
+      "lang": "ZH",
+      "title": "在咖啡冷掉之前",
+      "author": "川口俊和",
+      "pages": null,
+      "url": "https://www.books.com.tw/products/0010751153",
+      "urlLabel": "博客來",
+      "hook": "只要坐上那個位子，就能回到過去，直到咖啡冷掉。",
+      "why": "東京巷子裡一間能穿越時空的咖啡館，規則很多，過去也改變不了。幾個關於遺憾和道別的故事，安靜又療癒。",
+      "tags": [
+        "小說",
+        "療癒"
+      ],
+      "themes": [
+        "fiction"
+      ],
+      "style": "story"
+    },
+    {
+      "id": "c-f5",
+      "lang": "ZH",
+      "title": "午夜圖書館",
+      "author": "麥特．海格",
+      "pages": 320,
+      "url": "https://www.books.com.tw/products/0010882781",
+      "urlLabel": "博客來",
+      "hook": "如果能讀到每一種你沒選的人生，你會選哪一本？",
+      "why": "主角在生與死之間走進一座圖書館，每本書都是她另一種可能的人生。關於後悔與重新看待自己的生活，讀來輕快。",
+      "tags": [
+        "小說",
+        "奇幻",
+        "中等"
+      ],
+      "themes": [
+        "fiction",
+        "people"
+      ],
+      "style": "story",
+      "note": "內容提醒：故事從主角想結束生命開始，涉及自殺議題。"
+    },
+    {
+      "id": "c-f6",
+      "lang": "EN",
+      "title": "Project Hail Mary",
+      "author": "Andy Weir",
+      "pages": 476,
+      "url": "https://www.goodreads.com/book/show/54493401-project-hail-mary",
+      "urlLabel": "Goodreads",
+      "hook": "一個人在太空中醒來，不記得自己是誰，只知道要救地球。",
+      "why": "《火星任務》作者的硬科幻冒險：用科學一步步解題，加上一段意想不到的友誼。節奏很快，科普和小說一次滿足。",
+      "tags": [
+        "小說",
+        "科幻",
+        "偏厚"
+      ],
+      "themes": [
+        "fiction",
+        "science"
+      ],
+      "style": "story",
+      "zhTitle": "極限返航",
+      "zhUrl": "https://www.books.com.tw/products/0010916490"
+    },
+    {
+      "id": "c-f7",
+      "lang": "EN",
+      "title": "Klara and the Sun",
+      "author": "Kazuo Ishiguro",
+      "pages": 303,
+      "url": "https://www.goodreads.com/book/show/54120408-klara-and-the-sun",
+      "urlLabel": "Goodreads",
+      "hook": "一個機器人朋友，用她的方式理解什麼是愛。",
+      "why": "諾貝爾文學獎得主的作品，透過人工智慧克拉拉的眼睛看一個家庭。文字安靜，問的是人之所以為人的部分在哪裡。",
+      "tags": [
+        "小說",
+        "科幻",
+        "中等"
+      ],
+      "themes": [
+        "fiction"
+      ],
+      "style": "story",
+      "zhTitle": "克拉拉與太陽",
+      "zhUrl": "https://www.books.com.tw/products/0010884077"
+    },
+    {
+      "id": "c-f8",
+      "lang": "EN",
+      "title": "A Man Called Ove",
+      "author": "Fredrik Backman",
+      "pages": null,
+      "url": "https://www.goodreads.com/book/show/18774964-a-man-called-ove",
+      "urlLabel": "Goodreads",
+      "hook": "最難搞的鄰居，其實最需要人敲他的門。",
+      "why": "脾氣很壞的鰥夫歐弗，被新搬來的鄰居一再打擾。好笑又好哭，關於失去、孤單和社區的溫度。",
+      "tags": [
+        "小說",
+        "溫暖"
+      ],
+      "themes": [
+        "fiction",
+        "people"
+      ],
+      "style": "story",
+      "zhTitle": "明天別再來敲門",
+      "zhUrl": "https://www.books.com.tw/products/0011042365",
+      "note": "內容提醒：主角多次想結束生命，涉及自殺議題。"
+    },
+    {
+      "id": "c-f9",
+      "lang": "EN",
+      "title": "Tomorrow, and Tomorrow, and Tomorrow",
+      "author": "Gabrielle Zevin",
+      "pages": null,
+      "url": "https://www.goodreads.com/book/show/58784475-tomorrow-and-tomorrow-and-tomorrow",
+      "urlLabel": "Goodreads",
+      "hook": "兩個朋友一起做遊戲，三十年。",
+      "why": "從大學一起寫遊戲的兩個人，成為搭檔、吵架、分開又重逢。寫創作、友誼和失敗，也寫電玩如何成為人生的一部分。",
+      "tags": [
+        "小說",
+        "友情"
+      ],
+      "themes": [
+        "fiction"
+      ],
+      "style": "story",
+      "zhTitle": "明日，明日，又明日",
+      "zhUrl": "https://www.books.com.tw/products/0010958009"
+    },
+    {
+      "id": "c-f10",
+      "lang": "EN",
+      "title": "The House in the Cerulean Sea",
+      "author": "T.J. Klune",
+      "pages": null,
+      "url": "https://www.goodreads.com/book/show/45047384-the-house-in-the-cerulean-sea",
+      "urlLabel": "Goodreads",
+      "hook": "一個循規蹈矩的公務員，被派去考察一間怪物孤兒院。",
+      "why": "溫柔的奇幻小說：主角在海邊小島遇見一群特別的孩子，慢慢發現家人可以自己選。很適合想讀點溫暖東西的時候。",
+      "tags": [
+        "小說",
+        "奇幻"
+      ],
+      "themes": [
+        "fiction"
+      ],
+      "style": "story",
+      "zhTitle": "奇幻生物孤兒院",
+      "zhUrl": "https://www.books.com.tw/products/E050231335"
+    },
+    {
+      "id": "c-s1",
+      "lang": "ZH",
+      "title": "人類大歷史",
+      "author": "哈拉瑞",
+      "pages": 496,
+      "url": "https://www.books.com.tw/products/0010938851",
+      "urlLabel": "博客來",
+      "hook": "智人憑什麼統治世界？因為我們會說故事。",
+      "why": "從認知革命、農業革命到科學革命，用一本書講完人類七萬年。觀點鮮明，很多人讀完會換一副眼鏡看世界。",
+      "tags": [
+        "歷史",
+        "隨筆型",
+        "偏厚"
+      ],
+      "themes": [
+        "science",
+        "world"
+      ],
+      "style": "essay"
+    },
+    {
+      "id": "c-s2",
+      "lang": "ZH",
+      "title": "自私的基因",
+      "author": "理查．道金斯",
+      "pages": 472,
+      "url": "https://www.books.com.tw/products/0010846673",
+      "urlLabel": "博客來",
+      "hook": "你是基因用來複製自己的載具。",
+      "why": "演化生物學的經典：從基因的角度解釋利他、合作和競爭。「迷因」這個詞也出自這本書。",
+      "tags": [
+        "演化",
+        "經典",
+        "偏厚"
+      ],
+      "themes": [
+        "science"
+      ],
+      "style": "research"
+    },
+    {
+      "id": "c-s3",
+      "lang": "ZH",
+      "title": "七堂簡單物理課",
+      "author": "卡羅．羅維理",
+      "pages": null,
+      "url": "https://www.books.com.tw/products/0010707360",
+      "urlLabel": "博客來",
+      "hook": "一個晚上讀完現代物理最美的部分。",
+      "why": "義大利物理學家用七篇短文講相對論、量子力學、黑洞和時間，沒有公式，文字像散文。最輕的科普入門。",
+      "tags": [
+        "物理",
+        "薄"
+      ],
+      "themes": [
+        "science"
+      ],
+      "style": "essay"
+    },
+    {
+      "id": "c-s4",
+      "lang": "ZH",
+      "title": "槍炮、病菌與鋼鐵",
+      "author": "賈德．戴蒙",
+      "pages": 564,
+      "url": "https://www.books.com.tw/products/0010829817",
+      "urlLabel": "博客來",
+      "hook": "為什麼是歐洲人征服美洲，而不是反過來？",
+      "why": "用地理、農業、病菌和技術解釋一萬三千年來各大陸的發展差異。份量重，但會徹底改變你理解歷史的方式。",
+      "tags": [
+        "歷史",
+        "研究型",
+        "偏厚"
+      ],
+      "themes": [
+        "science",
+        "world"
+      ],
+      "style": "research"
+    },
+    {
+      "id": "c-s5",
+      "lang": "ZH",
+      "title": "萬物簡史",
+      "author": "比爾．布萊森",
+      "pages": null,
+      "url": "https://www.books.com.tw/products/0010474135",
+      "urlLabel": "博客來",
+      "hook": "從大霹靂到人類，一個好奇的人把科學全問了一遍。",
+      "why": "遊記作家花了幾年請教科學家，把宇宙、地球、生命的科學史寫成好笑又好懂的故事。",
+      "tags": [
+        "科學史",
+        "隨筆型"
+      ],
+      "themes": [
+        "science"
+      ],
+      "style": "essay"
+    },
+    {
+      "id": "c-s6",
+      "lang": "EN",
+      "title": "What If?",
+      "author": "Randall Munroe",
+      "pages": null,
+      "url": "https://www.goodreads.com/work/editions/40714465-what-if-serious-scientific-answers-to-absurd-hypothetical-questions",
+      "urlLabel": "Goodreads",
+      "hook": "用棒球以光速投出去，會發生什麼事？",
+      "why": "xkcd 漫畫作者認真回答讀者的荒謬問題，用物理和計算推到底，再配上火柴人漫畫。好笑，而且真的學到東西。",
+      "tags": [
+        "科普",
+        "漫畫"
+      ],
+      "themes": [
+        "science"
+      ],
+      "style": "essay",
+      "zhTitle": "如果這樣，會怎樣？",
+      "zhUrl": "https://www.books.com.tw/products/0010912136"
+    },
+    {
+      "id": "c-s7",
+      "lang": "EN",
+      "title": "An Immense World",
+      "author": "Ed Yong",
+      "pages": 464,
+      "url": "https://www.goodreads.com/book/show/59575939-an-immense-world",
+      "urlLabel": "Goodreads",
+      "hook": "每種動物都活在自己的感官泡泡裡。",
+      "why": "普立茲獎科學記者寫動物的感官：蝙蝠的回聲、海龜的磁感、魚的電感。讀完會發現人類看到的世界其實很小。",
+      "tags": [
+        "動物",
+        "研究型",
+        "偏厚"
+      ],
+      "themes": [
+        "science"
+      ],
+      "style": "research",
+      "zhTitle": "五感之外的世界",
+      "zhUrl": "https://www.books.com.tw/products/0010963863"
+    },
+    {
+      "id": "c-s8",
+      "lang": "EN",
+      "title": "Cosmos",
+      "author": "Carl Sagan",
+      "pages": null,
+      "url": "https://www.goodreads.com/book/show/995795.Cosmos",
+      "urlLabel": "Goodreads",
+      "hook": "我們都是星塵做的。",
+      "why": "天文學家薩根改寫自同名電視節目的經典，從宇宙起源談到科學史與人類的位置。文字有詩意，是很多科學家的啟蒙書。",
+      "tags": [
+        "天文",
+        "經典"
+      ],
+      "themes": [
+        "science"
+      ],
+      "style": "essay",
+      "zhTitle": null,
+      "zhUrl": null
+    },
+    {
+      "id": "c-s9",
+      "lang": "EN",
+      "title": "The Gene",
+      "author": "Siddhartha Mukherjee",
+      "pages": 592,
+      "url": "https://www.goodreads.com/book/show/27276428-the-gene",
+      "urlLabel": "Goodreads",
+      "hook": "從修道院的豌豆，到今天能編輯基因的人類。",
+      "why": "《萬病之王》作者寫基因的歷史，穿插自己家族的精神疾病史。份量重，但故事感很強。",
+      "tags": [
+        "基因",
+        "研究型",
+        "偏厚"
+      ],
+      "themes": [
+        "science",
+        "world"
+      ],
+      "style": "research",
+      "zhTitle": "基因：人類最親密的歷史",
+      "zhUrl": "https://www.books.com.tw/products/0010792602"
+    },
+    {
+      "id": "c-s10",
+      "lang": "EN",
+      "title": "Entangled Life",
+      "author": "Merlin Sheldrake",
+      "pages": 352,
+      "url": "https://www.goodreads.com/book/show/52668915-entangled-life",
+      "urlLabel": "Goodreads",
+      "hook": "森林底下有一張由真菌織成的網路。",
+      "why": "年輕生物學家寫真菌：它們如何連結樹木、解決問題，甚至改變我們的想法。讀完會用不同的眼光看一朵菇。",
+      "tags": [
+        "生物",
+        "研究型",
+        "中等"
+      ],
+      "themes": [
+        "science"
+      ],
+      "style": "research",
+      "zhTitle": "真菌微宇宙",
+      "zhUrl": "https://www.books.com.tw/products/0011022717"
+    },
+    {
+      "id": "c-p1",
+      "lang": "ZH",
+      "title": "非暴力溝通",
+      "author": "馬歇爾．盧森堡",
+      "pages": null,
+      "url": "https://www.books.com.tw/products/0010831754",
+      "urlLabel": "博客來",
+      "hook": "說出觀察、感受、需要和請求，而不是指責。",
+      "why": "一套四步驟的溝通方法，用在衝突、家庭和職場都有效。概念簡單，但要真的做到需要練習。",
+      "tags": [
+        "溝通",
+        "框架型"
+      ],
+      "themes": [
+        "people",
+        "expression"
+      ],
+      "style": "framework"
+    },
+    {
+      "id": "c-p2",
+      "lang": "ZH",
+      "title": "依附",
+      "author": "阿米爾．樂維、瑞秋．赫勒",
+      "pages": 296,
+      "url": "https://www.books.com.tw/products/0010796528",
+      "urlLabel": "博客來",
+      "hook": "你在關係裡的焦慮，可能有個名字。",
+      "why": "用依附理論解釋親密關係：焦慮型、逃避型、安全型怎麼互動，以及如何辨識自己和對方的風格。",
+      "tags": [
+        "關係",
+        "框架型",
+        "中等"
+      ],
+      "themes": [
+        "people"
+      ],
+      "style": "framework"
+    },
+    {
+      "id": "c-p3",
+      "lang": "ZH",
+      "title": "情緒勒索",
+      "author": "周慕姿",
+      "pages": 272,
+      "url": "https://www.books.com.tw/products/0010742371",
+      "urlLabel": "博客來",
+      "hook": "那些讓你喘不過氣的「為你好」。",
+      "why": "台灣心理師談伴侶、親子、職場中的情緒勒索：怎麼辨認、為什麼會一再發生，以及怎麼建立界線。例子很貼近華人家庭。",
+      "tags": [
+        "界線",
+        "框架型",
+        "中等"
+      ],
+      "themes": [
+        "people"
+      ],
+      "style": "framework"
+    },
+    {
+      "id": "c-p4",
+      "lang": "ZH",
+      "title": "快思慢想",
+      "author": "康納曼",
+      "pages": 576,
+      "url": "https://www.books.com.tw/products/0010962486",
+      "urlLabel": "博客來",
+      "hook": "大腦有兩套系統，一快一慢。",
+      "why": "諾貝爾經濟學獎得主的代表作，解釋直覺和理性怎麼分工、又怎麼出錯。份量重，但改變很多人看待判斷的方式。",
+      "tags": [
+        "思考",
+        "研究型",
+        "偏厚"
+      ],
+      "themes": [
+        "people",
+        "thinking"
+      ],
+      "style": "research"
+    },
+    {
+      "id": "c-p5",
+      "lang": "ZH",
+      "title": "蛤蟆先生去看心理師",
+      "author": "羅伯．狄保德",
+      "pages": null,
+      "url": "https://www.books.com.tw/products/0010914794",
+      "urlLabel": "博客來",
+      "hook": "憂鬱的蛤蟆先生，去做了十次心理諮商。",
+      "why": "借《柳林風聲》的角色寫一段完整的諮商過程，把溝通分析的概念放進故事裡。好讀，是心理諮商最溫和的入門。",
+      "tags": [
+        "心理諮商",
+        "故事型"
+      ],
+      "themes": [
+        "people",
+        "fiction"
+      ],
+      "style": "story"
+    },
+    {
+      "id": "c-p6",
+      "lang": "EN",
+      "title": "Man's Search for Meaning",
+      "author": "Viktor E. Frankl",
+      "pages": 165,
+      "url": "https://www.goodreads.com/book/show/4069.Man_s_Search_for_Meaning",
+      "urlLabel": "Goodreads",
+      "hook": "一切都被奪走時，還剩下選擇態度的自由。",
+      "why": "精神科醫師寫自己在集中營的經歷，以及由此發展出的意義治療。很薄，但很多人一生會重讀好幾次。",
+      "tags": [
+        "意義",
+        "經典",
+        "薄"
+      ],
+      "themes": [
+        "people"
+      ],
+      "style": "essay",
+      "zhTitle": "活出意義來",
+      "zhUrl": "https://www.books.com.tw/products/0010408890"
+    },
+    {
+      "id": "c-p7",
+      "lang": "EN",
+      "title": "Quiet",
+      "author": "Susan Cain",
+      "pages": null,
+      "url": "https://www.goodreads.com/book/show/8520610-quiet",
+      "urlLabel": "Goodreads",
+      "hook": "內向不是缺點，是另一種力量。",
+      "why": "整理心理學研究與案例，談社會怎麼偏好外向者，以及內向者如何在工作和關係裡發揮自己的特質。",
+      "tags": [
+        "性格",
+        "研究型"
+      ],
+      "themes": [
+        "people"
+      ],
+      "style": "research",
+      "zhTitle": "安靜，就是力量",
+      "zhUrl": "https://www.books.com.tw/products/0010840548"
+    },
+    {
+      "id": "c-p8",
+      "lang": "EN",
+      "title": "Mindset",
+      "author": "Carol S. Dweck",
+      "pages": null,
+      "url": "https://www.goodreads.com/work/editions/40330-mindset-the-new-psychology-of-success",
+      "urlLabel": "Goodreads",
+      "hook": "相信能力可以練出來，學習方式就會不一樣。",
+      "why": "心理學家對比「定型心態」與「成長心態」，說明人怎麼看待失敗和努力，會影響學習、工作和關係。",
+      "tags": [
+        "心態",
+        "研究型"
+      ],
+      "themes": [
+        "people",
+        "learning"
+      ],
+      "style": "research",
+      "zhTitle": "心態致勝",
+      "zhUrl": "https://www.books.com.tw/products/0010838441"
+    },
+    {
+      "id": "c-p9",
+      "lang": "EN",
+      "title": "Emotional Agility",
+      "author": "Susan David",
+      "pages": 288,
+      "url": "https://www.goodreads.com/book/show/27209485-emotional-agility",
+      "urlLabel": "Goodreads",
+      "hook": "情緒是資料，不是指令。",
+      "why": "哈佛心理學家的四個步驟：面對、跨出去、依循價值、向前走。教你不被情緒綁住，也不硬壓情緒。",
+      "tags": [
+        "情緒",
+        "框架型",
+        "中等"
+      ],
+      "themes": [
+        "people"
+      ],
+      "style": "framework",
+      "zhTitle": "情緒靈敏力",
+      "zhUrl": "https://www.books.com.tw/products/0010762855"
+    },
+    {
+      "id": "c-p10",
+      "lang": "EN",
+      "title": "How to Win Friends and Influence People",
+      "author": "Dale Carnegie",
+      "pages": null,
+      "url": "https://www.goodreads.com/work/editions/2370171-how-to-win-friends-and-influence-people",
+      "urlLabel": "Goodreads",
+      "hook": "記住對方的名字，是最簡單的善意。",
+      "why": "1936 年出版至今的人際關係經典：真誠讚美、傾聽、站在對方角度。原則簡單，到現在仍然有效。",
+      "tags": [
+        "人際",
+        "經典"
+      ],
+      "themes": [
+        "people",
+        "expression"
+      ],
+      "style": "framework",
+      "zhTitle": "人性的弱點",
+      "zhUrl": "https://www.books.com.tw/products/0010785328"
+    },
+    {
+      "id": "c-m1",
+      "lang": "ZH",
+      "title": "原子習慣",
+      "author": "詹姆斯．克利爾",
+      "pages": null,
+      "url": "https://www.books.com.tw/products/0010822522",
+      "urlLabel": "博客來",
+      "hook": "每天進步一點點，一年後差很多。",
+      "why": "把習慣拆成提示、渴望、回應、獎賞四步，教你讓好習慣容易做、壞習慣難做。想固定每天學習或運動的人很適用。",
+      "tags": [
+        "習慣",
+        "框架型"
+      ],
+      "themes": [
+        "money"
+      ],
+      "style": "framework"
+    },
+    {
+      "id": "c-m2",
+      "lang": "ZH",
+      "title": "持續買進",
+      "author": "尼克．馬朱利",
+      "pages": null,
+      "url": "https://www.books.com.tw/products/0010957881",
+      "urlLabel": "博客來",
+      "hook": "不要預測市場，持續投入就好。",
+      "why": "資料科學家用數據檢驗存錢與投資的常見迷思：該存多少、何時買、要不要等低點。結論簡單，但有數字支撐。",
+      "tags": [
+        "投資",
+        "研究型"
+      ],
+      "themes": [
+        "money"
+      ],
+      "style": "research"
+    },
+    {
+      "id": "c-m3",
+      "lang": "ZH",
+      "title": "新．斷捨離",
+      "author": "山下英子",
+      "pages": null,
+      "url": "https://www.books.com.tw/products/0010870895",
+      "urlLabel": "博客來",
+      "hook": "整理東西，其實是在整理和自己的關係。",
+      "why": "斷絕不需要的、捨棄多餘的、脫離對物品的執著。從家裡的東西開始，練習判斷什麼對現在的自己真的重要。",
+      "tags": [
+        "整理",
+        "框架型"
+      ],
+      "themes": [
+        "money"
+      ],
+      "style": "framework"
+    },
+    {
+      "id": "c-m4",
+      "lang": "ZH",
+      "title": "小狗錢錢",
+      "author": "博多．薛弗",
+      "pages": null,
+      "url": "https://www.books.com.tw/products/0010952531",
+      "urlLabel": "博客來",
+      "hook": "一隻會說話的狗，教小女孩怎麼跟錢相處。",
+      "why": "用童話的方式講理財的基本功：寫下目標、存錢、投資、讓錢為你工作。很快能讀完，也適合和孩子一起讀。",
+      "tags": [
+        "理財",
+        "故事型"
+      ],
+      "themes": [
+        "money",
+        "fiction"
+      ],
+      "style": "story"
+    },
+    {
+      "id": "c-m5",
+      "lang": "ZH",
+      "title": "為什麼我們這樣生活，那樣工作？",
+      "author": "查爾斯．杜希格",
+      "pages": null,
+      "url": "https://www.books.com.tw/products/0010560033",
+      "urlLabel": "博客來",
+      "hook": "習慣不會消失，只能被替換。",
+      "why": "記者整理研究與案例，說明個人、企業和社會的習慣怎麼形成。和《原子習慣》一起讀，一本講原理，一本講做法。",
+      "tags": [
+        "習慣",
+        "研究型"
+      ],
+      "themes": [
+        "money",
+        "work"
+      ],
+      "style": "research"
+    },
+    {
+      "id": "c-m6",
+      "lang": "EN",
+      "title": "Die With Zero",
+      "author": "Bill Perkins",
+      "pages": 225,
+      "url": "https://www.goodreads.com/book/show/52950915-die-with-zero",
+      "urlLabel": "Goodreads",
+      "hook": "錢是用來換人生體驗的，不是拿來存到最後。",
+      "why": "反過來的理財觀：照年齡安排體驗，在最適合的時候把錢花掉。讀完會重新想「存夠了沒有」這個問題。",
+      "tags": [
+        "金錢觀",
+        "框架型",
+        "薄"
+      ],
+      "themes": [
+        "money"
+      ],
+      "style": "framework",
+      "zhTitle": "別把你的錢留到死",
+      "zhUrl": "https://www.books.com.tw/products/0010965865"
+    },
+    {
+      "id": "c-m7",
+      "lang": "EN",
+      "title": "Deep Work",
+      "author": "Cal Newport",
+      "pages": 296,
+      "url": "https://www.goodreads.com/book/show/25744928-deep-work",
+      "urlLabel": "Goodreads",
+      "hook": "能長時間專注，正在變成稀有能力。",
+      "why": "論證專注的價值，並提出排程、離線、儀式化等做法。想把學習或工作的時間護住，可以從這本開始。",
+      "tags": [
+        "專注",
+        "框架型",
+        "中等"
+      ],
+      "themes": [
+        "money",
+        "work"
+      ],
+      "style": "framework",
+      "zhTitle": "深度工作力",
+      "zhUrl": "https://www.books.com.tw/products/0010906940"
+    },
+    {
+      "id": "c-m8",
+      "lang": "EN",
+      "title": "Tiny Habits",
+      "author": "BJ Fogg",
+      "pages": null,
+      "url": "https://www.goodreads.com/book/show/43261127-tiny-habits",
+      "urlLabel": "Goodreads",
+      "hook": "新習慣要小到不可能失敗。",
+      "why": "史丹佛行為設計學家的方法：找一個錨點、做一個很小的動作、立刻慶祝。比起靠意志力，更像設計自己的環境。",
+      "tags": [
+        "習慣",
+        "框架型"
+      ],
+      "themes": [
+        "money"
+      ],
+      "style": "framework",
+      "zhTitle": "設計你的小習慣",
+      "zhUrl": "https://www.books.com.tw/products/0010887677"
+    },
+    {
+      "id": "c-m9",
+      "lang": "EN",
+      "title": "Your Money or Your Life",
+      "author": "Vicki Robin & Joe Dominguez",
+      "pages": null,
+      "url": "https://www.goodreads.com/work/editions/1509321-your-money-or-your-life",
+      "urlLabel": "Goodreads",
+      "hook": "每一塊錢，都是用你的生命時間換來的。",
+      "why": "九個步驟重新整理和錢的關係：算出真實時薪、追蹤每筆支出、問自己值不值得。是 FIRE 運動的源頭之一。",
+      "tags": [
+        "金錢觀",
+        "框架型"
+      ],
+      "themes": [
+        "money"
+      ],
+      "style": "framework",
+      "zhTitle": "跟錢好好相處",
+      "zhUrl": "https://www.books.com.tw/products/0010963721"
+    },
+    {
+      "id": "c-m10",
+      "lang": "EN",
+      "title": "The Simple Path to Wealth",
+      "author": "J.L. Collins",
+      "pages": null,
+      "url": "https://www.goodreads.com/book/show/30646587",
+      "urlLabel": "Goodreads",
+      "hook": "投資可以很簡單：不負債、買指數、長期持有。",
+      "why": "原本是寫給女兒的投資信，整理成一本書。內容以美國為例，但「簡單才做得到」的原則到哪裡都適用。",
+      "tags": [
+        "投資",
+        "框架型"
+      ],
+      "themes": [
+        "money"
+      ],
+      "style": "framework",
+      "zhTitle": "簡單致富",
+      "zhUrl": "https://www.books.com.tw/products/0010899661"
+    }
+  ]
+}

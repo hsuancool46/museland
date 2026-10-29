@@ -7,39 +7,99 @@
   --font-sans: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif;
   --font-type: "Courier New", Courier, ui-monospace, monospace;
 
-  --desk: #e4dfd2;            /* 借書檯 */
-  --desk-shadow: rgba(40, 44, 70, 0.16);
-  --paper: #fbf7ec;           /* 米白卡紙 */
-  --paper-back: #f3eedf;
-  --ink: #22306b;             /* 深靛藍墨水 */
-  --ink-soft: #4b5688;
-  --ink-faint: #8890b3;
-  --rule: #c9d2e6;            /* 卡片上的淡藍細格線 */
-  --rule-head: #c98d8d;       /* 卡片頂端的紅線 */
-  --accent: #2f4ba0;
-  --stamp-yes-ink: #2e7a4c;   /* 想讀綠 */
-  --stamp-no-ink: #b13a36;    /* 略過紅 */
-  --focus: #2f4ba0;
-  --hole: #e4dfd2;
+  /* 淺色：牛皮紙借書袋上的借書卡 */
+  color-scheme: light;
+  --desk: #c6a578;            /* 牛皮紙袋 */
+  --desk-shadow: rgba(60, 40, 15, 0.22);
+  --on-desk: #23306a;         /* 直接寫在桌面上的字 */
+  --on-desk-soft: #343a5e;
+  --desk-line: rgba(35, 48, 106, 0.28);
+  --paper: #fdf9ef;           /* 米白卡紙 */
+  --paper-back: #f5efe0;
+  --ink: #23306a;             /* 深靛藍墨水 */
+  --ink-soft: #4b5385;
+  --ink-faint: #6a6e8e;
+  --rule: #cbd3e4;            /* 卡片上的淡藍細格線 */
+  --margin-line: #c47b70;     /* 索引卡的紅色邊線 */
+  --card-edge: #dbc9a6;       /* 卡紙邊緣 */
+  --accent: #2d4697;
+  --stamp-yes-ink: #2c7548;   /* 想讀綠 */
+  --stamp-no-ink: #ab352f;    /* 略過紅 */
+  --stamp-blend: multiply;    /* 墨水疊在字上 */
+  --focus: #2d4697;
+  --hole: #c6a578;
+  --why-line: 26px;          /* 為什麼值得一讀：行高＝格線間距 */
+  --spine-1: #23306a;
+  --spine-2: #7d2f28;
+  --spine-3: #2f5e44;
+  --spine-4: #9a6c2c;
+  --spine-5: #4a4a5e;
+  --book-edge: #f3ead6;      /* 書口的紙頁 */
+  --pile-shadow: rgba(60, 40, 15, 0.25);
 }
 
+/* 深色：夜裡的牛皮紙袋，卡紙是暖調的暗米色。
+   系統是深色、且使用者沒有手動切成日間時套用；手動切成夜間（data-theme="dark"）也套用同一組 */
 @media (prefers-color-scheme: dark) {
-  :root {
-    --desk: #11141f;
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --desk: #1b150d;
     --desk-shadow: rgba(0, 0, 0, 0.5);
-    --paper: #1c2133;
-    --paper-back: #181c2c;
-    --ink: #e9e2cd;
-    --ink-soft: #bcb7a6;
-    --ink-faint: #7f8299;
-    --rule: #2b3250;
-    --rule-head: #8a4f55;
-    --accent: #9cadee;
-    --stamp-yes-ink: #6cc28e;
-    --stamp-no-ink: #e57b74;
+    --on-desk: #f1e7cf;
+    --on-desk-soft: #cbbd9c;
+    --desk-line: #463a28;
+    --paper: #2b2419;
+    --paper-back: #241e15;
+    --ink: #f1e7cf;
+    --ink-soft: #cbbd9c;
+    --ink-faint: #9e9175;
+    --rule: #463a28;
+    --margin-line: #86523f;
+    --card-edge: #463a28;
+    --accent: #a9b6e8;
+    --stamp-yes-ink: #80c79c;
+    --stamp-no-ink: #ea8c7e;
+    --stamp-blend: screen;
     --focus: #b9c6ff;
-    --hole: #11141f;
+    --hole: #1b150d;
+    --spine-1: #3d4f9a;
+    --spine-2: #9a463b;
+    --spine-3: #477a5c;
+    --spine-4: #a8803f;
+    --spine-5: #66667c;
+    --book-edge: #d9ccae;
+    --pile-shadow: rgba(0, 0, 0, 0.55);
   }
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --desk: #1b150d;
+  --desk-shadow: rgba(0, 0, 0, 0.5);
+  --on-desk: #f1e7cf;
+  --on-desk-soft: #cbbd9c;
+  --desk-line: #463a28;
+  --paper: #2b2419;
+  --paper-back: #241e15;
+  --ink: #f1e7cf;
+  --ink-soft: #cbbd9c;
+  --ink-faint: #9e9175;
+  --rule: #463a28;
+  --margin-line: #86523f;
+  --card-edge: #463a28;
+  --accent: #a9b6e8;
+  --stamp-yes-ink: #80c79c;
+  --stamp-no-ink: #ea8c7e;
+  --stamp-blend: screen;
+  --focus: #b9c6ff;
+  --hole: #1b150d;
+  --spine-1: #3d4f9a;
+  --spine-2: #9a463b;
+  --spine-3: #477a5c;
+  --spine-4: #a8803f;
+  --spine-5: #66667c;
+  --book-edge: #d9ccae;
+  --pile-shadow: rgba(0, 0, 0, 0.55);
 }
 
 *,
@@ -66,6 +126,19 @@ body {
   display: none !important;
 }
 
+/* 只給螢幕閱讀器的文字 */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
 :focus-visible {
   outline: 3px solid var(--focus);
   outline-offset: 3px;
@@ -81,14 +154,41 @@ body {
 
 .masthead {
   display: grid;
-  grid-template-columns: 1fr auto;
+  grid-template-columns: 1fr auto auto;
   grid-template-areas:
-    "home progress"
-    "title title";
+    "home theme progress"
+    "title batch batch";
   align-items: center;
   gap: 4px 12px;
   padding-bottom: 10px;
-  border-bottom: 1px solid var(--rule);
+  border-bottom: 1px solid var(--desk-line);
+}
+
+/* 日間／夜間切換 */
+.theme-toggle {
+  grid-area: theme;
+  justify-self: end;
+  min-height: 44px;
+  min-width: 44px;
+  padding: 0 10px;
+  border: 1px solid var(--desk-line);
+  border-radius: 3px;
+  background: transparent;
+  color: var(--on-desk);
+  font: inherit;
+  font-size: 14px;
+  letter-spacing: 0.06em;
+  cursor: pointer;
+}
+
+.theme-toggle:hover {
+  border-color: var(--on-desk);
+}
+
+.theme-toggle[aria-pressed="true"] {
+  background: var(--on-desk);
+  border-color: var(--on-desk);
+  color: var(--desk);
 }
 
 .home-link {
@@ -98,14 +198,14 @@ body {
   align-items: center;
   min-height: 44px;
   padding: 0 4px;
-  color: var(--ink-soft);
+  color: var(--on-desk-soft);
   font-size: 14px;
   letter-spacing: 0.04em;
   text-decoration: none;
 }
 
 .home-link:hover {
-  color: var(--ink);
+  color: var(--on-desk);
   text-decoration: underline;
   text-underline-offset: 3px;
 }
@@ -119,6 +219,7 @@ body {
 
 .masthead h1 {
   margin: 0;
+  color: var(--on-desk);
   font-family: var(--font-serif-zh);
   font-size: 26px;
   font-weight: 700;
@@ -130,12 +231,12 @@ body {
   font-family: var(--font-serif-en);
   font-style: italic;
   font-size: 15px;
-  color: var(--ink-soft);
+  color: var(--on-desk-soft);
 }
 
 .progress {
   grid-area: progress;
-  min-width: 120px;
+  min-width: 108px;
   text-align: right;
 }
 
@@ -143,7 +244,7 @@ body {
   margin: 0 0 4px;
   font-family: var(--font-type);
   font-size: 14px;
-  color: var(--ink-soft);
+  color: var(--on-desk-soft);
 }
 
 .progress-label {
@@ -152,7 +253,7 @@ body {
 
 .progress-track {
   height: 4px;
-  background: var(--rule);
+  background: var(--desk-line);
   overflow: hidden;
 }
 
@@ -164,13 +265,152 @@ body {
   transition: transform 0.3s ease;
 }
 
+/* ---------- 重新挑書 ---------- */
+
+/* 標題列右邊，像一張插在桌上的書單標籤 */
+.btn-redeal {
+  grid-area: batch;
+  justify-self: end;
+  min-height: 44px;
+  padding: 0 12px;
+  border: 1px solid var(--card-edge);
+  border-radius: 3px;
+  background: var(--paper);
+  color: var(--ink);
+  font: inherit;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.btn-redeal:hover {
+  border-color: var(--ink);
+}
+
+/* ---------- 開場答題 ---------- */
+
+.quiz {
+  position: relative;
+  padding: 22px 22px 24px 40px;
+  background: var(--paper);
+  border: 1px solid var(--card-edge);
+  border-top: 2px solid var(--margin-line);
+  border-radius: 2px;
+  box-shadow: 0 8px 18px -10px var(--desk-shadow);
+  color: var(--ink);
+}
+
+.quiz::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 24px;
+  width: 1px;
+  background: var(--margin-line);
+}
+
+.quiz-title {
+  margin: 0 0 6px;
+  font-family: var(--font-serif-zh);
+  font-size: 22px;
+  line-height: 1.4;
+}
+
+.quiz-sub {
+  margin: 0 0 18px;
+  font-size: 14px;
+  color: var(--ink-soft);
+}
+
+.quiz-q {
+  padding: 12px 0 14px;
+  border-top: 1px solid var(--rule);
+}
+
+.quiz-q-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 8px;
+  margin: 0 0 10px;
+  font-weight: 700;
+}
+
+.quiz-count {
+  font-family: var(--font-type);
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--ink-soft);
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+/* 選項像借書卡上的分類章：選中時蓋上靛藍墨 */
+.chip {
+  min-height: 44px;
+  padding: 0 14px;
+  border: 1px solid var(--ink-faint);
+  border-radius: 3px;
+  background: transparent;
+  color: var(--ink);
+  font: inherit;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.chip:hover:not(:disabled) {
+  border-color: var(--ink);
+}
+
+.chip[aria-pressed="true"] {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: var(--paper);
+  font-weight: 700;
+}
+
+.chip:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.quiz-warning {
+  margin: 12px 0 0;
+  padding: 8px 12px;
+  border-left: 3px solid var(--stamp-no-ink);
+  font-size: 14px;
+  color: var(--ink);
+}
+
+.quiz-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.quiz-actions .btn-ink {
+  min-width: 120px;
+}
+
+.quiz-actions .btn-ink:disabled {
+  background: transparent;
+  border-color: var(--rule);
+  color: var(--ink-faint);
+}
+
 /* ---------- 分頁 ---------- */
 
 .tabs {
   display: flex;
   gap: 4px;
   margin: 12px 0 16px;
-  border-bottom: 1px solid var(--rule);
+  border-bottom: 1px solid var(--desk-line);
 }
 
 .tab {
@@ -181,7 +421,7 @@ body {
   border-bottom: 2px solid transparent;
   margin-bottom: -1px;
   background: transparent;
-  color: var(--ink-faint);
+  color: var(--on-desk-soft);
   font: inherit;
   font-size: 15px;
   letter-spacing: 0.06em;
@@ -189,12 +429,12 @@ body {
 }
 
 .tab:hover {
-  color: var(--ink);
+  color: var(--on-desk);
 }
 
 .tab[aria-pressed="true"] {
-  color: var(--ink);
-  border-bottom-color: var(--ink);
+  color: var(--on-desk);
+  border-bottom-color: var(--on-desk);
   font-weight: 700;
 }
 
@@ -207,17 +447,38 @@ body {
 .deck-message {
   margin: 48px 0;
   text-align: center;
-  color: var(--ink-soft);
+  color: var(--on-desk-soft);
 }
 
 .deck-message.is-error {
-  color: var(--stamp-no-ink);
+  color: var(--on-desk);
   font-weight: 700;
 }
 
 .stack {
+  --peek: 11px; /* 後面每張卡往下露出的距離 */
+  position: relative;
   display: grid;
-  padding-bottom: 22px; /* 讓後面兩張卡露出邊 */
+  /* 高度固定成這一批最高的那張卡（app.js 量好寫進 --card-height），按鈕才不會跟著跳 */
+  grid-template-rows: minmax(var(--card-height, auto), auto);
+  padding-bottom: calc(var(--peek) * 2); /* 讓後面兩張卡露出邊 */
+  transition: opacity 0.32s ease-out, transform 0.32s ease-out;
+}
+
+/* 載入時整疊一起淡入（一起淡，字才不會互相透出來） */
+.stack.is-arriving {
+  opacity: 0;
+  transform: translateY(10px);
+}
+
+/* 量卡片高度用的隱形容器，量完就拿掉 */
+.stack-probe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  visibility: hidden;
+  pointer-events: none;
 }
 
 .card {
@@ -226,11 +487,10 @@ body {
   display: flex;
   flex-direction: column;
   min-width: 0;
-  padding: 18px 20px 30px;
+  padding: 18px 20px 30px 36px;
   background-color: var(--paper);
-  border: 1px solid var(--rule);
-  border-top: 3px double var(--rule-head);
-  border-radius: 3px;
+  border: 1px solid var(--card-edge);
+  border-radius: 2px;
   box-shadow: 0 1px 0 var(--desk-shadow), 0 8px 18px -10px var(--desk-shadow);
   transform-origin: 50% 100%;
   transition: transform 0.28s ease, opacity 0.28s ease;
@@ -241,22 +501,39 @@ body {
   overflow-wrap: anywhere;
 }
 
+/* 索引卡左側的紅色邊線 */
+.card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 24px;
+  width: 1px;
+  background: var(--margin-line);
+  pointer-events: none;
+}
+
 .card.pos-0 {
   z-index: 3;
 }
 
+/* 後面那張卡：拖曳時 --pull 從 0 長到 0.7，跟著往前 */
 .card.pos-1 {
   z-index: 2;
-  transform: translateY(11px) scale(0.955);
+  transform: translateY(calc(var(--peek) * (1 - var(--pull, 0)))) scale(calc(0.955 + 0.045 * var(--pull, 0)));
   background-color: var(--paper-back);
   cursor: default;
 }
 
 .card.pos-2 {
   z-index: 1;
-  transform: translateY(22px) scale(0.91);
+  transform: translateY(calc(var(--peek) * 2)) scale(0.91);
   background-color: var(--paper-back);
   cursor: default;
+}
+
+.stack.is-pulling .card.pos-1 {
+  transition: none;
 }
 
 .card.is-entering {
@@ -266,6 +543,11 @@ body {
 .card.is-dragging {
   transition: none;
   cursor: grabbing;
+}
+
+/* 復原：從離開的那一側飛回來 */
+.card.is-returning {
+  transition: transform 0.38s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.2s ease-out;
 }
 
 .card.is-flying {
@@ -288,7 +570,7 @@ body {
   gap: 12px;
   min-height: 26px;
   padding-bottom: 6px;
-  border-bottom: 1px solid var(--rule);
+  border-bottom: 2px solid var(--margin-line);
 }
 
 .card-meta {
@@ -313,9 +595,13 @@ body {
   font-family: var(--font-type);
 }
 
+/* 流水號做成索書號標籤 */
 .card-serial {
+  padding: 0 6px;
+  border: 1px solid var(--ink-soft);
   font-family: var(--font-type);
-  font-size: 13px;
+  font-size: 12px;
+  line-height: 1.6;
   color: var(--ink-soft);
   letter-spacing: 0.06em;
 }
@@ -353,6 +639,16 @@ body {
   color: var(--ink-soft);
 }
 
+/* 內容提醒：小字、紅色左線，不搶鉤子的位置 */
+.card-note {
+  margin: -6px 0 12px;
+  padding: 2px 0 2px 10px;
+  border-left: 2px solid var(--stamp-no-ink);
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--ink-soft);
+}
+
 .card-hook {
   margin: 0 0 16px;
   padding: 2px 0 2px 12px;
@@ -365,8 +661,7 @@ body {
 }
 
 .card-why {
-  padding-top: 8px;
-  border-top: 1px solid var(--rule);
+  padding-top: 4px;
 }
 
 .card-why-label {
@@ -376,11 +671,19 @@ body {
   color: var(--ink-faint);
 }
 
+/* 字坐在淡藍橫格線上：行高和格線間距都是 26px */
 .card-why-text {
   margin: 0;
   font-size: 15px;
-  line-height: 1.75;
+  line-height: var(--why-line);
   color: var(--ink);
+  background-image: repeating-linear-gradient(
+    to bottom,
+    transparent 0,
+    transparent calc(var(--why-line) - 1px),
+    var(--rule) calc(var(--why-line) - 1px),
+    var(--rule) var(--why-line)
+  );
 }
 
 .card-tags {
@@ -394,8 +697,7 @@ body {
 
 .card-tag {
   padding: 0 8px;
-  border: 1px solid var(--rule);
-  background: var(--paper);
+  border: 1px solid var(--ink-faint);
   font-size: 12px;
   color: var(--ink-soft);
   line-height: 1.8;
@@ -414,35 +716,60 @@ body {
   box-shadow: inset 0 1px 2px var(--desk-shadow);
 }
 
-/* 印章字 */
+/* 印章字：沒有底色，墨水直接疊在字上。
+   還沒到門檻時淡、略大，像懸在紙上；跨過門檻（.armed-*）縮回原尺寸並上滿墨，表示放開就算數 */
 .stamp {
   position: absolute;
-  top: 46px;
+  top: 40px;
   z-index: 2;
-  padding: 2px 12px;
-  border: 3px double currentColor;
-  border-radius: 4px;
+  padding: 4px 14px 2px;
+  border: 3px solid currentColor;
+  border-radius: 6px;
   font-family: var(--font-serif-zh);
   font-size: 28px;
   font-weight: 900;
   letter-spacing: 0.2em;
-  line-height: 1.3;
-  background: var(--paper);
+  line-height: 1.2;
+  text-align: center;
+  mix-blend-mode: var(--stamp-blend);
   pointer-events: none;
+  transition: transform 0.12s ease-out, opacity 0.12s ease-out;
+}
+
+.stamp-date {
+  display: block;
+  margin-top: 2px;
+  padding-top: 1px;
+  border-top: 1px solid currentColor;
+  font-family: var(--font-type);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  line-height: 1.5;
 }
 
 .stamp-yes {
   right: max(16px, 18%); /* 往內收一點，卡片往右飛時印章才看得到 */
   color: var(--stamp-yes-ink);
-  transform: rotate(12deg);
+  transform: rotate(9deg) scale(1.25);
   opacity: var(--stamp-yes, 0);
 }
 
 .stamp-no {
   left: max(16px, 18%);
   color: var(--stamp-no-ink);
-  transform: rotate(-12deg);
+  transform: rotate(-10deg) scale(1.25);
   opacity: var(--stamp-no, 0);
+}
+
+.card.armed-yes .stamp-yes {
+  transform: rotate(9deg) scale(1);
+  opacity: 0.9;
+}
+
+.card.armed-no .stamp-no {
+  transform: rotate(-10deg) scale(1);
+  opacity: 0.9;
 }
 
 /* ---------- 按鈕 ---------- */
@@ -493,6 +820,16 @@ body {
   background: var(--ink-soft);
 }
 
+/* 線框按鈕：複製翻卡紀錄、清單裡的移動按鈕 */
+.btn-line {
+  background: transparent;
+  border-color: var(--ink-soft);
+}
+
+.btn-line:hover:not(:disabled) {
+  background: var(--paper);
+}
+
 .btn-small {
   font-size: 14px;
   padding: 6px 12px;
@@ -525,7 +862,22 @@ body {
   margin: 10px 0 0;
   text-align: center;
   font-size: 13px;
-  color: var(--ink-faint);
+  color: var(--on-desk-soft);
+}
+
+.hint-touch {
+  display: none;
+}
+
+/* 手機、平板沒有鍵盤：提示改成滑動 */
+@media (hover: none) and (pointer: coarse) {
+  .hint-pointer {
+    display: none;
+  }
+
+  .hint-touch {
+    display: inline;
+  }
 }
 
 /* ---------- 翻完 ---------- */
@@ -533,9 +885,9 @@ body {
 .finish {
   padding: 28px 22px 26px;
   background: var(--paper);
-  border: 1px solid var(--rule);
-  border-top: 3px double var(--rule-head);
-  border-radius: 3px;
+  border: 1px solid var(--card-edge);
+  border-top: 2px solid var(--margin-line);
+  border-radius: 2px;
   text-align: center;
 }
 
@@ -547,10 +899,51 @@ body {
 }
 
 .finish-title {
-  margin: 0 0 20px;
+  margin: 0 0 14px;
   font-family: var(--font-serif-zh);
   font-size: 22px;
   line-height: 1.5;
+}
+
+/* 兩段各自不斷行，窄螢幕時整段換行 */
+.finish-title-part {
+  display: inline-block;
+}
+
+/* 兩枚統計章 */
+.finish-tally {
+  display: flex;
+  justify-content: center;
+  gap: 22px;
+  margin: 0 0 22px;
+}
+
+.tally {
+  padding: 6px 14px 4px;
+  border: 3px solid currentColor;
+  border-radius: 6px;
+  font-family: var(--font-serif-zh);
+  font-size: 17px;
+  font-weight: 900;
+  line-height: 1.2;
+  opacity: 0.9;
+  mix-blend-mode: var(--stamp-blend);
+}
+
+.tally b {
+  display: block;
+  font-family: var(--font-type);
+  font-size: 26px;
+}
+
+.tally-yes {
+  color: var(--stamp-yes-ink);
+  transform: rotate(-4deg);
+}
+
+.tally-no {
+  color: var(--stamp-no-ink);
+  transform: rotate(3deg);
 }
 
 .finish-actions {
@@ -584,6 +977,13 @@ body {
 
 .copy-status:empty {
   display: none;
+}
+
+/* 想讀分頁的複製區直接放在桌面上，改用桌面字色才看得清楚 */
+.list-head .copy-status,
+.list-head .copy-fallback-hint {
+  color: var(--on-desk);
+  font-weight: 700;
 }
 
 .copy-fallback {
@@ -630,14 +1030,35 @@ body {
   letter-spacing: 0.1em;
 }
 
+/* 清單：借閱登記簿。左欄流水號、紅線分欄 */
+.ledger-head {
+  display: grid;
+  grid-template-columns: 52px 1fr;
+  margin: 0;
+  padding: 6px 0;
+  background: var(--paper);
+  border: 1px solid var(--card-edge);
+  border-bottom: 2px solid var(--margin-line);
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  color: var(--ink-faint);
+}
+
+.ledger-head span:first-child {
+  text-align: center;
+}
+
+.ledger-head span:last-child {
+  padding-left: 14px;
+}
+
 .book-list {
   margin: 0;
   padding: 0;
   list-style: none;
   background: var(--paper);
-  border: 1px solid var(--rule);
-  border-top: 3px double var(--rule-head);
-  border-radius: 3px;
+  border: 1px solid var(--card-edge);
+  border-top: 0;
 }
 
 .book-list:empty {
@@ -645,9 +1066,23 @@ body {
 }
 
 .entry {
-  padding: 14px 18px;
+  display: grid;
+  grid-template-columns: 52px minmax(0, 1fr);
   border-bottom: 1px solid var(--rule);
   overflow-wrap: anywhere;
+}
+
+.entry-no {
+  padding-top: 17px;
+  border-right: 1px solid var(--margin-line);
+  font-family: var(--font-type);
+  font-size: 13px;
+  color: var(--ink-soft);
+  text-align: center;
+}
+
+.entry-body {
+  padding: 14px 16px;
 }
 
 .entry:last-child {
@@ -706,30 +1141,262 @@ body {
 .list-empty {
   margin: 32px 0;
   text-align: center;
-  color: var(--ink-faint);
+  color: var(--on-desk-soft);
+}
+
+/* 想讀分頁的兩個複製按鈕並排 */
+.list-tools {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.finish-note {
+  max-width: 34em;
+  margin: 18px auto 0;
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--ink-soft);
+  text-wrap: balance;
+}
+
+/* ---------- 想讀書堆 ---------- */
+
+/* 每本書由 app.js 算好 left／top／寬／厚／旋轉；位置改變時（疊上、倒下、抽走）用過場移過去 */
+.pile {
+  position: relative;
+  height: 260px;
+  margin-top: 24px;
+}
+
+.pile.is-still .pile-book {
+  transition: none;
+}
+
+.pile-floor {
+  position: absolute;
+  left: 24px;
+  right: 24px;
+  bottom: 6px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--pile-shadow);
+  filter: blur(4px);
+}
+
+/* 書上不寫字：書脊是整塊色，書口是米白紙頁加上下封面 */
+.pile-book {
+  --book-color: var(--spine-1);
+  position: absolute;
+  border-radius: 2px;
+  background: var(--book-color);
+  box-shadow: 0 2px 3px -1px rgba(0, 0, 0, 0.35);
+  transition:
+    left 0.6s cubic-bezier(0.3, 0.7, 0.2, 1),
+    top 0.6s cubic-bezier(0.3, 0.7, 0.2, 1),
+    rotate 0.6s cubic-bezier(0.3, 0.7, 0.2, 1);
+}
+
+.pile-book.c2 { --book-color: var(--spine-2); }
+.pile-book.c3 { --book-color: var(--spine-3); }
+.pile-book.c4 { --book-color: var(--spine-4); }
+.pile-book.c5 { --book-color: var(--spine-5); }
+
+/* 書脊上兩條淡淡的燙線 */
+.pile-book::before,
+.pile-book::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: rgba(255, 255, 255, 0.18);
+}
+
+.pile-book::before {
+  left: 10%;
+}
+
+.pile-book::after {
+  right: 10%;
+}
+
+.pile-book.is-fore {
+  background: var(--book-edge);
+  border-top: 3px solid var(--book-color);
+  border-bottom: 3px solid var(--book-color);
+  border-left: 4px solid var(--book-color);
+}
+
+.pile-book.is-fore::before,
+.pile-book.is-fore::after {
+  content: none;
+}
+
+/* 新的一本從上方落下（用 translate，不和 app.js 設的 rotate 打架） */
+.pile-book.is-dropping {
+  animation: pile-drop 0.45s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+@keyframes pile-drop {
+  0% {
+    translate: 0 -160px;
+    opacity: 0;
+  }
+  60% {
+    translate: 0 3px;
+    opacity: 1;
+  }
+  100% {
+    translate: 0 0;
+  }
+}
+
+.pile-caption {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 36px;
+  margin: 0;
+  text-align: center;
+  font-size: 13px;
+  color: var(--on-desk-soft);
+}
+
+/* ---------- 桌機：加寬、卡片字放大一階 ---------- */
+
+@media (min-width: 900px) {
+  .page {
+    max-width: 760px;
+    padding-top: 20px;
+  }
+
+  .masthead h1 {
+    font-size: 30px;
+  }
+
+  .card {
+    padding: 24px 30px 36px 48px;
+  }
+
+  .card::before {
+    left: 32px;
+  }
+
+  .card-title {
+    margin-top: 18px;
+    font-size: 36px;
+  }
+
+  .card-author {
+    font-size: 16px;
+  }
+
+  .card-hook {
+    font-size: 22px;
+  }
+
+  .card-why-text {
+    --why-line: 30px;
+    font-size: 17px;
+  }
+
+  .card-tag {
+    font-size: 13px;
+  }
+
+  .stamp {
+    top: 52px;
+    font-size: 34px;
+  }
+
+  .btn-round {
+    width: 64px;
+    height: 64px;
+    font-size: 26px;
+  }
+
+  .pile {
+    height: 300px;
+    margin-top: 36px;
+  }
 }
 
 /* ---------- 窄螢幕 ---------- */
 
+/* 目標：手機第一眼就看得到整張卡和 ✕ ♥ 按鈕，頁首、牌堆露邊、按鈕都收緊一點 */
 @media (max-width: 420px) {
   .page {
-    padding: 8px 12px 32px;
+    padding: 2px 12px 32px;
+  }
+
+  .masthead {
+    gap: 0 12px;
+    padding-bottom: 6px;
+  }
+
+  .masthead h1 {
+    font-size: 22px;
+    line-height: 1.3;
+  }
+
+  .masthead-sub {
+    font-size: 13px;
+  }
+
+  .tabs {
+    margin: 4px 0 12px;
+  }
+
+  .stack {
+    --peek: 8px;
   }
 
   .card {
-    padding: 16px 16px 28px;
+    padding: 14px 14px 24px 28px;
+  }
+
+  .card::before {
+    left: 18px;
   }
 
   .card-title {
+    margin-top: 12px;
     font-size: 25px;
   }
 
+  .card-author {
+    margin-bottom: 12px;
+  }
+
   .card-hook {
+    margin-bottom: 14px;
     font-size: 18px;
+  }
+
+  .card-tags {
+    padding-top: 12px;
+  }
+
+  .card-hole {
+    bottom: 7px;
   }
 
   .controls {
     gap: 16px;
+    margin-top: 12px;
+  }
+
+  .btn-round {
+    width: 52px;
+    height: 52px;
+    font-size: 22px;
+  }
+
+  .pile {
+    margin-top: 18px;
   }
 
   /* 手機卡片幾乎滿版，印章再往內收，拖到門檻時才看得到整個字 */
@@ -745,19 +1412,33 @@ body {
 /* ---------- 減少動態 ---------- */
 
 @media (prefers-reduced-motion: reduce) {
+  .stack,
   .card,
   .card.is-flying,
+  .card.is-returning,
+  .stamp,
   .progress-fill {
     transition: none;
   }
 
+  .stack.is-arriving,
   .card.fly-right,
   .card.fly-left {
     transform: none;
   }
 
   .stamp-yes,
-  .stamp-no {
+  .stamp-no,
+  .card.armed-yes .stamp-yes,
+  .card.armed-no .stamp-no {
     transform: none;
+  }
+
+  .pile-book {
+    transition: none;
+  }
+
+  .pile-book.is-dropping {
+    animation: none;
   }
 }

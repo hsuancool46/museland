@@ -2,7 +2,7 @@
 <html lang="zh-Hant">
 <head>
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; connect-src 'self'; img-src 'self' data:; font-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self'; media-src 'self' blob:; worker-src 'self' blob:; object-src 'none'; base-uri 'none'; form-action 'none'">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="color-scheme" content="light dark">
 <title>翻書架｜Museland</title>
@@ -17,6 +17,8 @@
         <h1>翻書架</h1>
         <p class="masthead-sub">Shelf Swipe</p>
       </div>
+      <button type="button" class="btn-redeal" id="btn-redeal" hidden>重新挑書</button>
+      <button type="button" class="theme-toggle" id="theme-toggle" aria-pressed="false">夜間</button>
       <div class="progress" id="progress">
         <p class="progress-text"><span class="progress-label">已翻</span> <span id="progress-count">0</span> / <span id="progress-total">40</span></p>
         <div class="progress-track" id="progress-track" role="progressbar" aria-label="翻卡進度" aria-valuemin="0" aria-valuemax="40" aria-valuenow="0">
@@ -25,13 +27,61 @@
       </div>
     </header>
 
-    <nav class="tabs" aria-label="檢視切換">
+    <nav class="tabs" id="tabs" aria-label="檢視切換" hidden>
       <button type="button" class="tab" id="tab-deck" data-view="deck" aria-controls="view-deck" aria-pressed="true">翻卡</button>
       <button type="button" class="tab" id="tab-yes" data-view="yes" aria-controls="view-yes" aria-pressed="false">想讀 (0)</button>
       <button type="button" class="tab" id="tab-no" data-view="no" aria-controls="view-no" aria-pressed="false">略過 (0)</button>
     </nav>
 
     <main>
+      <p class="sr-only" id="announce" aria-live="polite"></p>
+
+      <!-- 開場答題：依答案從 120 本裡挑 40 本發牌 -->
+      <section class="view view-quiz" id="view-quiz" aria-labelledby="quiz-title" hidden>
+        <div class="quiz">
+          <h2 class="quiz-title" id="quiz-title" tabindex="-1">先回答四個問題，再發一副牌</h2>
+          <p class="quiz-sub">從 120 本書裡依你的答案挑 40 本：選的主題會多一點，其他類型也會混進來幾本。</p>
+
+          <div class="quiz-q" role="group" aria-labelledby="quiz-q1">
+            <p class="quiz-q-title" id="quiz-q1">最近想讀哪一類？<span class="quiz-count" id="quiz-count">已選 0 / 3</span></p>
+            <div class="chips" id="quiz-themes"></div>
+          </div>
+
+          <div class="quiz-q" role="group" aria-labelledby="quiz-q2">
+            <p class="quiz-q-title" id="quiz-q2">喜歡哪種讀法？</p>
+            <div class="chips" id="quiz-style">
+              <button type="button" class="chip" data-value="story" aria-pressed="false">故事型</button>
+              <button type="button" class="chip" data-value="framework" aria-pressed="false">框架型</button>
+              <button type="button" class="chip" data-value="research" aria-pressed="false">研究型</button>
+              <button type="button" class="chip" data-value="essay" aria-pressed="false">隨筆型</button>
+              <button type="button" class="chip" data-value="any" aria-pressed="true">都可以</button>
+            </div>
+          </div>
+
+          <div class="quiz-q" role="group" aria-labelledby="quiz-q3">
+            <p class="quiz-q-title" id="quiz-q3">中文還是英文？</p>
+            <div class="chips" id="quiz-lang">
+              <button type="button" class="chip" data-value="ZH" aria-pressed="false">中文為主</button>
+              <button type="button" class="chip" data-value="mix" aria-pressed="true">中英各半</button>
+              <button type="button" class="chip" data-value="EN" aria-pressed="false">英文為主</button>
+            </div>
+          </div>
+
+          <div class="quiz-q" role="group" aria-labelledby="quiz-q4">
+            <p class="quiz-q-title" id="quiz-q4">厚度呢？</p>
+            <div class="chips" id="quiz-length">
+              <button type="button" class="chip" data-value="thin" aria-pressed="false">一個週末讀得完</button>
+              <button type="button" class="chip" data-value="any" aria-pressed="true">厚一點也沒關係</button>
+            </div>
+          </div>
+
+          <p class="quiz-warning" id="quiz-warning" hidden>重新發牌會換掉目前這副牌，想讀清單也會清空；需要的話先到「想讀」複製翻卡紀錄。</p>
+          <div class="quiz-actions">
+            <button type="button" class="btn btn-ink" id="quiz-deal" disabled>發牌</button>
+            <button type="button" class="btn btn-line" id="quiz-cancel" hidden>回到目前這副牌</button>
+          </div>
+        </div>
+      </section>
       <section class="view view-deck" id="view-deck" aria-label="翻卡">
         <div class="deck" id="deck">
           <p class="deck-message" id="deck-message">書單載入中…</p>
@@ -40,6 +90,10 @@
           <div class="finish" id="finish" hidden>
             <p class="finish-kicker">借閱卡已全部歸位</p>
             <h2 class="finish-title" id="finish-title" tabindex="-1">這一批翻完了，你挑了 0 本想讀</h2>
+            <p class="finish-tally">
+              <span class="tally tally-yes"><b id="tally-yes">0</b> 想讀</span>
+              <span class="tally tally-no"><b id="tally-no">0</b> 略過</span>
+            </p>
             <div class="finish-actions">
               <button type="button" class="btn btn-ink" id="finish-show-yes">看想讀清單</button>
               <div class="copy-block">
@@ -50,30 +104,56 @@
                   <textarea class="copy-fallback-text" id="finish-copy-text" readonly rows="8" aria-label="翻卡紀錄文字"></textarea>
                 </div>
               </div>
+              <div class="copy-block">
+                <button type="button" class="btn btn-line" id="finish-prompt">複製推薦提示</button>
+                <p class="copy-status" id="finish-prompt-status" aria-live="polite"></p>
+                <div class="copy-fallback" id="finish-prompt-fallback" hidden>
+                  <p class="copy-fallback-hint">無法自動複製，請手動複製</p>
+                  <textarea class="copy-fallback-text" id="finish-prompt-text" readonly rows="8" aria-label="推薦提示文字"></textarea>
+                </div>
+              </div>
             </div>
+            <p class="finish-note">「複製推薦提示」會把你的選擇整理成一段話，貼到你自己常用的 AI 對話裡，就能請它照你的口味推薦下一批書。</p>
           </div>
         </div>
 
         <div class="controls" id="controls" hidden>
           <button type="button" class="btn-round btn-skip" id="btn-skip" aria-label="略過">✕</button>
           <button type="button" class="btn btn-undo" id="btn-undo" disabled>↶ 上一張</button>
-          <button type="button" class="btn-round btn-want" id="btn-want" aria-label="想讀">♥</button>
+          <button type="button" class="btn-round btn-want" id="btn-want" aria-label="想讀">&#x2665;&#xFE0E;</button>
         </div>
-        <p class="hint" id="hint" hidden>拖曳卡片，或按鍵盤 ← 略過、→ 想讀</p>
+        <p class="hint" id="hint" hidden><span class="hint-pointer">拖曳卡片，或按鍵盤 ← 略過、→ 想讀</span><span class="hint-touch">左右滑動卡片：往右想讀、往左略過</span></p>
+
+        <!-- 想讀書堆：每放一本想讀，就有一本書平放落下、往上疊（純裝飾，清單在「想讀」分頁） -->
+        <div class="pile" id="pile" aria-hidden="true" hidden>
+          <span class="pile-floor"></span>
+          <p class="pile-caption" id="pile-caption">想讀的書會疊在這裡</p>
+        </div>
       </section>
 
       <section class="view view-list" id="view-yes" aria-label="想讀清單" hidden>
         <div class="list-head">
           <h2 class="list-title">想讀</h2>
-          <div class="copy-block">
-            <button type="button" class="btn btn-line" id="yes-copy">複製翻卡紀錄</button>
-            <p class="copy-status" id="yes-copy-status" aria-live="polite"></p>
-            <div class="copy-fallback" id="yes-copy-fallback" hidden>
-              <p class="copy-fallback-hint">無法自動複製，請手動複製</p>
-              <textarea class="copy-fallback-text" id="yes-copy-text" readonly rows="8" aria-label="翻卡紀錄文字"></textarea>
+          <div class="list-tools">
+            <div class="copy-block">
+              <button type="button" class="btn btn-line" id="yes-copy">複製翻卡紀錄</button>
+              <p class="copy-status" id="yes-copy-status" aria-live="polite"></p>
+              <div class="copy-fallback" id="yes-copy-fallback" hidden>
+                <p class="copy-fallback-hint">無法自動複製，請手動複製</p>
+                <textarea class="copy-fallback-text" id="yes-copy-text" readonly rows="8" aria-label="翻卡紀錄文字"></textarea>
+              </div>
+            </div>
+            <div class="copy-block">
+              <button type="button" class="btn btn-line" id="yes-prompt">複製推薦提示</button>
+              <p class="copy-status" id="yes-prompt-status" aria-live="polite"></p>
+              <div class="copy-fallback" id="yes-prompt-fallback" hidden>
+                <p class="copy-fallback-hint">無法自動複製，請手動複製</p>
+                <textarea class="copy-fallback-text" id="yes-prompt-text" readonly rows="8" aria-label="推薦提示文字"></textarea>
+              </div>
             </div>
           </div>
         </div>
+        <p class="ledger-head" id="ledger-head-yes" aria-hidden="true"><span>No.</span><span>書名・作者・鉤子</span></p>
         <ol class="book-list" id="list-yes"></ol>
         <p class="list-empty" id="empty-yes">還沒有放進想讀的書。</p>
       </section>
@@ -82,6 +162,7 @@
         <div class="list-head">
           <h2 class="list-title">略過</h2>
         </div>
+        <p class="ledger-head" id="ledger-head-no" aria-hidden="true"><span>No.</span><span>書名・作者・鉤子</span></p>
         <ol class="book-list" id="list-no"></ol>
         <p class="list-empty" id="empty-no">還沒有略過的書。</p>
       </section>
